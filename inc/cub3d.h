@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/07/02 18:59:47 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/23 20:53:58 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <libft.h>
 # include <ft_printf.h>
+# include <get_next_line.h>
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -35,7 +36,7 @@
 ** ERROR MESSAGES
 */
 
-# define ERR_IN_CUB_FILE		0
+# define ERR_IN_CUB_FILE	0
 # define ERR_MALLOC			1
 # define ERR_MLX			2
 # define ERR_NO_CUB			3
@@ -89,7 +90,7 @@ typedef struct		s_base
 	t_spr			sprites;
 	t_rgb			floor;
 	t_rgb			ceiling;
-	char			**map;
+	char			*map;
 }					t_base;
 
 /*
@@ -117,7 +118,7 @@ typedef struct		s_vars
 ** | ----------------------------------------------------------------------- |
 */
 
-// typedef void		(*t_read_b)(char *s, t_base *b);
+typedef void		(*t_read)(char *s, t_base *b, char *type);
 // typedef void		(*t_read_o)(char *s, t_objs *o);
 // typedef t_vect		(*t_hit_o)(t_vect *rd, t_data *data, t_objs *o);
 
@@ -130,7 +131,7 @@ void				hooks(t_vars *vars);
 ** Reader functions
 */
 
-void				*reader(t_base *b);
+void				reader(t_base *b);
 // t_objs				*read_loop(t_base *b, t_objs *o, char *s);
 // int					obj_cntr(char *s);
 // int					cam_light_cntr(char *s, char c);
