@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   extra1.c                                           :+:    :+:            */
+/*   ft_strdup.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Created: 2019/11/04 15:36:50 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+char	*ft_strdup(const char *s1)
 {
-	char		*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
+	char	*str;
 	int		i;
 
 	i = 0;
-	while (ptr[i][0] != '\0')
-		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (ptr[i][0] != '\0')
+	str = malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (!str)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		new[i] = ptr[i];
+		str[i] = s1[i];
 		i++;
 	}
-	new[i] = "\0";
-	free(ptr);
-	return (new);
+	str[i] = '\0';
+	return (&str[0]);
 }
-

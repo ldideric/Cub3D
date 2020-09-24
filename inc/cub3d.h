@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/23 20:53:58 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/24 22:14:57 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@
 ** ERROR MESSAGES
 */
 
-# define ERR_IN_CUB_FILE	0
-# define ERR_MALLOC			1
-# define ERR_MLX			2
-# define ERR_NO_CUB			3
+# define ERR_IN_CUB	"\x1b[31mERROR\x1b[0m:\nWrong .cub file input!\n"
+# define ERR_MALLOC	"\x1b[31mERROR\x1b[0m:\nMemory allocating failed."
+# define ERR_IN_MLX	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with MLX!"
+# define ERR_NO_CUB	"\x1b[31mERROR\x1b[0m:\nNo .cub file given!"
+# define ERR_IN_GNL	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with GNL!"
 
 /*
 ** STRUCTS ---------------------------------------------------- |
@@ -90,7 +91,7 @@ typedef struct		s_base
 	t_spr			sprites;
 	t_rgb			floor;
 	t_rgb			ceiling;
-	char			*map;
+	char			**map;
 }					t_base;
 
 /*
@@ -118,37 +119,30 @@ typedef struct		s_vars
 ** | ----------------------------------------------------------------------- |
 */
 
-typedef void		(*t_read)(char *s, t_base *b, char *type);
+typedef void		(*t_read)(char *s, t_base *b);
 // typedef void		(*t_read_o)(char *s, t_objs *o);
 // typedef t_vect		(*t_hit_o)(t_vect *rd, t_data *data, t_objs *o);
 
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
+char				**ft_realloc_arr(char **ptr);
 
-void				*errors(int error);
+void				*errors(char* error);
 void				hooks(t_vars *vars);
 
 /*
 ** Reader functions
 */
 
-void				reader(t_base *b);
+void				*reader(t_base *b, char *s, int fd, int ret);
+void				*rd_start(t_base *b);
 // t_objs				*read_loop(t_base *b, t_objs *o, char *s);
 // int					obj_cntr(char *s);
 // int					cam_light_cntr(char *s, char c);
 // void				*reader_free(void *a, void *b, void *c, void *d);
 
 // char				*rd_vect(char *s, t_vect *vect);
-// char				*rd_rgb(char *s, t_rgb *rgb);
-
-// void				rd_res(char *s, t_base *t);
-// void				rd_amb(char *s, t_base *t);
-// void				rd_cam(char *s, t_base *t);
-// void				rd_light(char *s, t_base *t);
-
-// void				rd_sphere(char *s, t_objs *o);
-// void				rd_plane(char *s, t_objs *o);
-// void				rd_square(char *s, t_objs *o);
-// void				rd_cylinder(char *s, t_objs *o);
-// void				rd_triangle(char *s, t_objs *o);
+void				rd_rgb(char *s, t_rgb *rgb);
+void				rd_res(char *s, t_base *b);
+void				rd_ground_sky(char *s, t_base *b);
 
 #endif

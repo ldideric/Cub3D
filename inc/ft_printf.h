@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 17:15:25 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/07/02 18:21:09 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/24 22:12:09 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int				ft_flags(char *str, va_list ap);
 t_arg			ft_yesflag(char *str, t_arg list, int *i);
 t_arg			*ft_argnew(void);
 int				ft_numlen(char *str);
-int				ft_freestruct(t_arg *list);
-int				ft_freestr(char *s);
+int				ft_freevoid(void *item);
 int				ft_intchars(long long a, int base);
 char			*ft_itoa_base(long long a, int base, int big);
 char			*ft_ultoa_base(unsigned long a, unsigned long base, int big);

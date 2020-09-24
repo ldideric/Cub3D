@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error.c                                            :+:    :+:            */
+/*   ft_strrchr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:00:26 by ldideric      ########   odam.nl         */
+/*   Created: 2019/10/31 17:33:26 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		*errors(char *error)
+char		*ft_strrchr(const char *s, int c)
 {
-	(error == ERR_NO_CUB) ? ft_printf(ERR_NO_CUB) : (int)NULL;
-	(error == ERR_IN_CUB) ? ft_printf(ERR_IN_CUB) : (int)NULL;
-	(error == ERR_MALLOC) ? ft_printf(ERR_MALLOC) : (int)NULL;
-	(error == ERR_IN_MLX) ? ft_printf(ERR_IN_MLX) : (int)NULL;
-	(error == ERR_IN_GNL) ? ft_printf(ERR_IN_GNL) : (int)NULL;
+	int i;
+
+	if (s == NULL)
+		return ((char *)ft_strlen(0));
+	i = (int)ft_strlen(s);
+	if (c == '\0' && (unsigned char)s[i] == (unsigned char)c)
+		return ((char *)&s[i]);
+	while (i >= 0)
+	{
+		if (c == '\0' && (unsigned char)s[i + 1] == (unsigned char)c)
+			return ((char *)&s[i + 1]);
+		if ((unsigned char)s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i--;
+	}
 	return (NULL);
 }

@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   extra1.c                                           :+:    :+:            */
+/*   ft_calloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Created: 2019/11/04 12:03:55 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char		*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
+	char	*str;
 	int		i;
 
 	i = 0;
-	while (ptr[i][0] != '\0')
-		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (ptr[i][0] != '\0')
+	str = malloc(size * count);
+	if (!str)
+		return (NULL);
+	while ((unsigned long)i < (size * count))
 	{
-		new[i] = ptr[i];
+		str[i] = '\0';
 		i++;
 	}
-	new[i] = "\0";
-	free(ptr);
-	return (new);
+	return (&str[0]);
 }
-

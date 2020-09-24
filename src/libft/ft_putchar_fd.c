@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error.c                                            :+:    :+:            */
+/*   ft_putchar_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:00:26 by ldideric      ########   odam.nl         */
+/*   Created: 2019/11/05 18:34:04 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
+#include <unistd.h>
 
-void		*errors(char *error)
+void	ft_putchar_fd(char c, int fd)
 {
-	(error == ERR_NO_CUB) ? ft_printf(ERR_NO_CUB) : (int)NULL;
-	(error == ERR_IN_CUB) ? ft_printf(ERR_IN_CUB) : (int)NULL;
-	(error == ERR_MALLOC) ? ft_printf(ERR_MALLOC) : (int)NULL;
-	(error == ERR_IN_MLX) ? ft_printf(ERR_IN_MLX) : (int)NULL;
-	(error == ERR_IN_GNL) ? ft_printf(ERR_IN_GNL) : (int)NULL;
-	return (NULL);
+	write(fd, &c, 1);
 }

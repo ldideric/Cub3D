@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   extra1.c                                           :+:    :+:            */
+/*   ft_atoi.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Created: 2019/10/28 14:01:17 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int		ft_atoi(const char *str)
 {
-	char		*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
-	int		i;
+	int				i;
+	unsigned long	num;
+	int				min;
 
 	i = 0;
-	while (ptr[i][0] != '\0')
+	num = 0;
+	min = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (ptr[i][0] != '\0')
+	if (str[i] == '+' || str[i] == '-')
 	{
-		new[i] = ptr[i];
+		if (str[i] == '-')
+			min = -min;
 		i++;
 	}
-	new[i] = "\0";
-	free(ptr);
-	return (new);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - 48;
+		i++;
+	}
+	if (num >= 9223372036854775807 && min == 1)
+		return (-1);
+	return (num * min);
 }
-

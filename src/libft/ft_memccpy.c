@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   extra1.c                                           :+:    :+:            */
+/*   ft_memccpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Created: 2019/11/01 11:25:35 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	char		*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
-	int		i;
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
 
 	i = 0;
-	while (ptr[i][0] != '\0')
-		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (ptr[i][0] != '\0')
+	if ((!dst || !src) || n == 0)
+		return (dst);
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	while (i < n)
 	{
-		new[i] = ptr[i];
+		d[i] = s[i];
+		if (s[i] == (unsigned char)c)
+			return (&d[i + 1]);
 		i++;
 	}
-	new[i] = "\0";
-	free(ptr);
-	return (new);
+	return (NULL);
 }
-

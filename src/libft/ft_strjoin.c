@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   extra1.c                                           :+:    :+:            */
+/*   ft_strjoin.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Created: 2019/11/15 13:54:25 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
-	int		i;
+	char	*str;
+	size_t	i;
+	size_t	b;
 
 	i = 0;
-	while (ptr[i][0] != '\0')
-		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (ptr[i][0] != '\0')
+	b = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		new[i] = ptr[i];
+		str[i] = s1[i];
 		i++;
 	}
-	new[i] = "\0";
-	free(ptr);
-	return (new);
+	while (s2[b] != '\0')
+	{
+		str[i] = s2[b];
+		i++;
+		b++;
+	}
+	str[i] = '\0';
+	return (str);
 }
-

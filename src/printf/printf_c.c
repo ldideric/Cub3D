@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   extra1.c                                           :+:    :+:            */
+/*   printf_c.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Created: 2019/12/02 19:12:02 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/07/02 19:49:52 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include "ft_printf.h"
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int		printf_c(va_list ap, t_arg list)
 {
-	char		*dst;
-
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
+	char	c;
 	int		i;
 
 	i = 0;
-	while (ptr[i][0] != '\0')
-		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (ptr[i][0] != '\0')
+	c = (list.zero) ? '0' : ' ';
+	list.width = (list.width - 1 > 0) ? list.width - 1 : 0;
+	while (list.width > i && !list.minus)
 	{
-		new[i] = ptr[i];
+		ft_putchar(c);
 		i++;
 	}
-	new[i] = "\0";
-	free(ptr);
-	return (new);
+	ft_putchar(va_arg(ap, int));
+	while (list.width > i && list.minus)
+	{
+		ft_putchar(' ');
+		i++;
+	}
+	return (i + 1);
 }
-

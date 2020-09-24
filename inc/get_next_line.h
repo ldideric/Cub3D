@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 13:56:19 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/23 17:30:12 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/24 18:31:42 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 1048
 # endif
 
 # define TRUE 1

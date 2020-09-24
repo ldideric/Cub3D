@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error.c                                            :+:    :+:            */
+/*   ft_memmove.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:00:26 by ldideric      ########   odam.nl         */
+/*   Created: 2019/11/01 12:20:23 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <libft.h>
 
-void		*errors(char *error)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	(error == ERR_NO_CUB) ? ft_printf(ERR_NO_CUB) : (int)NULL;
-	(error == ERR_IN_CUB) ? ft_printf(ERR_IN_CUB) : (int)NULL;
-	(error == ERR_MALLOC) ? ft_printf(ERR_MALLOC) : (int)NULL;
-	(error == ERR_IN_MLX) ? ft_printf(ERR_IN_MLX) : (int)NULL;
-	(error == ERR_IN_GNL) ? ft_printf(ERR_IN_GNL) : (int)NULL;
-	return (NULL);
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
+
+	i = 0;
+	if (!src || !dst)
+		return (dst);
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	if (&d[0] < &s[len - 1] && &d[0] >= &s[0])
+		while (i < len)
+		{
+			d[len - 1] = s[len - 1];
+			len--;
+		}
+	else
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	return (dst);
 }
