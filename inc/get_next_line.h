@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 13:56:19 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 18:31:42 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/25 14:25:39 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_fd
 int				get_next_line(int fd, char **line);
 char			*ft_gnl_strdup(char *s1, int a);
 char			*ft_gnl_strjoin(char *s1, char *s2);
-int				ft_gnl_strlen(char *str, int a);
+int				ft_gnl_len(char *str, int a);
 char			*clr_to_nl(char *buffer);
 void			*ft_gnl_calloc(size_t count);
 

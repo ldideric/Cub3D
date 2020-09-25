@@ -6,13 +6,13 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 13:16:32 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 13:51:08 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/25 14:25:53 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int			ft_gnl_strlen(char *str, int a)
+int			ft_gnl_len(char *str, int a)
 {
 	int i;
 
@@ -34,7 +34,7 @@ char		*ft_gnl_strjoin(char *s1, char *s2)
 
 	i = 0;
 	b = 0;
-	str = ft_gnl_calloc((ft_gnl_strlen(s1, FALSE) + ft_gnl_strlen(s2, FALSE) + 2));
+	str = ft_gnl_calloc((ft_gnl_len(s1, FALSE) + ft_gnl_len(s2, FALSE) + 2));
 	while (str && (s1[i] != '\0' && s1[i] != '\n'))
 	{
 		str[i] = s1[i];
@@ -59,7 +59,7 @@ char		*ft_gnl_strdup(char *s1, int a)
 
 	i = 0;
 	if (a == TRUE)
-		len = ft_gnl_strlen(s1, FALSE);
+		len = ft_gnl_len(s1, FALSE);
 	else
 		len = BUFFER_SIZE;
 	str = ft_gnl_calloc(sizeof(char) * len + 2);

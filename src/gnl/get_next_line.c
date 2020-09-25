@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/09 12:59:04 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 13:51:09 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/25 14:25:07 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static char	*eachline(char **buffer, char *str, int ret)
 		free(str);
 		if (new == NULL)
 			return (NULL);
-		if (ret == 0 && new[ft_gnl_strlen(new, TRUE) - 1] != '\n')
+		if (ret == 0 && new[ft_gnl_len(new, TRUE) - 1] != '\n')
 		{
-			new[ft_gnl_strlen(new, FALSE)] = '\n';
-			new[ft_gnl_strlen(new, FALSE)] = '\0';
+			new[ft_gnl_len(new, FALSE)] = '\n';
+			new[ft_gnl_len(new, FALSE)] = '\0';
 		}
 		return (new);
 	}
@@ -70,7 +70,7 @@ int			free_all(t_fd *list)
 
 char		*gnl_expanded(t_fd *filed, int fd, int *ret)
 {
-	while (filed->str[ft_gnl_strlen(filed->str, TRUE) - 1] != '\n')
+	while (filed->str[ft_gnl_len(filed->str, TRUE) - 1] != '\n')
 	{
 		*ret = checks(fd, filed->buffer);
 		if (*ret < 0)
@@ -84,7 +84,7 @@ char		*gnl_expanded(t_fd *filed, int fd, int *ret)
 		free(filed->buffer);
 		filed->buffer = NULL;
 	}
-	filed->str[ft_gnl_strlen(filed->str, TRUE) - 1] = '\0';
+	filed->str[ft_gnl_len(filed->str, TRUE) - 1] = '\0';
 	return (filed->str);
 }
 

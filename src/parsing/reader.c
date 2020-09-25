@@ -6,49 +6,46 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:21:16 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/25 15:50:51 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
 
-void			rd_sprites(char *s, t_base *b)
+static int		specifier(char *s, t_base *b)
 {
-	char	**ptr;
-	int		i;
-
-	i = 0;
-	ptr = (void *)0;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"NO") ? &b->sprites.no : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? &b->sprites.ea : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? &b->sprites.so : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? &b->sprites.we : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->sprites.s : ptr;
-	while (ft_isalpha(s[i]))
-		i++;
-	while (s[i] == ' ')
-		i++;
-	*ptr = ft_substr(s, i, 255);
-}
-
-static void		specifier(char *s, t_base *b)
-{
-	static const t_read spec[128] = {
+	int					a;
+	static const t_read	spec[128] = {
 		['1'] = &rd_sprites,
 		['2'] = &rd_res,
 		['3'] = &rd_ground_sky,
 	};
 
-	(*(u_int16_t *)s == *(u_int16_t *)"NO") ? spec['1'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"EA") ? spec['1'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"SO") ? spec['1'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"WE") ? spec['1'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"S ") ? spec['1'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"R ") ? spec['2'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"F ") ? spec['3'](s, b) : NULL;
-	(*(u_int16_t *)s == *(u_int16_t *)"C ") ? spec['3'](s, b) : NULL;
+	a = -1;
+	a = (*(u_int16_t *)s == *(u_int16_t *)"NO") ? spec['1'](s, b) : a;
+	a = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? spec['1'](s, b) : a;
+	a = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? spec['1'](s, b) : a;
+	a = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? spec['1'](s, b) : a;
+	a = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? spec['1'](s, b) : a;
+	if (a == 0)
+		return (0);
+	a = (*(u_int16_t *)s == *(u_int16_t *)"R ") ? spec['2'](s, b) : a;
+	if (a == 0)
+		return (0);
+	a = (*(u_int16_t *)s == *(u_int16_t *)"F ") ? spec['3'](s, b) : a;
+	a = (*(u_int16_t *)s == *(u_int16_t *)"C ") ? spec['3'](s, b) : a;
+	if (a == 0)
+		return (0);
 }
 
+return (((*(u_int16_t *)s == *(u_int16_t *)"NO") && ((int (*)(char *, t_rgb *))spec['1'])(s, b)) ||
+	((*(u_int16_t *)s == *(u_int16_t *)"EA") && ((int (*)(char *, t_rgb *))spec['1'])(s, b)) || 
+	((*(u_int16_t *)s == *(u_int16_t *)"SO") && ((int (*)(char *, t_rgb *))spec['1'])(s, b)) ||
+	((*(u_int16_t *)s == *(u_int16_t *)"WE") && ((int (*)(char *, t_rgb *))spec['1'])(s, b)) ||
+	((*(u_int16_t *)s == *(u_int16_t *)"S ") && ((int (*)(char *, t_rgb *))spec['1'])(s, b)) ||
+	((*(u_int16_t *)s == *(u_int16_t *)"R ") && ((int (*)(char *, t_rgb *))spec['2'])(s, b)) ||
+	((*(u_int16_t *)s == *(u_int16_t *)"F ") && ((int (*)(char *, t_rgb *))spec['3'])(s, b)) ||
+	((*(u_int16_t *)s == *(u_int16_t *)"C ") && ((int (*)(char *, t_rgb *))spec['3'])(s, b)));
 static void		rd_map(t_base *b, int fd, char **s)
 {
 	int		i;

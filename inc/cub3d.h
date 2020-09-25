@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:14:57 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/25 15:34:05 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,13 @@ typedef struct		s_vars
 ** | ----------------------------------------------------------------------- |
 */
 
-typedef void		(*t_read)(char *s, t_base *b);
+typedef int			(*t_read)(char *s, t_base *b);
 // typedef void		(*t_read_o)(char *s, t_objs *o);
 // typedef t_vect		(*t_hit_o)(t_vect *rd, t_data *data, t_objs *o);
 
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
+int					int_checker(int a, int max);
 
 void				*errors(char* error);
 void				hooks(t_vars *vars);
@@ -140,9 +141,9 @@ void				*rd_start(t_base *b);
 // int					cam_light_cntr(char *s, char c);
 // void				*reader_free(void *a, void *b, void *c, void *d);
 
-// char				*rd_vect(char *s, t_vect *vect);
-void				rd_rgb(char *s, t_rgb *rgb);
-void				rd_res(char *s, t_base *b);
-void				rd_ground_sky(char *s, t_base *b);
+int					rd_sprites(char *s, t_base *b);
+int					rd_res(char *s, t_base *b);
+int					rd_ground_sky(char *s, t_base *b);
+int					rd_rgb(char *s, t_rgb *rgb);
 
 #endif

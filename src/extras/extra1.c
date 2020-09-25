@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 20:49:19 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/25 15:33:53 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,7 @@ char		**ft_realloc_arr(char **ptr)
 	return (new);
 }
 
+int			int_checker(int a, int max)
+{
+	return (a >= 0 && a <= max);
+}

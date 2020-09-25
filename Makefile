@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/09/24 22:45:21 by ldideric      ########   odam.nl          #
+#    Updated: 2020/09/25 14:29:22 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,21 +157,21 @@ all: $(NAME)
 $(NAME):
 	@echo "$(P)Compiling MiniLibX Library$(O)"
 	$(MMLX)
-	@echo "$(P)Compiling cub3D$(Y)"
+	@echo "$(P)Compiling cub3D$(O)"
 	@gcc $(C_FILES) $(FLAGS) $(EXTRAS) -o $(NAME)
-	@echo "gcc [> all .c files in ./src/ <] $(FLAGS) $(EXTRAS) -o $(NAME)"
-	@echo "$(G) > Done compiling!$(RES)"
+	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME)"
+	@echo "$(G) > Done compiling!$(RES)\n"
 
 clean:
-	@echo "$(P)Cleaning files.$(B)"
+	@echo "$(P)Cleaning files.$(GR)"
 	@make clean -C ./mlx
-	@echo "rm -rf [> all .o files in ./src/ <]"
+	@echo "rm -rf $\(FILES).o"
 	@rm -rf $(O_FILES)
 
 fclean: clean
 	rm -rf $(NAME) libmlx.dylib
 	$(CMLX)
-	@echo "$(G) > Done Cleaning!$(RES)"
+	@echo "$(G) > Done Cleaning!$(RES)\n"
 
 re: fclean all
 
