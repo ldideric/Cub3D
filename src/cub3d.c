@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:15:06 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/28 15:37:13 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ int				main(int argc, char **argv)
 	if (argc >= 2)
 		vars.data.b.file = argv[1];
 	else
-		return ((int)errors(ERR_NO_CUB));
-	rd_start(&vars.data.b);
+		return (errors(ERR_NO_CUB));
+	if (!rd_start(&vars.data.b))
+		return (0);
 	if (mlx_start(&vars.data, &vars) == NULL)
-		return ((int)errors(ERR_IN_MLX));
+		return (errors(ERR_IN_MLX));
 	// px_loop(&vars.data);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
 	hooks(&vars);

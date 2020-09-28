@@ -6,13 +6,29 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/25 15:06:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/28 20:59:38 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
 
-void		*errors(char *error)
+int		rd_struct_free(char *s, t_base *b)
+{
+	if (b->sprites.no)
+		free(b->sprites.no);
+	if (b->sprites.so)
+		free(b->sprites.so);
+	if (b->sprites.we)
+		free(b->sprites.we);
+	if (b->sprites.ea)
+		free(b->sprites.ea);
+	if (b->sprites.s)
+		free(b->sprites.s);
+	printf("Something went wrong with parsing the %s sprite!", *(u_int16_t *)s);
+	return (0);
+}
+
+int		errors(char *error)
 {
 	if (error == ERR_NO_CUB)
 		ft_printf(ERR_NO_CUB);
@@ -24,5 +40,5 @@ void		*errors(char *error)
 		ft_printf(ERR_IN_MLX);
 	if (error == ERR_IN_GNL)
 		ft_printf(ERR_IN_GNL);
-	return (NULL);
+	return (0);
 }

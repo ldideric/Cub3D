@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/25 15:34:05 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/28 15:49:30 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,15 +127,15 @@ void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
 int					int_checker(int a, int max);
 
-void				*errors(char* error);
+int					errors(char *error);
 void				hooks(t_vars *vars);
 
 /*
 ** Reader functions
 */
 
-void				*reader(t_base *b, char *s, int fd, int ret);
-void				*rd_start(t_base *b);
+int					reader(t_base *b, char *s, int fd, int ret);
+int					rd_start(t_base *b);
 // t_objs				*read_loop(t_base *b, t_objs *o, char *s);
 // int					obj_cntr(char *s);
 // int					cam_light_cntr(char *s, char c);
