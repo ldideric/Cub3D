@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/28 15:49:30 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/01 21:51:09 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@
 /*
 ** ERROR MESSAGES
 */
-
+# define ERR_STRING	"\x1b[31mERROR\x1b[0m:\n%s %s sprite!"
 # define ERR_IN_CUB	"\x1b[31mERROR\x1b[0m:\nWrong .cub file input!\n"
 # define ERR_MALLOC	"\x1b[31mERROR\x1b[0m:\nMemory allocating failed."
 # define ERR_IN_MLX	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with MLX!"
 # define ERR_NO_CUB	"\x1b[31mERROR\x1b[0m:\nNo .cub file given!"
 # define ERR_IN_GNL	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with GNL!"
+# define ERR_PARSER	"Something went wrong with parsing the"
 
 /*
 ** STRUCTS ---------------------------------------------------- |
@@ -127,15 +128,18 @@ void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
 int					int_checker(int a, int max);
 
-int					errors(char *error);
 void				hooks(t_vars *vars);
+int					errors(char *error);
 
 /*
 ** Reader functions
 */
 
-int					reader(t_base *b, char *s, int fd, int ret);
+void				pix_loop(t_data *d);
+
+// int					reader(t_base *b, char *s, int fd, int ret);
 int					rd_start(t_base *b);
+int					rd_struct_free(char *s, t_base *b);
 // t_objs				*read_loop(t_base *b, t_objs *o, char *s);
 // int					obj_cntr(char *s);
 // int					cam_light_cntr(char *s, char c);

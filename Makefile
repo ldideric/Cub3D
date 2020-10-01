@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/09/25 14:29:22 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/01 21:52:49 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ GNL_OBJ_DIR		=	$(GNL_SRC_DIR:.c=.o)
 PARS_OBJ_DIR	=	$(PARS_SRC_DIR:.c=.o)
 EXTRA_OBJ_DIR	=	$(EXTRA_SRC_DIR:.c=.o)
 
-C_FILES			=	./$(SRC_PATH)/cub3d.c \
+C_FILES			=	./$(SRC_PATH)/cub3d.c ./src/raycaster/pxloop.c \
 					$(LIBFT_SRC_DIR) \
 					$(PRINTF_SRC_DIR) \
 					$(GNL_SRC_DIR) \

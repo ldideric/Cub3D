@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/25 15:36:25 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/01 19:13:10 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ int			rd_rgb(char *s, t_rgb *rgb)
 		rgb->packed.b = (unsigned char)ft_atoi(s);
 	else
 		return (0);
-	while (ft_isdigit(*s) || *s == '.' || *s == '-')
-		s++;
 	rgb->packed.a = 0;
 	return (1);
 }

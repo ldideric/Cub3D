@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/28 18:15:54 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/01 23:01:58 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,31 @@ static int		specifier(char *s, t_base *b)
 			((*(u_int16_t *)s == *(u_int16_t *)"C ") && spec['3'](s, b)));
 }
 
-static void		rd_map(t_base *b, int fd, char **s)
+static int		rd_map(t_base *b, int fd, char **s)
 {
+	int		ret;
 	int		i;
 
-	i = 1;
-	b->map = malloc(sizeof(char **) * 2);
-	b->map[0] = ft_strdup(*s);
-	b->map[1] = "\0";
-	free(*s);
-	while (get_next_line(fd, s) != 0)
+	i = 0;
+	ret = 1;
+	b->map = malloc(sizeof(char **) * 1);
+	while (ret > 0)
 	{
 		b->map = ft_realloc_arr(b->map);
 		b->map[i] = ft_strdup(*s);
 		b->map[i + 1] = "\0";
 		free(*s);
 		i++;
+		ret = get_next_line(fd, s);
+		if (ret == -1)
+			return (errors(ERR_IN_GNL));
 	}
+	return (1);
 }
 
-int				reader(t_base *b, char *s, int fd, int ret)
+static int		reader(t_base *b, char *s, int fd, int ret)
 {
-	while (ret != 0)
+	while (ret > 0)
 	{
 		if (ft_isalpha(s[0]) == 1)
 		{
@@ -60,7 +63,8 @@ int				reader(t_base *b, char *s, int fd, int ret)
 		}
 		else if (ft_isdigit(s[0]) == 1 || s[0] == ' ')
 		{
-			rd_map(b, fd, &s);
+			if (!rd_map(b, fd, &s))
+				return (0);
 			break ;
 		}
 		free(s);

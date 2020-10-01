@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/28 15:37:13 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/01 21:51:22 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				main(int argc, char **argv)
 		return (0);
 	if (mlx_start(&vars.data, &vars) == NULL)
 		return (errors(ERR_IN_MLX));
-	// px_loop(&vars.data);
+	pix_loop(&vars.data);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
 	hooks(&vars);
 	mlx_loop(vars.mlx);

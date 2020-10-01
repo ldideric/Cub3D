@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/28 20:59:38 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/09/29 18:36:38 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		rd_struct_free(char *s, t_base *b)
 		free(b->sprites.ea);
 	if (b->sprites.s)
 		free(b->sprites.s);
-	printf("Something went wrong with parsing the %s sprite!", *(u_int16_t *)s);
+	printf(ERR_STRING, ERR_PARSER, ft_substr(s, 0, 2));
 	return (0);
 }
 
