@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/01 21:52:49 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/02 13:42:44 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ GNL_SRC			=	get_next_line.c \
 					get_next_line_utils.c
 
 PARS_SRC		=	reader.c \
-					reader_extra.c
+					reader_extra.c \
+					validate_map.c
 
 EXTRA_SRC		=	error.c \
 					hooks.c \

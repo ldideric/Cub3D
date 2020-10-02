@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/29 18:36:38 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/02 15:29:21 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int		errors(char *error)
 		ft_printf(ERR_IN_MLX);
 	if (error == ERR_IN_GNL)
 		ft_printf(ERR_IN_GNL);
+	if (error == ERR_TWO_SP)
+		ft_printf(ERR_TWO_SP);
+	if (error == ERR_MAP_PR)
+		ft_printf(ERR_MAP_PR);
 	return (0);
 }

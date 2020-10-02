@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/01 19:13:10 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/02 13:16:24 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			rd_res(char *s, t_base *b)
 	while (*s == ' ' || ft_isalpha(*s))
 		s++;
 	if (int_checker(ft_atoi(s), 3840) == 1)
-		b->res.x_max = ft_atoi(s);
+		b->res.x = ft_atoi(s);
 	else
 		return (0);
 	while (ft_isdigit(*s))
@@ -45,7 +45,7 @@ int			rd_res(char *s, t_base *b)
 	while (*s == ' ')
 		s++;
 	if (int_checker(ft_atoi(s), 3840) == 1)
-		b->res.y_max = ft_atoi(s);
+		b->res.y = ft_atoi(s);
 	else
 		return (0);
 	return (1);

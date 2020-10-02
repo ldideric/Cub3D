@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/01 21:51:09 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/02 15:26:13 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@
 /*
 ** ERROR MESSAGES
 */
+
+# define ERR_PARSER	"Something went wrong with parsing the"
 # define ERR_STRING	"\x1b[31mERROR\x1b[0m:\n%s %s sprite!"
 # define ERR_IN_CUB	"\x1b[31mERROR\x1b[0m:\nWrong .cub file input!\n"
 # define ERR_MALLOC	"\x1b[31mERROR\x1b[0m:\nMemory allocating failed."
 # define ERR_IN_MLX	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with MLX!"
 # define ERR_NO_CUB	"\x1b[31mERROR\x1b[0m:\nNo .cub file given!"
 # define ERR_IN_GNL	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with GNL!"
-# define ERR_PARSER	"Something went wrong with parsing the"
+# define ERR_TWO_SP	"\x1b[31mERROR\x1b[0m:\nTwo or more spawn points in map!"
+# define ERR_MAP_PR	"\x1b[31mERROR\x1b[0m:\nWalls in map not correct!"
 
 /*
 ** STRUCTS ---------------------------------------------------- |
@@ -63,8 +66,8 @@ typedef union		u_rgb
 
 typedef struct		s_res
 {
-	int				x_max;
-	int				y_max;
+	int				x;
+	int				y;
 }					t_res;
 
 typedef struct		s_2vec
@@ -82,17 +85,26 @@ typedef struct		s_spr
 	char			*s;
 }					t_spr;
 
+typedef struct		s_map
+{
+	char			**map;
+	t_res			sp_cord;
+	char			sp_char;
+	int				height;
+}					t_map;
+
+
 /*
 ** all basic input from .cub file
 */
 typedef struct		s_base
 {
 	char			*file;
+	t_map			map;
 	t_res			res;
 	t_spr			sprites;
 	t_rgb			floor;
 	t_rgb			ceiling;
-	char			**map;
 }					t_base;
 
 /*
@@ -140,6 +152,8 @@ void				pix_loop(t_data *d);
 // int					reader(t_base *b, char *s, int fd, int ret);
 int					rd_start(t_base *b);
 int					rd_struct_free(char *s, t_base *b);
+int					val_map(t_map *map);
+int					height_map(t_map map);
 // t_objs				*read_loop(t_base *b, t_objs *o, char *s);
 // int					obj_cntr(char *s);
 // int					cam_light_cntr(char *s, char c);

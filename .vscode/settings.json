@@ -35,7 +35,10 @@
     "editor.rulers": [80],
 	"workbench.colorCustomizations":
 		{"editorRuler.foreground": "#53afe0"},
+	"editor.tokenColorCustomizations":
+		{"comments": "#7c0404"},
 
+	"editor.minimap.enabled": false,
 	"editor.renderWhitespace": "all",
 	"files.autoSave": "afterDelay",
 	"editor.detectIndentation": false,

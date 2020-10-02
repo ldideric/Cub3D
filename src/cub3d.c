@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/01 21:51:22 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/02 13:16:26 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void			*mlx_start(t_data *d, t_vars *v)
 	v->mlx = mlx_init();
 	if (v->mlx == NULL)
 		return (NULL);
-	v->win = mlx_new_window(v->mlx, d->b.res.x_max, d->b.res.y_max, WIN_NAME);
+	v->win = mlx_new_window(v->mlx, d->b.res.x, d->b.res.y, WIN_NAME);
 	if (v->win == NULL)
 		return (NULL);
-	d->img = mlx_new_image(v->mlx, d->b.res.x_max, d->b.res.y_max);
+	d->img = mlx_new_image(v->mlx, d->b.res.x, d->b.res.y);
 	if (d->img == NULL)
 		return (NULL);
 	d->addr = mlx_get_data_addr(d->img, &d->bpp, &d->len, &d->endian);

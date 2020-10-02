@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/02 01:53:55 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/02 15:35:10 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,47 @@ static int		specifier(char *s, t_base *b)
 			((*(u_int16_t *)s == *(u_int16_t *)"C ") && spec['3'](s, b)));
 }
 
-static int		rd_map_alloc(char ***map, char *s, int start, int i)
+static char		**rd_map_alloc(char **map, char **s, int start, int i)
 {
 	if (start == TRUE)
-		*map = malloc(sizeof(char **) * 2);
+		map = malloc(sizeof(char **) * 2);
 	else
-		*map = ft_realloc_arr(*map);
-	if (*map == NULL)
-		return (errors(ERR_MALLOC));
-	*map[i] = ft_strdup(s);
-	if (*map[i] == NULL)
-		return (errors(ERR_MALLOC));
-	*map[i + 1][0] = '\0';
-	return (1);
+		map = ft_realloc_arr(map);
+	if (map == NULL)
+		return ((errors(ERR_MALLOC)) == 0 ? NULL : NULL);
+	map[i] = ft_strdup(*s);
+	if (map[i] == NULL)
+		return ((errors(ERR_MALLOC)) == 0 ? NULL : NULL);
+	map[i + 1] = "\0";
+	return (map);
 }
 
-static int		rd_map(t_base *b, int fd, char **s)
+static int		rd_map(t_base *b, int fd, char *s)
 {
+	char	**map;
 	int		ret;
 	int		i;
 
 	i = 1;
 	ret = 1;
-	if (rd_map_alloc(&b->map, *s, TRUE, 0) == 0)
+	map = NULL;
+	map = rd_map_alloc(map, &s, TRUE, 0);
+	if (map == NULL)
 		return (0);
-	free(*s);
+	// free(s);
 	while (ret > 0)
 	{
-		ret = get_next_line(fd, s);
+		ret = get_next_line(fd, &s);
 		if (ret == -1)
 			return (errors(ERR_IN_GNL));
-		if (rd_map_alloc(&b->map, *s, FALSE, i) == 0)
+		free(map);
+		map = rd_map_alloc(map, &s, FALSE, i);
+		if (map == NULL)
 			return (0);
-		free((ret > 0) ? *s : NULL);
+		free((ret > 0) ? s : NULL);
 		i++;
 	}
+	b->map.map = map;
 	return (1);
 }
 
@@ -79,7 +85,7 @@ static int		reader(t_base *b, char *s, int fd, int ret)
 		}
 		else if (ft_isdigit(s[0]) == 1 || s[0] == ' ')
 		{
-			if (!rd_map(b, fd, &s))
+			if (!rd_map(b, fd, s))
 				return (0);
 			break ;
 		}
@@ -103,5 +109,9 @@ int				rd_start(t_base *b)
 	ret = get_next_line(fd, &s);
 	if (ret == -1)
 		return (errors(ERR_IN_GNL));
-	return (reader(b, s, fd, ret));
+	if (!reader(b, s, fd, ret))
+		return (0);
+	if (!val_map(&b->map))
+		return (0);
+	return (1);
 }
