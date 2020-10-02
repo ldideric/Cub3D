@@ -1,7 +1,43 @@
 {
-    "files.autoSave": "afterDelay",
-    "editor.insertSpaces": false,
+	"codamheader.CodamEmail": "ldideric@student.codam.nl",
+	"codamheader.CodamUsername": "ldideric",
+	"codamheader.ChangeAuthor": true,
+	"codam-norminette.command2": "python ~/norminette+/run.py",
+
+	"actionButtons":
+	{
+		"reloadButton": "<{o}>",
+		"defaultColor": "white",
+		"commands":
+		[
+			{
+				"name": "JSON",
+				"command": "code ~/Library/Application\\ Support/Code/User/settings.json",
+			},
+			{
+				"name": "make re",
+				"color": "black",
+				"command": "make re MLX=1 DEBUG=1",
+			},
+			{
+				"name": "ExEcUtE cOmMaNd",
+				"color": "purple",
+				"command": "./cub3D maps/map.cub",
+			},
+			{
+				"name": "make",
+				"color": "brown",
+				"command": "make",
+			},
+		]
+	},
+
     "editor.rulers": [80],
 	"workbench.colorCustomizations":
-		{"editorRuler.foreground": "#53afe0"}
+		{"editorRuler.foreground": "#53afe0"},
+
+	"editor.renderWhitespace": "all",
+	"files.autoSave": "afterDelay",
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
 }

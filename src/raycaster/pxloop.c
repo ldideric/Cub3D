@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/01 22:52:19 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/02 01:26:35 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,21 @@ void		pix_loop(t_data *d)
 
 	y = 0;
 	y_px = 0;
-	big = 25;
-	printf("%s\n", d->b.map[12]);
+	big = 50;
 	while (y < 14)
 	{
 		x = 0;
 		x_px = 0;
 		while (ft_strlen(d->b.map[y]) > (size_t)x)
 		{
-			if (d->b.map[y][x] == ' ')
-				col = color_input(0, 255, 255, 0);
 			if (d->b.map[y][x] == '0')
 				col = color_input(0, 0, 255, 0);
-			if (d->b.map[y][x] == '1')
+			else if (d->b.map[y][x] == '1')
 				col = color_input(255, 0, 0, 0);
-			if (d->b.map[y][x] == '2')
+			else if (d->b.map[y][x] == '2')
 				col = color_input(0, 255, 0, 0);
+			else
+				col = color_input(0, 0, 0, 0);
 			draw_rect(d, x_px, y_px, big, big, (int)col.color);
 			x++;
 			x_px = x_px + big;
