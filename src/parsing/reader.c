@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/02 15:35:10 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/05 19:22:16 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,86 +30,75 @@ static int		specifier(char *s, t_base *b)
 			((*(u_int16_t *)s == *(u_int16_t *)"C ") && spec['3'](s, b)));
 }
 
-static char		**rd_map_alloc(char **map, char **s, int start, int i)
+static int		rd_map_alloc(t_base *b, int start)
 {
 	if (start == TRUE)
-		map = malloc(sizeof(char **) * 2);
+		b->map.ptr = (char **)malloc(sizeof(char *) * 2);
 	else
-		map = ft_realloc_arr(map);
-	if (map == NULL)
-		return ((errors(ERR_MALLOC)) == 0 ? NULL : NULL);
-	map[i] = ft_strdup(*s);
-	if (map[i] == NULL)
-		return ((errors(ERR_MALLOC)) == 0 ? NULL : NULL);
-	map[i + 1] = "\0";
-	return (map);
-}
-
-static int		rd_map(t_base *b, int fd, char *s)
-{
-	char	**map;
-	int		ret;
-	int		i;
-
-	i = 1;
-	ret = 1;
-	map = NULL;
-	map = rd_map_alloc(map, &s, TRUE, 0);
-	if (map == NULL)
-		return (0);
-	// free(s);
-	while (ret > 0)
-	{
-		ret = get_next_line(fd, &s);
-		if (ret == -1)
-			return (errors(ERR_IN_GNL));
-		free(map);
-		map = rd_map_alloc(map, &s, FALSE, i);
-		if (map == NULL)
-			return (0);
-		free((ret > 0) ? s : NULL);
-		i++;
-	}
-	b->map.map = map;
+		b->map.ptr = ft_realloc_arr(b->map.ptr);
+	if (b->map.ptr == NULL)
+		return (errors(ERR_MALLOC));
+	b->map.ptr[b->map.height] = ft_strdup(b->line);
+	if (b->map.ptr[b->map.height] == NULL)
+		return (errors(ERR_MALLOC));
+	b->map.ptr[b->map.height + 1] = "\0";
 	return (1);
 }
 
-static int		reader(t_base *b, char *s, int fd, int ret)
+static int		rd_map(t_base *b, int fd)
+{
+	int		ret;
+
+	ret = 1;
+	b->map.height = 0;
+	b->map.ptr = NULL;
+	if (rd_map_alloc(b, TRUE) == 0)
+		return (0);
+	b->map.height++;
+	while (ret > 0)
+	{
+		free(b->line);
+		ret = get_next_line(fd, &b->line);
+		if (ret == -1)
+			return (errors(ERR_IN_GNL));
+		if (rd_map_alloc(b, FALSE) == 0)
+			return (0);
+		b->map.height = (ret == 0) ? b->map.height : b->map.height + 1;
+	}
+	return (1);
+}
+
+static int		reader(t_base *b, int fd, int ret)
 {
 	while (ret > 0)
 	{
-		if (ft_isalpha(s[0]) == 1)
+		if (ft_isalpha(b->line[0]) == 1)
 		{
-			if (!specifier(s, b))
-				return (rd_struct_free(s, b));
+			if (!specifier(b->line, b))
+				return (rd_struct_free(b->line, b));
 		}
-		else if (ft_isdigit(s[0]) == 1 || s[0] == ' ')
-		{
-			if (!rd_map(b, fd, s))
-				return (0);
-			break ;
-		}
-		free(s);
-		ret = get_next_line(fd, &s);
+		else if (ft_isdigit(b->line[0]) == 1 || b->line[0] == ' ')
+			return (rd_map(b, fd));
+		free(b->line);
+		ret = get_next_line(fd, &b->line);
 		if (ret == -1)
 			return (errors(ERR_IN_GNL));
 	}
-	free(s);
+	free(b->line);
 	return (1);
 }
 
 int				rd_start(t_base *b)
 {
-	char	*s;
 	int		fd;
 	int		ret;
 
 	ret = 0;
 	fd = open(b->file, O_RDONLY);
-	ret = get_next_line(fd, &s);
+	ret = get_next_line(fd, &b->line);
 	if (ret == -1)
 		return (errors(ERR_IN_GNL));
-	if (!reader(b, s, fd, ret))
+	if (!reader(b, fd, ret))
 		return (0);
 	if (!val_map(&b->map))
 		return (0);

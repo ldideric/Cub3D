@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 15:36:50 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/09/24 22:01:19 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/05 17:13:54 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s1)
 	int		i;
 
 	i = 0;
+	if (!s1)
+		return (NULL);
 	str = malloc(sizeof(char) * ft_strlen(s1) + 1);
 	if (!str)
 		return (NULL);

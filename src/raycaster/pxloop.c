@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/02 13:38:17 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/05 19:23:39 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ void		pix_loop(t_data *d)
 	i.y = 0;
 	j.y = 0;
 	big = 50;
-	while (i.y < 14)
+	while (i.y < d->b.map.height)
 	{
 		i.x = 0;
 		j.x = 0;
-		while (ft_strlen(d->b.map.map[i.y]) > (size_t)i.x)
+		while (ft_strlen(d->b.map.ptr[i.y]) > (size_t)i.x)
 		{
-			if (d->b.map.map[i.y][i.x] == '0')
+			if (d->b.map.ptr[i.y][i.x] == '0')
 				col = color_input(174, 182, 191, 0);
-			else if (d->b.map.map[i.y][i.x] == '1')
+			else if (d->b.map.ptr[i.y][i.x] == '1')
 				col = color_input(255, 255, 255, 0);
-			else if (d->b.map.map[i.y][i.x] == '2')
+			else if (d->b.map.ptr[i.y][i.x] == '2')
 				col = color_input(130, 224, 170, 0);
 			else
 				col = color_input(0, 0, 0, 0);

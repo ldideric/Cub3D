@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/02 15:26:13 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/05 19:48:16 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ typedef struct		s_spr
 
 typedef struct		s_map
 {
-	char			**map;
-	t_res			sp_cord;
+	char			**ptr;
+	t_res			sp_pos;
+	t_res			sp_dir;
 	char			sp_char;
 	int				height;
 }					t_map;
-
 
 /*
 ** all basic input from .cub file
@@ -100,6 +100,7 @@ typedef struct		s_map
 typedef struct		s_base
 {
 	char			*file;
+	char			*line;
 	t_map			map;
 	t_res			res;
 	t_spr			sprites;
@@ -153,7 +154,6 @@ void				pix_loop(t_data *d);
 int					rd_start(t_base *b);
 int					rd_struct_free(char *s, t_base *b);
 int					val_map(t_map *map);
-int					height_map(t_map map);
 // t_objs				*read_loop(t_base *b, t_objs *o, char *s);
 // int					obj_cntr(char *s);
 // int					cam_light_cntr(char *s, char c);
