@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/05 19:48:16 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/06 21:30:28 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,16 @@
 ** DEFINES ---------------------------------------------------- |
 */
 
-# define WIN_NAME "Gameboy Advanced"
-# define TRUE	1
-# define FALSE	0
+# define WIN_NAME	"Gameboy Advanced"
+# define TRUE		1
+# define FALSE		0
+
+# define KEY_W		13
+# define KEY_A		0
+# define KEY_S		1
+# define KEY_D		2
+# define KEY_ESC	53
+# define KEY_Q		12
 
 /*
 ** ERROR MESSAGES
@@ -94,6 +101,31 @@ typedef struct		s_map
 	int				height;
 }					t_map;
 
+typedef struct		s_math
+{
+	double			move_speed;
+	double			rot_speed;
+	double			plane_x;
+	double			plane_y;
+	double			camera_x;
+	double			raydir_x;
+	double			raydir_y;
+	int				map_x;
+	int				map_y;
+	double			sidedist_x;
+	double			sidedist_y;
+	double			deltadist_x;
+	double			deltadist_y;
+	double			perpwalldist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+}					t_math;
+
 /*
 ** all basic input from .cub file
 */
@@ -102,6 +134,7 @@ typedef struct		s_base
 	char			*file;
 	char			*line;
 	t_map			map;
+	t_math			m;
 	t_res			res;
 	t_spr			sprites;
 	t_rgb			floor;
@@ -115,6 +148,7 @@ typedef struct		s_base
 typedef struct		s_data
 {
 	void			*img;
+	void			*temp;
 	char			*addr;
 	int				bpp;
 	int				len;
@@ -133,9 +167,22 @@ typedef struct		s_vars
 ** | ----------------------------------------------------------------------- |
 */
 
-typedef int			(*t_read)(char *s, t_base *b);
-// typedef void		(*t_read_o)(char *s, t_objs *o);
-// typedef t_vect		(*t_hit_o)(t_vect *rd, t_data *data, t_objs *o);
+int					render_start(t_vars *vars);
+int					pxloop(t_data *d, t_base *b, int x);
+
+void				calc_step(t_base *b);
+void				vertical_line(int x, t_data *d, t_rgb col);
+void				basic_math(t_base *b, int x);
+t_rgb				wall_col(t_base *b);
+
+int					move_up(t_vars *vars);
+int					move_down(t_vars *vars);
+int					move_right(t_vars *vars);
+int					move_left(t_vars *vars);
+
+/*
+** | ----------------------------------------------------------------------- |
+*/
 
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
@@ -148,20 +195,17 @@ int					errors(char *error);
 ** Reader functions
 */
 
-void				pix_loop(t_data *d);
+typedef int			(*t_read)(char *s, t_base *b);
 
-// int					reader(t_base *b, char *s, int fd, int ret);
+void				minimap(t_data *d);
+
 int					rd_start(t_base *b);
-int					rd_struct_free(char *s, t_base *b);
-int					val_map(t_map *map);
-// t_objs				*read_loop(t_base *b, t_objs *o, char *s);
-// int					obj_cntr(char *s);
-// int					cam_light_cntr(char *s, char c);
-// void				*reader_free(void *a, void *b, void *c, void *d);
-
 int					rd_sprites(char *s, t_base *b);
 int					rd_res(char *s, t_base *b);
 int					rd_ground_sky(char *s, t_base *b);
 int					rd_rgb(char *s, t_rgb *rgb);
+int					rd_struct_free(char *s, t_base *b);
+
+int					val_map(t_map *map);
 
 #endif

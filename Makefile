@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/02 13:42:44 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/06 21:20:36 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ LIBFT_PATH		=	./$(SRC_PATH)/libft/
 PRINTF_PATH		=	./$(SRC_PATH)/printf/
 GNL_PATH		=	./$(SRC_PATH)/gnl/
 PARS_PATH		=	./$(SRC_PATH)/parsing/
+RAYC_PATH		=	./$(SRC_PATH)/raycaster/
 EXTRA_PATH		=	./$(SRC_PATH)/extras/
 
 LIBFT_SRC		=	ft_memset.c \
@@ -86,6 +87,11 @@ PARS_SRC		=	reader.c \
 					reader_extra.c \
 					validate_map.c
 
+RAYC_SRC		=	pxloop.c \
+					pxloop_ext.c \
+					move.c \
+					minimap.c
+
 EXTRA_SRC		=	error.c \
 					hooks.c \
 					extra1.c
@@ -94,20 +100,23 @@ LIBFT_SRC_DIR	=	$(LIBFT_SRC:%=$(LIBFT_PATH)%)
 PRINTF_SRC_DIR	=	$(PRINTF_SRC:%=$(PRINTF_PATH)%)
 GNL_SRC_DIR		=	$(GNL_SRC:%=$(GNL_PATH)%)
 PARS_SRC_DIR	=	$(PARS_SRC:%=$(PARS_PATH)%)
+RAYC_SRC_DIR	=	$(RAYC_SRC:%=$(RAYC_PATH)%)
 EXTRA_SRC_DIR	=	$(EXTRA_SRC:%=$(EXTRA_PATH)%)
 
 LIBFT_OBJ_DIR	=	$(LIBFT_SRC_DIR:.c=.o)
 PRINTF_OBJ_DIR	=	$(PRINTF_SRC_DIR:.c=.o)
 GNL_OBJ_DIR		=	$(GNL_SRC_DIR:.c=.o)
 PARS_OBJ_DIR	=	$(PARS_SRC_DIR:.c=.o)
+RAYC_OBJ_DIR	=	$(RAYC_SRC_DIR:.c=.o)
 EXTRA_OBJ_DIR	=	$(EXTRA_SRC_DIR:.c=.o)
 
-C_FILES			=	./$(SRC_PATH)/cub3d.c ./src/raycaster/pxloop.c \
+C_FILES			=	./$(SRC_PATH)/cub3d.c \
 					$(LIBFT_SRC_DIR) \
 					$(PRINTF_SRC_DIR) \
 					$(GNL_SRC_DIR) \
 					$(PARS_SRC_DIR) \
-					$(EXTRA_SRC_DIR) 
+					$(RAYC_SRC_DIR) \
+					$(EXTRA_SRC_DIR)
 O_FILES			=	$(C_FILES:.c=.o)
 EXTRAS			=	libmlx.dylib
 
