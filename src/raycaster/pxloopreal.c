@@ -6,16 +6,27 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/05 22:31:32 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/06 13:13:28 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
 
-int		pxloopreal(t_base *b)
+static void verLine(int x, int drawStart, int drawEnd, t_data *data, t_rgb col)
+{
+	while (drawStart < drawEnd)
+	{
+		my_mlx_pixel_put(data, x, drawStart, col.color);
+		drawStart++;
+	}
+}
+
+int		pxloopreal(t_data *d, t_base *b)
 {
 	double	planeX = 0;
 	double	planeY = 0.66; //the 2d raycaster version of camera plane
+	double time = 0; //time of current frame
+	double oldTime = 0; //time of previous frame
 	int		x;
 
 	x = 0;
@@ -103,25 +114,36 @@ int		pxloopreal(t_base *b)
 			drawEnd = b->res.y - 1;
 
 		//choose wall color
-		ColorRGB color;
-		switch(b->map.ptr[mapX][mapY])
+		t_rgb color;
+		if (b->map.ptr[mapX][mapY] == '1')
 		{
-			case 1:  color = RGB_Red;    break; //red
-			case 2:  color = RGB_Green;  break; //green
-			case 3:  color = RGB_Blue;   break; //blue
-			case 4:  color = RGB_White;  break; //white
-			default: color = RGB_Yellow; break; //yellow
+			color.color = 0xFF0000;
+			break ;
+		}
+		else if (b->map.ptr[mapX][mapY] == '2')
+		{
+			color.color = 0x00FF00;
+			break ;
+		}
+		else
+		{
+			color.color = 0xFFFF00;
+			break ;
 		}
 
 		//give x and y sides different brightness
 		if (side == 1)
-			{color = color / 2;}
+			{color.color = color.color / 2;}
 
 		//draw the pixels of the stripe as a vertical line
-		verLine(x, drawStart, drawEnd, color);
+		verLine(x, drawStart, drawEnd, d, color);
 		x++;
 	}
-	
+	//timing for input and FPS counter
+	oldTime = time;
+	time = getTicks();
+	double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
+	print(1.0 / frameTime); //FPS counter
 	redraw();
 	cls();
 
@@ -130,37 +152,37 @@ int		pxloopreal(t_base *b)
 	double rotSpeed = frameTime * 3.0; //the constant value is in radians/second
 	readKeys();
 	//move forward if no wall in front of you
-	if(keyDown(SDLK_UP))
+	if (keyDown(SDLK_UP))
 	{
-	  if(b->map.ptr[(int)(b->map.sp_pos.x + b->map.sp_dir.x * moveSpeed)][(int)(b->map.sp_pos.y)] == false) b->map.sp_pos.x += b->map.sp_dir.x * moveSpeed;
-	  if(b->map.ptr[b->map.sp_pos.x][(int)(b->map.sp_pos.y + b->map.sp_dir.y * moveSpeed)] == false) b->map.sp_pos.y += b->map.sp_dir.y * moveSpeed;
+		if(b->map.ptr[(int)(b->map.sp_pos.x + b->map.sp_dir.x * moveSpeed)][(int)(b->map.sp_pos.y)] == false) b->map.sp_pos.x += b->map.sp_dir.x * moveSpeed;
+		if(b->map.ptr[b->map.sp_pos.x][(int)(b->map.sp_pos.y + b->map.sp_dir.y * moveSpeed)] == false) b->map.sp_pos.y += b->map.sp_dir.y * moveSpeed;
 	}
 	//move backwards if no wall behind you
-	if(keyDown(SDLK_DOWN))
+	if (keyDown(SDLK_DOWN))
 	{
-	  if(b->map.ptr[(int)(b->map.sp_pos.x - b->map.sp_dir.x * moveSpeed)][(int)(b->map.sp_pos.y)] == false) b->map.sp_pos.x -= b->map.sp_dir.x * moveSpeed;
-	  if(b->map.ptr[(int)(b->map.sp_pos.x)][(int)(b->map.sp_pos.y - b->map.sp_dir.y * moveSpeed)] == false) b->map.sp_pos.y -= b->map.sp_dir.y * moveSpeed;
+		if(b->map.ptr[(int)(b->map.sp_pos.x - b->map.sp_dir.x * moveSpeed)][(int)(b->map.sp_pos.y)] == false) b->map.sp_pos.x -= b->map.sp_dir.x * moveSpeed;
+		if(b->map.ptr[(int)(b->map.sp_pos.x)][(int)(b->map.sp_pos.y - b->map.sp_dir.y * moveSpeed)] == false) b->map.sp_pos.y -= b->map.sp_dir.y * moveSpeed;
 	}
 	//rotate to the right
-	if(keyDown(SDLK_RIGHT))
+	if (keyDown(SDLK_RIGHT))
 	{
-	  //both camera direction and camera plane must be rotated
-	  double olddirx = b->map.sp_dir.x;
-	  b->map.sp_dir.x = b->map.sp_dir.x * cos(-rotSpeed) - b->map.sp_dir.y * sin(-rotSpeed);
-	  b->map.sp_dir.y = olddirx * sin(-rotSpeed) + b->map.sp_dir.y * cos(-rotSpeed);
-	  double oldPlaneX = planeX;
-	  planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-	  planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+		//both camera direction and camera plane must be rotated
+		double olddirx = b->map.sp_dir.x;
+		b->map.sp_dir.x = b->map.sp_dir.x * cos(-rotSpeed) - b->map.sp_dir.y * sin(-rotSpeed);
+		b->map.sp_dir.y = olddirx * sin(-rotSpeed) + b->map.sp_dir.y * cos(-rotSpeed);
+		double oldPlaneX = planeX;
+		planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+		planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
 	}
 	//rotate to the left
-	if(keyDown(SDLK_LEFT))
+	if (keyDown(SDLK_LEFT))
 	{
-	  //both camera direction and camera plane must be rotated
-	  double olddirx = b->map.sp_dir.x;
-	  b->map.sp_dir.x = b->map.sp_dir.x * cos(rotSpeed) - b->map.sp_dir.y * sin(rotSpeed);
-	  b->map.sp_dir.y = olddirx * sin(rotSpeed) + b->map.sp_dir.y * cos(rotSpeed);
-	  double oldPlaneX = planeX;
-	  planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-	  planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+		//both camera direction and camera plane must be rotated
+		double olddirx = b->map.sp_dir.x;
+		b->map.sp_dir.x = b->map.sp_dir.x * cos(rotSpeed) - b->map.sp_dir.y * sin(rotSpeed);
+		b->map.sp_dir.y = olddirx * sin(rotSpeed) + b->map.sp_dir.y * cos(rotSpeed);
+		double oldPlaneX = planeX;
+		planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+		planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
 	}
 }

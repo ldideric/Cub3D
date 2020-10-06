@@ -32,11 +32,11 @@
 		]
 	},
 
-    "editor.rulers": [80],
+	"editor.rulers": [80],
 	"workbench.colorCustomizations":
 		{"editorRuler.foreground": "#53afe0"},
 	"editor.tokenColorCustomizations":
-		{"comments": "#7c0404"},
+		{"comments": "#eb4545"},
 
 	"editor.minimap.enabled": false,
 	"editor.renderWhitespace": "all",
