@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 16:27:03 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/06 21:35:24 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 20:27:31 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int			move_up(t_vars *vars)
 	if (!vars->data.b.map.ptr[(int)(vars->data.b.map.sp_pos.y +
 	vars->data.b.map.sp_dir.y * movespeed)][(int)(vars->data.b.map.sp_pos.x)])
 		vars->data.b.map.sp_pos.x += vars->data.b.map.sp_dir.x * movespeed;
-	if (!vars->data.b.map.ptr[vars->data.b.map.sp_pos.y]
+	if (!vars->data.b.map.ptr[(int)vars->data.b.map.sp_pos.y]
 	[(int)(vars->data.b.map.sp_pos.x + vars->data.b.map.sp_dir.x * movespeed)])
 		vars->data.b.map.sp_pos.y += vars->data.b.map.sp_dir.y * movespeed;
-	render_start(vars);
 	return (0);
 }
 
@@ -38,7 +37,6 @@ int			move_down(t_vars *vars)
 	if (!vars->data.b.map.ptr[(int)(vars->data.b.map.sp_pos.y)]
 	[(int)(vars->data.b.map.sp_pos.x - vars->data.b.map.sp_dir.x * movespeed)])
 		vars->data.b.map.sp_pos.y -= vars->data.b.map.sp_dir.y * movespeed;
-	render_start(vars);
 	return (0);
 }
 
@@ -59,7 +57,6 @@ int			move_right(t_vars *vars)
 	vars->data.b.m.plane_y * sin(-rotspeed);
 	vars->data.b.m.plane_y = oldplanex * sin(-rotspeed) +
 	vars->data.b.m.plane_y * cos(-rotspeed);
-	render_start(vars);
 	return (0);
 }
 
@@ -80,6 +77,5 @@ int			move_left(t_vars *vars)
 	vars->data.b.m.plane_y * sin(rotspeed);
 	vars->data.b.m.plane_y = oldplanex * sin(rotspeed) +
 	vars->data.b.m.plane_y * cos(rotspeed);
-	render_start(vars);
 	return (0);
 }

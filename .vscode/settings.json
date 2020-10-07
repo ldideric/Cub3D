@@ -43,4 +43,7 @@
 	"files.autoSave": "afterDelay",
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
+	"files.associations": {
+		"algorithm": "c"
+	},
 }

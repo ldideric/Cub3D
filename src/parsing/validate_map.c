@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/02 13:12:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/05 19:55:33 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 19:25:29 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static int	val_spawn(t_map *map, int x, int y)
 {
 	if (ft_isalpha(map->sp_char))
 		return (0);
-	map->sp_pos.x = x;
-	map->sp_pos.y = y;
+	map->sp_pos.x = x + 0.5;
+	map->sp_pos.y = y + 0.5;
 	map->sp_char = map->ptr[y][x];
-	map->sp_dir = (map->sp_char == 'N') ? (t_res){0, 1} : map->sp_dir;
-	map->sp_dir = (map->sp_char == 'E') ? (t_res){1, 0} : map->sp_dir;
-	map->sp_dir = (map->sp_char == 'S') ? (t_res){0, -1} : map->sp_dir;
-	map->sp_dir = (map->sp_char == 'W') ? (t_res){-1, 0} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'N') ? (t_2vec){0, 1} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'E') ? (t_2vec){1, 0} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'S') ? (t_2vec){0, -1} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'W') ? (t_2vec){-1, 0} : map->sp_dir;
 	return (1);
 }
 
@@ -55,7 +55,7 @@ int			val_map(t_map *map)
 
 	p.y = 0;
 	map->sp_char = '0';
-	map->sp_dir = (t_res){0, 0};
+	map->sp_dir = (t_2vec){0, 0};
 	while (p.y < map->height)
 	{
 		p.x = 0;

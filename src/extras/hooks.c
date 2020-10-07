@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:21:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/06 21:33:16 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 20:44:34 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int			move_hooks(int keycode, t_vars *vars)
 {
+	vars->data.press = 1;
 	if (keycode == KEY_W)
 		move_up(vars);
 	if (keycode == KEY_A)
@@ -22,14 +23,8 @@ static int			move_hooks(int keycode, t_vars *vars)
 		move_down(vars);
 	if (keycode == KEY_D)
 		move_left(vars);
+	pxloop(vars);
 	return (1);
-}
-
-static int			button_release_hooks(int keycode, t_vars *vars)
-{
-	(void)keycode;
-	(void)vars;
-	return (0);
 }
 
 static int			button_press_hooks(int keycode, t_vars *vars)
@@ -42,9 +37,17 @@ static int			button_press_hooks(int keycode, t_vars *vars)
 	return (1);
 }
 
-static int			destroy_notify_hooks(int x, t_vars *vars)
+static int			button_release_hooks(int keycode, t_vars *vars)
 {
-	(void)x;
+	(void)keycode;
+	vars->data.press = 0;
+	pxloop(vars);
+	return (1);
+}
+
+static int			destroy_window_hooks(int keycode, t_vars *vars)
+{
+	(void)keycode;
 	(void)vars;
 	ft_printf("\x1b[38;5;196m[-]\x1b[0m Shutting down...\n");
 	exit(0);
@@ -55,6 +58,6 @@ void				hooks(t_vars *vars)
 {
 	mlx_hook(vars->win, 2, (1L << 0), button_press_hooks, vars);
 	mlx_hook(vars->win, 3, (1L << 1), button_release_hooks, vars);
-	mlx_hook(vars->win, 17, 0L, destroy_notify_hooks, vars);
+	mlx_hook(vars->win, 17, 0L, destroy_window_hooks, vars);
 	return ;
 }

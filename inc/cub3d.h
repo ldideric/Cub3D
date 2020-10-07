@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/06 21:30:28 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 20:34:42 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct		s_spr
 typedef struct		s_map
 {
 	char			**ptr;
-	t_res			sp_pos;
-	t_res			sp_dir;
+	t_2vec			sp_pos;
+	t_2vec			sp_dir;
 	char			sp_char;
 	int				height;
 }					t_map;
@@ -147,6 +147,7 @@ typedef struct		s_base
 
 typedef struct		s_data
 {
+	int				press;
 	void			*img;
 	void			*temp;
 	char			*addr;
@@ -167,13 +168,15 @@ typedef struct		s_vars
 ** | ----------------------------------------------------------------------- |
 */
 
-int					render_start(t_vars *vars);
-int					pxloop(t_data *d, t_base *b, int x);
+int					pxloop(t_vars *vars);
 
-void				calc_step(t_base *b);
-void				vertical_line(int x, t_data *d, t_rgb col);
 void				basic_math(t_base *b, int x);
+void				calc_step(t_base *b);
+void				dda_hit_checker(t_base *b);
+void				calc_line_height(t_base *b);
+void				vertical_line(int x, t_data *d, t_rgb col);
 t_rgb				wall_col(t_base *b);
+void				floor_ceiling_fill(t_data *d);
 
 int					move_up(t_vars *vars);
 int					move_down(t_vars *vars);
@@ -197,7 +200,7 @@ int					errors(char *error);
 
 typedef int			(*t_read)(char *s, t_base *b);
 
-void				minimap(t_data *d);
+void				minimap(t_data *d, int size);
 
 int					rd_start(t_base *b);
 int					rd_sprites(char *s, t_base *b);
