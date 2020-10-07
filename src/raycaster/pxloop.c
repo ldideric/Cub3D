@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 20:26:07 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 22:52:18 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void			basic_math(t_base *b, int x)
 {
 	b->m.plane_x = 0;
 	b->m.plane_y = 0.66;
-	b->m.move_speed = 2;
-	b->m.rot_speed = 10;
+	b->m.move_speed = 0.03;
+	b->m.rot_speed = 0.02;
 	b->m.camera_x = 2 * x / (double)b->res.x - 1;
 	b->m.raydir_x = b->map.sp_dir.x + b->m.plane_x * b->m.camera_x;
 	b->m.raydir_y = b->map.sp_dir.y + b->m.plane_y * b->m.camera_x;

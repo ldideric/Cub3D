@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:21:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 20:44:34 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 21:09:53 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int			move_hooks(int keycode, t_vars *vars)
 {
-	vars->data.press = 1;
 	if (keycode == KEY_W)
 		move_up(vars);
 	if (keycode == KEY_A)
@@ -40,7 +39,6 @@ static int			button_press_hooks(int keycode, t_vars *vars)
 static int			button_release_hooks(int keycode, t_vars *vars)
 {
 	(void)keycode;
-	vars->data.press = 0;
 	pxloop(vars);
 	return (1);
 }

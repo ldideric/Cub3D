@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 20:34:42 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 21:09:50 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ typedef struct		s_base
 
 typedef struct		s_data
 {
-	int				press;
 	void			*img;
 	void			*temp;
 	char			*addr;

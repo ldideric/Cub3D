@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 20:35:17 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/07 22:40:05 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void			*mlx_start(t_data *d, t_vars *v)
 	d->addr = mlx_get_data_addr(d->img, &d->bpp, &d->len, &d->endian);
 	if (d->addr == NULL)
 		return (NULL);
-	d->press = 0;
 	return ("1");
 }
 
@@ -42,7 +41,6 @@ int				main(int argc, char **argv)
 		return (0);
 	if (mlx_start(&vars.data, &vars) == NULL)
 		return (errors(ERR_IN_MLX));
-	// minimap(&vars.data);
 	pxloop(&vars);
 	// mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
 	hooks(&vars);
