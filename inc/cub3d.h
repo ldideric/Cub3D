@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 21:09:50 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/08 20:05:51 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,22 +103,17 @@ typedef struct		s_map
 
 typedef struct		s_math
 {
+	int				start;
 	double			move_speed;
 	double			rot_speed;
-	double			plane_x;
-	double			plane_y;
+	t_2vec			plane;
 	double			camera_x;
-	double			raydir_x;
-	double			raydir_y;
-	int				map_x;
-	int				map_y;
-	double			sidedist_x;
-	double			sidedist_y;
-	double			deltadist_x;
-	double			deltadist_y;
+	t_2vec			raydir;
+	t_res			map;
+	t_2vec			sidedist;
+	t_2vec			deltadist;
 	double			perpwalldist;
-	int				step_x;
-	int				step_y;
+	t_res			step;
 	int				hit;
 	int				side;
 	int				line_height;
@@ -199,7 +194,7 @@ int					errors(char *error);
 
 typedef int			(*t_read)(char *s, t_base *b);
 
-void				minimap(t_data *d, int size);
+void				minimap(t_data *d, t_res i, t_res j, int size);
 
 int					rd_start(t_base *b);
 int					rd_sprites(char *s, t_base *b);

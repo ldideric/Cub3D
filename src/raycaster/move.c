@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 16:27:03 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 22:54:18 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/08 20:21:57 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,6 @@ int			move_down(t_vars *vars)
 	return (0);
 }
 
-int			move_right(t_vars *vars)
-{
-	t_base	*b;
-	double	olddirx;
-	double	oldplanex;
-	double	rotspeed;
-
-	b = &vars->data.b;
-	rotspeed = b->m.rot_speed;
-	olddirx = b->map.sp_dir.x;
-	b->map.sp_dir.x = b->map.sp_dir.x * cos(-rotspeed) -
-	b->map.sp_dir.y * sin(-rotspeed);
-	b->map.sp_dir.y = olddirx * sin(-rotspeed) +
-	b->map.sp_dir.y * cos(-rotspeed);
-	oldplanex = b->m.plane_x;
-	b->m.plane_x = b->m.plane_x * cos(-rotspeed) -
-	b->m.plane_y * sin(-rotspeed);
-	b->m.plane_y = oldplanex * sin(-rotspeed) +
-	b->m.plane_y * cos(-rotspeed);
-	return (0);
-}
-
 int			move_left(t_vars *vars)
 {
 	t_base	*b;
@@ -76,14 +54,36 @@ int			move_left(t_vars *vars)
 	b = &vars->data.b;
 	rotspeed = b->m.rot_speed;
 	olddirx = b->map.sp_dir.x;
-	b->map.sp_dir.x = b->map.sp_dir.x * cos(rotspeed) -
-	b->map.sp_dir.y * sin(rotspeed);
-	b->map.sp_dir.y = olddirx * sin(rotspeed) +
-	b->map.sp_dir.y * cos(rotspeed);
-	oldplanex = b->m.plane_x;
-	b->m.plane_x = b->m.plane_x * cos(rotspeed) -
-	b->m.plane_y * sin(rotspeed);
-	b->m.plane_y = oldplanex * sin(rotspeed) +
-	b->m.plane_y * cos(rotspeed);
+	b->map.sp_dir.x = b->map.sp_dir.x * cos(rotspeed)
+	- b->map.sp_dir.y * sin(rotspeed);
+	b->map.sp_dir.y = olddirx * sin(rotspeed)
+	+ b->map.sp_dir.y * cos(rotspeed);
+	oldplanex = b->m.plane.x;
+	b->m.plane.x = b->m.plane.x * cos(rotspeed)
+	- b->m.plane.y * sin(rotspeed);
+	b->m.plane.y = oldplanex * sin(rotspeed)
+	+ b->m.plane.y * cos(rotspeed);
+	return (0);
+}
+
+int			move_right(t_vars *vars)
+{
+	t_base	*b;
+	double	olddirx;
+	double	oldplanex;
+	double	rotspeed;
+
+	b = &vars->data.b;
+	rotspeed = b->m.rot_speed;
+	olddirx = b->map.sp_dir.x;
+	b->map.sp_dir.x = b->map.sp_dir.x * cos(-rotspeed)
+	- b->map.sp_dir.y * sin(-rotspeed);
+	b->map.sp_dir.y = olddirx * sin(-rotspeed)
+	+ b->map.sp_dir.y * cos(-rotspeed);
+	oldplanex = b->m.plane.x;
+	b->m.plane.x = b->m.plane.x * cos(-rotspeed)
+	- b->m.plane.y * sin(-rotspeed);
+	b->m.plane.y = oldplanex * sin(-rotspeed)
+	+ b->m.plane.y * cos(-rotspeed);
 	return (0);
 }

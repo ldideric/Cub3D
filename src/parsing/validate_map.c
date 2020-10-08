@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/02 13:12:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 19:25:29 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/08 21:58:27 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static int	val_spawn(t_map *map, int x, int y)
 {
 	if (ft_isalpha(map->sp_char))
 		return (0);
-	map->sp_pos.x = x + 0.5;
-	map->sp_pos.y = y + 0.5;
+	map->sp_pos = (t_2vec){x + 0.5, y + 0.5};
 	map->sp_char = map->ptr[y][x];
 	map->sp_dir = (map->sp_char == 'N') ? (t_2vec){0, 1} : map->sp_dir;
 	map->sp_dir = (map->sp_char == 'E') ? (t_2vec){1, 0} : map->sp_dir;
