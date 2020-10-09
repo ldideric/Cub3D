@@ -2,7 +2,8 @@
 
 ### To Do list
 - [ ] first and second argument (argc/argv)
-- [ ] fix parsing
+- [ ] wall collision
+- [ ] north south spawnpoint bug
 
 ### Before handing in
 - [ ] removing extra.h file
