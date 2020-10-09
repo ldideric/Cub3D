@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/08 21:54:02 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/09 01:02:29 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void				minimap(t_data *d, t_res i, t_res j, int size)
 		if (d->b.map.sp_pos.x > 5)
 			i.x = d->b.map.sp_pos.x - 5;
 		j.x = 0;
-		while (i.x < (int)ft_strlen(d->b.map.ptr[i.y]) && i.x < d->b.map.sp_pos.x + 5)
+		while (i.x < (int)ft_strlen(d->b.map.ptr[i.y]) &&
+			i.x < d->b.map.sp_pos.x + 5)
 		{
 			draw_rect(d, j, size, (int)color_pick(d, i).color);
 			i.x++;

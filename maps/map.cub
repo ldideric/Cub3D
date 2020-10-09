@@ -1,11 +1,11 @@
-R    1920    1080
+R    640    480
 
 NO ./path_to_the_north_texture
 SO      ./path_to_the_south_texture
 WE  ./path_to_the_west_texture
 EA ./path_to_the_east_texture
 
-S ./sprites/choongus.png
+S ./sprites/choongus.xpm
 
 F     110,178,25
 C     135,206,250

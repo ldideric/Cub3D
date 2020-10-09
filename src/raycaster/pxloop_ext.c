@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 21:20:44 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 20:20:13 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/09 02:34:26 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,9 @@ void			vertical_line(int x, t_data *d, t_rgb col)
 t_rgb			wall_col(t_base *b)
 {
 	t_rgb color;
+
 	(void)b;
-	// if (b->map.ptr[b->m.map_y][b->m.map_x] == '1')
 	color.color = 0xFF0000;
-	// else if (b->map.ptr[b->m.map_y][b->m.map_x] == '2')
-		// color.color = 0x00FF00;
-	// else
-		// color.color = 0xFFFF00;
-	// if (b->m.side == 1)
-	// 	color.color = color.color / 2;
 	return (color);
 }
 

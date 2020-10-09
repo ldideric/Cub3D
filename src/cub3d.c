@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/08 18:24:56 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/09 02:43:18 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int				main(int argc, char **argv)
 		return (errors(ERR_NO_CUB));
 	if (!rd_start(&vars.data.b))
 		return (0);
+	// if (!load_img(&vars))
+	// 	return (0);
 	if (mlx_start(&vars.data, &vars) == NULL)
 		return (errors(ERR_IN_MLX));
 	pxloop(&vars);
