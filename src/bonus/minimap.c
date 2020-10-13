@@ -6,22 +6,15 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
+<<<<<<< HEAD:src/raycaster/minimap.c
 /*   Updated: 2020/10/09 01:02:29 by ldideric      ########   odam.nl         */
+=======
+/*   Updated: 2020/10/12 14:37:47 by ldideric      ########   odam.nl         */
+>>>>>>> c204647f2a43db2569dc377ca4f79bc71065b8ec:src/bonus/minimap.c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
-
-static t_rgb		color_input(int r, int g, int b, int a)
-{
-	t_rgb	color;
-
-	color.packed.r = r;
-	color.packed.g = g;
-	color.packed.b = b;
-	color.packed.a = a;
-	return (color);
-}
 
 static void			draw_rect(t_data *d, t_res cord, int size, int color)
 {
@@ -56,8 +49,10 @@ static t_rgb		color_pick(t_data *d, t_res i)
 		return (color_input(0, 255, 0, 0));
 }
 
-void				minimap(t_data *d, t_res i, t_res j, int size)
+void				minimap(t_data *d, t_res i, t_res j)
 {
+	int size;
+
 	size = ((d->b.res.x > d->b.res.y) ? d->b.res.y : d->b.res.x) / 50;
 	if (d->b.map.sp_pos.x > 5)
 		i.x = (int)(d->b.map.sp_pos.x - 5);
@@ -69,8 +64,13 @@ void				minimap(t_data *d, t_res i, t_res j, int size)
 		if (d->b.map.sp_pos.x > 5)
 			i.x = d->b.map.sp_pos.x - 5;
 		j.x = 0;
+<<<<<<< HEAD:src/raycaster/minimap.c
 		while (i.x < (int)ft_strlen(d->b.map.ptr[i.y]) &&
 			i.x < d->b.map.sp_pos.x + 5)
+=======
+		while (i.x < (int)ft_strlen(d->b.map.ptr[i.y])
+			&& i.x < d->b.map.sp_pos.x + 5)
+>>>>>>> c204647f2a43db2569dc377ca4f79bc71065b8ec:src/bonus/minimap.c
 		{
 			draw_rect(d, j, size, (int)color_pick(d, i).color);
 			i.x++;

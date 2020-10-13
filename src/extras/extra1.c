@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/05 19:16:06 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/12 14:37:53 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,15 @@ char		**ft_realloc_arr(char **ptr)
 int			int_checker(int a, int max)
 {
 	return (a >= 0 && a <= max);
+}
+
+t_rgb			color_input(int r, int g, int b, int a)
+{
+	t_rgb	color;
+
+	color.packed.r = r;
+	color.packed.g = g;
+	color.packed.b = b;
+	color.packed.a = a;
+	return (color);
 }

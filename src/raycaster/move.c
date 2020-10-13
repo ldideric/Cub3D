@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 16:27:03 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/08 20:21:57 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/12 14:01:49 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int			move_up(t_vars *vars)
 
 	b = &vars->data.b;
 	movespeed = b->m.move_speed;
-	if (b->map.ptr[(int)(b->map.sp_pos.y + b->map.sp_dir.y * movespeed)]
+	if (b->map.ptr[(int)(b->map.sp_pos.y + (2 * b->map.sp_dir.y * movespeed))]
 		[(int)(b->map.sp_pos.x)] != '1')
-		b->map.sp_pos.x += b->map.sp_dir.x * movespeed;
-	if (b->map.ptr[(int)b->map.sp_pos.y]
-		[(int)(b->map.sp_pos.x + b->map.sp_dir.x * movespeed)] != '1')
 		b->map.sp_pos.y += b->map.sp_dir.y * movespeed;
+	if (b->map.ptr[(int)b->map.sp_pos.y]
+		[(int)(b->map.sp_pos.x + (2 * b->map.sp_dir.x * movespeed))] != '1')
+		b->map.sp_pos.x += b->map.sp_dir.x * movespeed;
 	return (0);
 }
 
@@ -35,12 +35,12 @@ int			move_down(t_vars *vars)
 
 	b = &vars->data.b;
 	movespeed = b->m.move_speed;
-	if (b->map.ptr[(int)(b->map.sp_pos.y - b->map.sp_dir.y * movespeed)]
+	if (b->map.ptr[(int)(b->map.sp_pos.y - (2 * b->map.sp_dir.y * movespeed))]
 		[(int)(b->map.sp_pos.x)] != '1')
-		b->map.sp_pos.x -= b->map.sp_dir.x * movespeed;
-	if (b->map.ptr[(int)(b->map.sp_pos.y)]
-		[(int)(b->map.sp_pos.x - b->map.sp_dir.x * movespeed)] != '1')
 		b->map.sp_pos.y -= b->map.sp_dir.y * movespeed;
+	if (b->map.ptr[(int)(b->map.sp_pos.y)]
+		[(int)(b->map.sp_pos.x - (2 * b->map.sp_dir.x * movespeed))] != '1')
+		b->map.sp_pos.x -= b->map.sp_dir.x * movespeed;
 	return (0);
 }
 

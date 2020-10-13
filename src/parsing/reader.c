@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/08 18:26:47 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/12 15:01:25 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,5 @@ int				rd_start(t_base *b)
 		return (0);
 	if (!val_map(&b->map))
 		return (0);
-	b->m.start = 0;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/08 20:05:51 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/12 15:01:02 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <ft_printf.h>
 # include <get_next_line.h>
 
+# include <defines.h>
+# include <structs.h>
+
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -25,141 +28,25 @@
 # include <math.h>
 
 /*
-** DEFINES ---------------------------------------------------- |
+** Reader functions
 */
 
-# define WIN_NAME	"Gameboy Advanced"
-# define TRUE		1
-# define FALSE		0
+typedef int			(*t_read)(char *s, t_base *b);
 
-# define KEY_W		13
-# define KEY_A		0
-# define KEY_S		1
-# define KEY_D		2
-# define KEY_ESC	53
-# define KEY_Q		12
+void				minimap(t_data *d, t_res i, t_res j);
+void				cross_h(t_data *d, t_bonus *bn);
 
-/*
-** ERROR MESSAGES
-*/
+int					rd_start(t_base *b);
+int					rd_sprites(char *s, t_base *b);
+int					rd_res(char *s, t_base *b);
+int					rd_ground_sky(char *s, t_base *b);
+int					rd_rgb(char *s, t_rgb *rgb);
+int					rd_struct_free(char *s, t_base *b);
 
-# define ERR_PARSER	"Something went wrong with parsing the"
-# define ERR_STRING	"\x1b[31mERROR\x1b[0m:\n%s %s sprite!"
-# define ERR_IN_CUB	"\x1b[31mERROR\x1b[0m:\nWrong .cub file input!\n"
-# define ERR_MALLOC	"\x1b[31mERROR\x1b[0m:\nMemory allocating failed."
-# define ERR_IN_MLX	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with MLX!"
-# define ERR_NO_CUB	"\x1b[31mERROR\x1b[0m:\nNo .cub file given!"
-# define ERR_IN_GNL	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with GNL!"
-# define ERR_TWO_SP	"\x1b[31mERROR\x1b[0m:\nTwo or more spawn points in map!"
-# define ERR_MAP_PR	"\x1b[31mERROR\x1b[0m:\nWalls in map not correct!"
+int					val_map(t_map *map);
 
 /*
-** STRUCTS ---------------------------------------------------- |
-*/
-
-typedef struct		s_col
-{
-	unsigned char	b;
-	unsigned char	g;
-	unsigned char	r;
-	unsigned char	a;
-}					t_col;
-
-typedef union		u_rgb
-{
-	unsigned int	color;
-	t_col			packed;
-}					t_rgb;
-
-typedef struct		s_res
-{
-	int				x;
-	int				y;
-}					t_res;
-
-typedef struct		s_2vec
-{
-	double			x;
-	double			y;
-}					t_2vec;
-
-typedef struct		s_spr
-{
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	char			*s;
-}					t_spr;
-
-typedef struct		s_map
-{
-	char			**ptr;
-	t_2vec			sp_pos;
-	t_2vec			sp_dir;
-	char			sp_char;
-	int				height;
-}					t_map;
-
-typedef struct		s_math
-{
-	int				start;
-	double			move_speed;
-	double			rot_speed;
-	t_2vec			plane;
-	double			camera_x;
-	t_2vec			raydir;
-	t_res			map;
-	t_2vec			sidedist;
-	t_2vec			deltadist;
-	double			perpwalldist;
-	t_res			step;
-	int				hit;
-	int				side;
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
-}					t_math;
-
-/*
-** all basic input from .cub file
-*/
-typedef struct		s_base
-{
-	char			*file;
-	char			*line;
-	t_map			map;
-	t_math			m;
-	t_res			res;
-	t_spr			sprites;
-	t_rgb			floor;
-	t_rgb			ceiling;
-}					t_base;
-
-/*
-** | ----------------------------------------------------------------------- |
-*/
-
-typedef struct		s_data
-{
-	void			*img;
-	void			*temp;
-	char			*addr;
-	int				bpp;
-	int				len;
-	int				endian;
-	t_base			b;
-}					t_data;
-
-typedef struct		s_vars
-{
-	void			*mlx;
-	void			*win;
-	t_data			data;
-}					t_vars;
-
-/*
-** | ----------------------------------------------------------------------- |
+** Math functions
 */
 
 int					pxloop(t_vars *vars);
@@ -178,31 +65,17 @@ int					move_right(t_vars *vars);
 int					move_left(t_vars *vars);
 
 /*
-** | ----------------------------------------------------------------------- |
+** extra functions
 */
+
+void				init_data(t_vars *vars);
 
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
 int					int_checker(int a, int max);
+t_rgb				color_input(int r, int g, int b, int a);
 
 void				hooks(t_vars *vars);
 int					errors(char *error);
-
-/*
-** Reader functions
-*/
-
-typedef int			(*t_read)(char *s, t_base *b);
-
-void				minimap(t_data *d, t_res i, t_res j, int size);
-
-int					rd_start(t_base *b);
-int					rd_sprites(char *s, t_base *b);
-int					rd_res(char *s, t_base *b);
-int					rd_ground_sky(char *s, t_base *b);
-int					rd_rgb(char *s, t_rgb *rgb);
-int					rd_struct_free(char *s, t_base *b);
-
-int					val_map(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/09 16:18:21 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 00:15:16 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 
 void			basic_math(t_base *b, int x)
 {
-	if (b->m.start == 0)
-	{
-		b->m.plane = (t_2vec){0, 0};
-		b->m.plane = (b->map.sp_char == 'N') ? (t_2vec){-0.66, 0} : b->m.plane;
-		b->m.plane = (b->map.sp_char == 'E') ? (t_2vec){0, 0.66} : b->m.plane;
-		b->m.plane = (b->map.sp_char == 'S') ? (t_2vec){0.66, 0} : b->m.plane;
-		b->m.plane = (b->map.sp_char == 'W') ? (t_2vec){0, -0.66} : b->m.plane;
-		b->m.start = 1;
-	}
 	b->m.move_speed = 0.05;
 	b->m.rot_speed = 0.03;
 	b->m.camera_x = 2 * x / (double)b->res.x - 1;
@@ -114,7 +105,8 @@ int				pxloop(t_vars *vars)
 		vertical_line(x, &vars->data, wall_col(&vars->data.b));
 		x++;
 	}
-	minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0}, 15);
+	// minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
+	cross_h(&vars->data, &vars->data.b.bonus);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
 	return (1);
 }
