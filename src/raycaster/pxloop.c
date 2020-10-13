@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/12 15:01:52 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/13 16:38:03 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int				pxloop(t_vars *vars)
 		vertical_line(x, &vars->data, wall_col(&vars->data.b));
 		x++;
 	}
-	minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
-	cross_h(&vars->data, &vars->data.b.bonus);
+	// minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
+	// cross_h(&vars->data, &vars->data.b.bonus);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
 	return (1);
 }

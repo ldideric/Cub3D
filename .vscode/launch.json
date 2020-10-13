@@ -7,9 +7,17 @@
 		{
 			"type": "lldb",
 			"request": "launch",
-			"name": "Debug",
+			"name": "Debug map",
 			"program": "${workspaceFolder}/cub3D",
 			"args": ["maps/map.cub"],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug test",
+			"program": "${workspaceFolder}/cub3D",
+			"args": ["maps/test.cub"],
 			"cwd": "${workspaceFolder}"
 		}
 	]

@@ -12,7 +12,7 @@
 		[
 			{
 				"name": "JSON",
-				"command": "code ~/Library/Application\\ Support/Code/User/settings.json",
+				"command": "code ./.vscode/settings.json",
 			},
 			{
 				"name": "make re",
