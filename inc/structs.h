@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/12 14:35:31 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/13 20:05:34 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ typedef struct		s_math
 typedef struct		s_bonus
 {
 	t_rgb			cr_col;
+	t_res			*cr_pix;
+	int				cr_pmax;
 	int				cr_length;
 	int				cr_width;
 }					t_bonus;

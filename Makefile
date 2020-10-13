@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/12 15:03:07 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/13 22:15:33 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -191,6 +191,15 @@ fclean: clean
 	@echo "$(G) > Done Cleaning!$(RES)\n"
 
 re: fclean all
+
+bonus:
+	@echo "$("
+	@echo "$(P)Compiling MiniLibX Library$(O)"
+	$(MMLX)
+	@echo "$(P)Compiling cub3D$(O)"
+	@gcc $(C_FILES) $(FLAGS) $(EXTRAS) -o $(NAME)
+	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME)"
+	@echo "$(G) > Done compiling!$(RES)\n"
 
 norm:
 	@echo "$(R)Norminette:$(RES)"

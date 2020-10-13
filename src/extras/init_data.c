@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/12 14:57:21 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/13 22:16:16 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		init_bonus(t_bonus *bn, t_res res)
 {
-	bn->cr_length = (res.x > res.y) ? res.y / 15 : res.x / 15;
+	bn->cr_length = (res.x > res.y) ? res.y / 100 : res.x / 100;
 	bn->cr_width = bn->cr_length / 5;
 	bn->cr_col = color_input(0, 0, 255, 0);
 }
