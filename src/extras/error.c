@@ -6,25 +6,27 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/02 15:29:21 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 20:53:53 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
 
-int		rd_struct_free(char *s, t_base *b)
+int		parse_err(char *s)
 {
-	if (b->sprites.no)
-		free(b->sprites.no);
-	if (b->sprites.so)
-		free(b->sprites.so);
-	if (b->sprites.we)
-		free(b->sprites.we);
-	if (b->sprites.ea)
-		free(b->sprites.ea);
-	if (b->sprites.s)
-		free(b->sprites.s);
-	printf(ERR_STRING, ERR_PARSER, ft_substr(s, 0, 2));
+	if (*(u_int16_t *)ft_substr(s, 0, 2) == *(u_int16_t *)"NO" ||
+		*(u_int16_t *)ft_substr(s, 0, 2) == *(u_int16_t *)"EA" ||
+		*(u_int16_t *)ft_substr(s, 0, 2) == *(u_int16_t *)"SO" ||
+		*(u_int16_t *)ft_substr(s, 0, 2) == *(u_int16_t *)"WE" ||
+		*ft_substr(s, 0, 2) == 'S')
+		printf(ERR_SPRITE, ERR_PARSER, ft_substr(s, 0, 2));
+	else if (*ft_substr(s, 0, 2) == 'F')
+		printf(ERR_F_COL_, ERR_PARSER);
+	else if (*ft_substr(s, 0, 2) == 'C')
+		printf(ERR_C_COL_, ERR_PARSER);
+	else if (*ft_substr(s, 0, 2) == 'R')
+		printf(ERR_PR_RES, ERR_PARSER);
+	exit(1);
 	return (0);
 }
 
@@ -44,5 +46,6 @@ int		errors(char *error)
 		ft_printf(ERR_TWO_SP);
 	if (error == ERR_MAP_PR)
 		ft_printf(ERR_MAP_PR);
+	exit(1);
 	return (0);
 }

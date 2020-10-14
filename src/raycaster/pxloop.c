@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 17:37:26 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 22:33:31 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ int				pxloop(t_vars *vars)
 	int		x;
 
 	x = 0;
+	vars->data.addr = mlx_get_data_addr(*vars->data.img_ptr2, &vars->data.bpp,
+		&vars->data.len, &vars->data.endian);
+	if (vars->data.addr == NULL)
+		return (errors(ERR_IN_MLX));
 	floor_ceiling_fill(&vars->data);
 	while (x < vars->data.b.res.x)
 	{
@@ -97,7 +101,9 @@ int				pxloop(t_vars *vars)
 		vertical_line(x, &vars->data, wall_col(&vars->data.b));
 		x++;
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
+	// ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
+	switch_ptr(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, *vars->data.img_ptr1, 0, 0);
 	return (1);
 }
 
@@ -112,6 +118,10 @@ int				pxloop(t_vars *vars)
 	int		x;
 
 	x = 0;
+	vars->data.addr = mlx_get_data_addr(*vars->data.img_ptr2, &vars->data.bpp,
+		&vars->data.len, &vars->data.endian);
+	if (vars->data.addr == NULL)
+		return (errors(ERR_IN_MLX));
 	floor_ceiling_fill(&vars->data);
 	while (x < vars->data.b.res.x)
 	{
@@ -124,7 +134,9 @@ int				pxloop(t_vars *vars)
 	}
 	minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
 	cross_h(&vars->data, &vars->data.b.bonus);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
+	// ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
+	switch_ptr(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, *vars->data.img_ptr1, 0, 0);
 	return (1);
 }
 

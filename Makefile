@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/14 18:05:29 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/14 20:13:54 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ GNL_SRC			=	get_next_line.c \
 
 PARS_SRC		=	reader.c \
 					reader_extra.c \
-					validate_map.c
+					validate_cub.c
 
 RAYC_SRC		=	pxloop.c \
 					pxloop_ext.c \

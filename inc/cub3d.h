@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 18:09:17 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 22:08:02 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 
 typedef int			(*t_read)(char *s, t_base *b);
 
-int					rd_start(t_base *b);
+int					rd_start(t_vars *vars, t_base *b);
 int					rd_sprites(char *s, t_base *b);
 int					rd_res(char *s, t_base *b);
 int					rd_ground_sky(char *s, t_base *b);
 int					rd_rgb(char *s, t_rgb *rgb);
-int					rd_struct_free(char *s, t_base *b);
 
 int					val_map(t_map *map);
+int					val_res(t_vars *vars);
 
 /*
 ** Math functions
@@ -71,9 +71,11 @@ void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
 int					int_checker(int a, int max);
 t_rgb				color_input(int r, int g, int b, int a);
+void				switch_ptr(t_vars *vars);
 
 void				hooks(t_vars *vars);
 int					errors(char *error);
+int					parse_err(char *s);
 
 # ifdef BONUS
 

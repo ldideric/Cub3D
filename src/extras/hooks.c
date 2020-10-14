@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:21:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 21:09:53 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 21:08:23 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static int			move_hooks(int keycode, t_vars *vars)
 static int			button_press_hooks(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_ESC || keycode == KEY_Q)
+	{
+		ft_printf("\x1b[38;5;196m[-]\x1b[0m Shutting down...\n");
 		exit(mlx_destroy_window(vars->mlx, vars->win) * 0);
+	}
 	if (keycode == KEY_W || keycode == KEY_A ||
 		keycode == KEY_S || keycode == KEY_D)
 		move_hooks(keycode, vars);

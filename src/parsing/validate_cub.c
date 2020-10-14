@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   validate_map.c                                     :+:    :+:            */
+/*   validate_cub.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/02 13:12:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/13 16:22:26 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 21:06:37 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,19 @@ int			val_map(t_map *map)
 		}
 		p.y++;
 	}
+	return (1);
+}
+
+int			val_res(t_vars *vars)
+{
+	t_res	real;
+
+	mlx_get_screen_size(vars->mlx, &real.x, &real.y);
+	if (vars->data.b.res.x > real.x || vars->data.b.res.y > real.y)
+		ft_printf("\x1b[38;5;208m[!]\x1b[0m Adjusted screen size\n");
+	if (vars->data.b.res.x > real.x)
+		vars->data.b.res.x = real.x;
+	if (vars->data.b.res.y > real.y)
+		vars->data.b.res.y = real.y;
 	return (1);
 }

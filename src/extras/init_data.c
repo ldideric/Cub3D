@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 17:23:39 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 22:32:57 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@ void			init_data(t_vars *vars)
 {
 	vars->data.b.m.plane = (t_2vec){0, 0};
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'N')
-		? (t_2vec){-0.66, 0}
-		: vars->data.b.m.plane;
+		? (t_2vec){-0.66, 0} : vars->data.b.m.plane;
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'E')
-		? (t_2vec){0, 0.66}
-		: vars->data.b.m.plane;
+		? (t_2vec){0, 0.66} : vars->data.b.m.plane;
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'S')
-		? (t_2vec){0.66, 0}
-		: vars->data.b.m.plane;
+		? (t_2vec){0.66, 0} : vars->data.b.m.plane;
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'W')
-		? (t_2vec){0, -0.66}
-		: vars->data.b.m.plane;
+		? (t_2vec){0, -0.66} : vars->data.b.m.plane;
+	vars->data.img_ptr1 = &vars->data.img1;
+	vars->data.img_ptr2 = &vars->data.img2;
 }
 
 #else
@@ -44,18 +42,16 @@ void			init_data(t_vars *vars)
 {
 	vars->data.b.m.plane = (t_2vec){0, 0};
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'N')
-		? (t_2vec){-0.66, 0}
-		: vars->data.b.m.plane;
+		? (t_2vec){-0.66, 0} : vars->data.b.m.plane;
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'E')
-		? (t_2vec){0, 0.66}
-		: vars->data.b.m.plane;
+		? (t_2vec){0, 0.66} : vars->data.b.m.plane;
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'S')
-		? (t_2vec){0.66, 0}
-		: vars->data.b.m.plane;
+		? (t_2vec){0.66, 0} : vars->data.b.m.plane;
 	vars->data.b.m.plane = (vars->data.b.map.sp_char == 'W')
-		? (t_2vec){0, -0.66}
-		: vars->data.b.m.plane;
+		? (t_2vec){0, -0.66} : vars->data.b.m.plane;
 	init_bonus(&vars->data.b.bonus, vars->data.b.res);
+	vars->data.img_ptr1 = &vars->data.img1;
+	vars->data.img_ptr2 = &vars->data.img2;
 }
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 17:38:29 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 22:30:22 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,13 @@ t_rgb		color_input(int r, int g, int b, int a)
 	color.packed.b = b;
 	color.packed.a = a;
 	return (color);
+}
+
+void		switch_ptr(t_vars *vars)
+{
+	void	*tmp;
+
+	tmp = *vars->data.img_ptr1;
+	*vars->data.img_ptr1 = *vars->data.img_ptr2;
+	*vars->data.img_ptr2 = tmp;
 }

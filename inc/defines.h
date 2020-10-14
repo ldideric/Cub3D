@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:28:12 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 17:11:46 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 20:51:57 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@
 */
 
 # define ERR_PARSER	"Something went wrong with parsing the"
-# define ERR_STRING	"\x1b[31mERROR\x1b[0m:\n%s %s sprite!"
+# define ERR_SPRITE	"\x1b[31mERROR\x1b[0m:\n%s %s sprite!"
+# define ERR_C_COL_	"\x1b[31mERROR\x1b[0m:\n%s ceiling color!"
+# define ERR_F_COL_	"\x1b[31mERROR\x1b[0m:\n%s floor color!"
+# define ERR_PR_RES	"\x1b[31mERROR\x1b[0m:\n%s resolution!"
 # define ERR_IN_CUB	"\x1b[31mERROR\x1b[0m:\nWrong .cub file input!\n"
 # define ERR_MALLOC	"\x1b[31mERROR\x1b[0m:\nMemory allocating failed."
 # define ERR_IN_MLX	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with MLX!"
