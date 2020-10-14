@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/12 15:01:02 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 18:09:17 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@
 */
 
 typedef int			(*t_read)(char *s, t_base *b);
-
-void				minimap(t_data *d, t_res i, t_res j);
-void				cross_h(t_data *d, t_bonus *bn);
 
 int					rd_start(t_base *b);
 int					rd_sprites(char *s, t_base *b);
@@ -78,4 +75,14 @@ t_rgb				color_input(int r, int g, int b, int a);
 void				hooks(t_vars *vars);
 int					errors(char *error);
 
+# ifdef BONUS
+
+/*
+** Bonus functions
+*/
+
+void				minimap(t_data *d, t_res i, t_res j);
+void				cross_h(t_data *d, t_bonus *bn);
+
+# endif
 #endif

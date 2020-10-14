@@ -6,11 +6,25 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 21:20:44 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/07 20:20:13 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 17:38:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
+
+void			basic_math(t_base *b, int x)
+{
+	b->m.move_speed = 0.05;
+	b->m.rot_speed = 0.03;
+	b->m.camera_x = 2 * x / (double)b->res.x - 1;
+	b->m.raydir.x = b->map.sp_dir.x + b->m.plane.x * b->m.camera_x;
+	b->m.raydir.y = b->map.sp_dir.y + b->m.plane.y * b->m.camera_x;
+	b->m.map.x = b->map.sp_pos.x;
+	b->m.map.y = b->map.sp_pos.y;
+	b->m.deltadist.x = (b->m.deltadist.x == 0) ? 0 : fabs(1 / b->m.raydir.x);
+	b->m.deltadist.y = (b->m.deltadist.x == 0) ? 0 : fabs(1 / b->m.raydir.y);
+	b->m.hit = 0;
+}
 
 void			vertical_line(int x, t_data *d, t_rgb col)
 {
@@ -24,15 +38,9 @@ void			vertical_line(int x, t_data *d, t_rgb col)
 t_rgb			wall_col(t_base *b)
 {
 	t_rgb color;
-	(void)b;
-	// if (b->map.ptr[b->m.map_y][b->m.map_x] == '1')
+
 	color.color = 0xFF0000;
-	// else if (b->map.ptr[b->m.map_y][b->m.map_x] == '2')
-		// color.color = 0x00FF00;
-	// else
-		// color.color = 0xFFFF00;
-	// if (b->m.side == 1)
-	// 	color.color = color.color / 2;
+	(void)b;
 	return (color);
 }
 

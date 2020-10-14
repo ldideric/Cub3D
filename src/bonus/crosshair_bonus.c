@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   crosshair.c                                        :+:    :+:            */
+/*   crosshair_bonus.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:06:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/13 22:17:22 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 18:06:23 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,22 @@ void			cross_check(t_data *d, t_bonus *bn, int gap, t_res p)
 	int		length;
 
 	length = gap / 2 + bn->cr_length;
-	// if (p.x == d->b.res.x/2 && p.y == 20)
-	// 	length = length + 1 - 1;
-	if
-	(
-		(
-			(
-				(p.x > (d->b.res.x / 2) - bn->cr_width)
-				&&
-				(p.x < (d->b.res.x / 2) + bn->cr_width)
-				&&
-				(p.y < (d->b.res.y / 2) + length)
-				&&
-				(p.y > (d->b.res.y / 2) - length)
-				&&
-				(!(p.y > (d->b.res.y / 2))))
-			||
-			(
-				(p.y > (d->b.res.y / 2) - bn->cr_width)
-				&&
-				(p.y < (d->b.res.y / 2) + bn->cr_width)
-				&&
-				(p.x < (d->b.res.x / 2) + length)
-				&&
-				(p.x > (d->b.res.x / 2) - length))))
-		// bn->cr_pmax++;
+	if (((p.x > (d->b.res.x / 2) - bn->cr_width)
+			&& (p.x < (d->b.res.x / 2) + bn->cr_width)
+			&& (p.y < (d->b.res.y / 2) + length)
+			&& (p.y > (d->b.res.y / 2) - length)
+			&& !(((p.y > (d->b.res.y / 2) - (gap / 2 + bn->cr_width / 2)))
+				&& ((p.y < (d->b.res.y / 2) + (gap / 2 + bn->cr_width / 2)))))
+		|| ((p.y > (d->b.res.y / 2) - bn->cr_width)
+			&& (p.y < (d->b.res.y / 2) + bn->cr_width)
+			&& (p.x < (d->b.res.x / 2) + length)
+			&& (p.x > (d->b.res.x / 2) - length)
+			&& !(((p.x > (d->b.res.x / 2) - (gap / 2 + bn->cr_width / 2)))
+				&& ((p.x < (d->b.res.x / 2) + (gap / 2 + bn->cr_width / 2))))))
+	{
+		bn->cr_pmax++;
 		my_mlx_pixel_put(d, p.x, p.y, bn->cr_col.color);
+	}
 }
 
 void			cross_h(t_data *d, t_bonus *bn)

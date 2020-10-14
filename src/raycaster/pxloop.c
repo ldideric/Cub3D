@@ -6,25 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/13 20:14:39 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 17:37:26 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <extra.h>
-
-void			basic_math(t_base *b, int x)
-{
-	b->m.move_speed = 0.05;
-	b->m.rot_speed = 0.03;
-	b->m.camera_x = 2 * x / (double)b->res.x - 1;
-	b->m.raydir.x = b->map.sp_dir.x + b->m.plane.x * b->m.camera_x;
-	b->m.raydir.y = b->map.sp_dir.y + b->m.plane.y * b->m.camera_x;
-	b->m.map.x = b->map.sp_pos.x;
-	b->m.map.y = b->map.sp_pos.y;
-	b->m.deltadist.x = (b->m.deltadist.x == 0) ? 0 : fabs(1 / b->m.raydir.x);
-	b->m.deltadist.y = (b->m.deltadist.x == 0) ? 0 : fabs(1 / b->m.raydir.y);
-	b->m.hit = 0;
-}
 
 void			calc_step(t_base *b)
 {
@@ -90,6 +76,12 @@ void			calc_line_height(t_base *b)
 		b->m.draw_end = b->res.y - 1;
 }
 
+#ifndef BONUS
+
+/*
+** Without bonus
+*/
+
 int				pxloop(t_vars *vars)
 {
 	int		x;
@@ -105,8 +97,35 @@ int				pxloop(t_vars *vars)
 		vertical_line(x, &vars->data, wall_col(&vars->data.b));
 		x++;
 	}
-	// minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
+	return (1);
+}
+
+#else
+
+/*
+** With bonus
+*/
+
+int				pxloop(t_vars *vars)
+{
+	int		x;
+
+	x = 0;
+	floor_ceiling_fill(&vars->data);
+	while (x < vars->data.b.res.x)
+	{
+		basic_math(&vars->data.b, x);
+		calc_step(&vars->data.b);
+		dda_hit_checker(&vars->data.b);
+		calc_line_height(&vars->data.b);
+		vertical_line(x, &vars->data, wall_col(&vars->data.b));
+		x++;
+	}
+	minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
 	cross_h(&vars->data, &vars->data.b.bonus);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
 	return (1);
 }
+
+#endif

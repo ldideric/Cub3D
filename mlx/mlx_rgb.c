@@ -1,21 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_rgb.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2020/02/04 15:59:12 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/05 23:31:22 by ldideric      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
 /*
 ** This is a generated file with rgb2c.pl and rgb.txt from
 ** the XFree86 distribution.
 */
 
-struct s_col_name	mlx_col_name[] =
+
+struct s_col_name mlx_col_name[] =
 {
  { "snow" , 0xfffafa },
  { "ghost white" , 0xf8f8ff },

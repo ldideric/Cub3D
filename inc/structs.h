@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/13 20:05:34 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/14 18:06:06 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,25 @@ typedef struct		s_math
 	int				draw_end;
 }					t_math;
 
+# ifndef BONUS
+
+/*
+** All basic input from .cub file
+*/
+typedef struct		s_base
+{
+	char			*file;
+	char			*line;
+	t_map			map;
+	t_math			m;
+	t_res			res;
+	t_spr			sprites;
+	t_rgb			floor;
+	t_rgb			ceiling;
+}					t_base;
+
+# else
+
 /*
 ** Variables used for bonus functions
 */
@@ -110,7 +129,7 @@ typedef struct		s_bonus
 }					t_bonus;
 
 /*
-** All basic input from .cub file
+** All basic input from .cub file + bonus
 */
 typedef struct		s_base
 {
@@ -118,12 +137,14 @@ typedef struct		s_base
 	char			*line;
 	t_map			map;
 	t_math			m;
-	t_bonus			bonus;
 	t_res			res;
 	t_spr			sprites;
 	t_rgb			floor;
 	t_rgb			ceiling;
+	t_bonus			bonus;
 }					t_base;
+
+# endif
 
 /*
 ** Struct used for MLX functions
