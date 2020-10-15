@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 18:06:28 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 20:03:22 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 static void			draw_rect(t_data *d, t_res cord, int size, int color)
 {
@@ -39,8 +39,6 @@ static t_rgb		color_pick(t_data *d, t_res i)
 		return (color_input(174, 182, 191, 0));
 	else if (d->b.map.ptr[i.y][i.x] == '1')
 		return (color_input(255, 255, 255, 0));
-	else if (d->b.map.ptr[i.y][i.x] == '2')
-		return (color_input(130, 224, 170, 0));
 	else
 		return (color_input(0, 255, 0, 0));
 }

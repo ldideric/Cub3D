@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 20:53:53 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 20:14:34 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 int		parse_err(char *s)
 {
@@ -26,7 +26,7 @@ int		parse_err(char *s)
 		printf(ERR_C_COL_, ERR_PARSER);
 	else if (*ft_substr(s, 0, 2) == 'R')
 		printf(ERR_PR_RES, ERR_PARSER);
-	exit(1);
+	exit(0);
 	return (0);
 }
 
@@ -46,6 +46,8 @@ int		errors(char *error)
 		ft_printf(ERR_TWO_SP);
 	if (error == ERR_MAP_PR)
 		ft_printf(ERR_MAP_PR);
-	exit(1);
+	if (error == ERR_SPAWN_)
+		ft_printf(ERR_SPAWN_);
+	exit(0);
 	return (0);
 }

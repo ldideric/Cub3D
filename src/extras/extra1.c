@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 22:30:22 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 16:46:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -59,11 +59,11 @@ t_rgb		color_input(int r, int g, int b, int a)
 	return (color);
 }
 
-void		switch_ptr(t_vars *vars)
+void		switch_ptr(void)
 {
 	void	*tmp;
 
-	tmp = *vars->data.img_ptr1;
-	*vars->data.img_ptr1 = *vars->data.img_ptr2;
-	*vars->data.img_ptr2 = tmp;
+	tmp = *g_vars.data.img_ptr1;
+	*g_vars.data.img_ptr1 = *g_vars.data.img_ptr2;
+	*g_vars.data.img_ptr2 = tmp;
 }

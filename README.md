@@ -1,14 +1,15 @@
 # cub3D
 
 ### To Do list
-- [ ] multiple keypress
-- [x] fix parsing
-- [ ] map validation
+- [x] multiple keypress
+- [x] wasd + arrowkeys
+- [ ] fix parsing
+- [x] map validation
 - [ ] work with images
 - [x] fix screentearing with two img
 - [x] adjust screensize automatically
 
-- [ ] fix crosshair bonus
+- [x] fix crosshair bonus
 
 ### Before handing in
-- [ ] removing extra.h file
+- [x] removing extra.h file

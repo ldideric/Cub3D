@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 20:55:26 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 16:46:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 static int		specifier(char *s, t_base *b)
 {
@@ -88,7 +88,7 @@ static int		reader(t_base *b, int fd, int ret)
 	return (1);
 }
 
-int				rd_start(t_vars *vars, t_base *b)
+int				rd_start(t_base *b)
 {
 	int		fd;
 	int		ret;
@@ -98,7 +98,7 @@ int				rd_start(t_vars *vars, t_base *b)
 	ret = get_next_line(fd, &b->line);
 	if (ret == -1)
 		return (errors(ERR_IN_GNL));
-	if (!reader(b, fd, ret) || !val_map(&b->map) || !val_res(vars))
+	if (!reader(b, fd, ret) || !val_map(&b->map) || !val_res())
 		return (0);
 	return (1);
 }

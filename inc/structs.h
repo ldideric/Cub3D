@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 22:13:21 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 16:59:24 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,19 @@ typedef struct		s_math
 	int				draw_end;
 }					t_math;
 
+/*
+** Info about keypresses
+*/
+typedef struct		s_key
+{
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+	int				larr;
+	int				rarr;
+}					t_key;
+
 # ifndef BONUS
 
 /*
@@ -156,6 +169,7 @@ typedef struct		s_data
 	void			**img_ptr1;
 	void			**img_ptr2;
 	char			*addr;
+	t_key			key;
 	int				bpp;
 	int				len;
 	int				endian;

@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 22:33:31 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 20:47:46 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 void			calc_step(t_base *b)
 {
@@ -82,28 +82,27 @@ void			calc_line_height(t_base *b)
 ** Without bonus
 */
 
-int				pxloop(t_vars *vars)
+int				pxloop(t_data *d)
 {
 	int		x;
 
 	x = 0;
-	vars->data.addr = mlx_get_data_addr(*vars->data.img_ptr2, &vars->data.bpp,
-		&vars->data.len, &vars->data.endian);
-	if (vars->data.addr == NULL)
+	d->addr = mlx_get_data_addr(*d->img_ptr2, &d->bpp,
+		&d->len, &d->endian);
+	if (d->addr == NULL)
 		return (errors(ERR_IN_MLX));
-	floor_ceiling_fill(&vars->data);
-	while (x < vars->data.b.res.x)
+	floor_ceiling_fill(&g_vars.data);
+	while (x < d->b.res.x)
 	{
-		basic_math(&vars->data.b, x);
-		calc_step(&vars->data.b);
-		dda_hit_checker(&vars->data.b);
-		calc_line_height(&vars->data.b);
-		vertical_line(x, &vars->data, wall_col(&vars->data.b));
+		basic_math(&d->b, x);
+		calc_step(&d->b);
+		dda_hit_checker(&d->b);
+		calc_line_height(&d->b);
+		vertical_line(x, &g_vars.data, 0xFF0000);
 		x++;
 	}
-	// ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
-	switch_ptr(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, *vars->data.img_ptr1, 0, 0);
+	switch_ptr();
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, *d->img_ptr1, 0, 0);
 	return (1);
 }
 
@@ -113,30 +112,29 @@ int				pxloop(t_vars *vars)
 ** With bonus
 */
 
-int				pxloop(t_vars *vars)
+int				pxloop(t_data *d)
 {
 	int		x;
 
 	x = 0;
-	vars->data.addr = mlx_get_data_addr(*vars->data.img_ptr2, &vars->data.bpp,
-		&vars->data.len, &vars->data.endian);
-	if (vars->data.addr == NULL)
+	d->addr = mlx_get_data_addr(*d->img_ptr2, &d->bpp,
+		&d->len, &d->endian);
+	if (d->addr == NULL)
 		return (errors(ERR_IN_MLX));
-	floor_ceiling_fill(&vars->data);
-	while (x < vars->data.b.res.x)
+	floor_ceiling_fill(&g_vars.data);
+	while (x < d->b.res.x)
 	{
-		basic_math(&vars->data.b, x);
-		calc_step(&vars->data.b);
-		dda_hit_checker(&vars->data.b);
-		calc_line_height(&vars->data.b);
-		vertical_line(x, &vars->data, wall_col(&vars->data.b));
+		basic_math(&d->b, x);
+		calc_step(&d->b);
+		dda_hit_checker(&d->b);
+		calc_line_height(&d->b);
+		vertical_line(x, &g_vars.data, 0xFF0000);
 		x++;
 	}
-	minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
-	cross_h(&vars->data, &vars->data.b.bonus);
-	// ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
-	switch_ptr(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, *vars->data.img_ptr1, 0, 0);
+	minimap(&g_vars.data, (t_res){0, 0}, (t_res){0, 0});
+	cross_h(&g_vars.data, &d->b.bonus);
+	switch_ptr();
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, *d->img_ptr1, 0, 0);
 	return (1);
 }
 

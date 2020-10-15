@@ -6,24 +6,24 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 22:19:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 19:58:24 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
-void			*mlx_start(t_data *d, t_vars *v)
+static void		*mlx_start(t_data *d)
 {
-	v->mlx = mlx_init();
-	if (v->mlx == NULL)
+	g_vars.mlx = mlx_init();
+	if (g_vars.mlx == NULL)
 		return (NULL);
-	v->win = mlx_new_window(v->mlx, d->b.res.x, d->b.res.y, WIN_NAME);
-	if (v->win == NULL)
+	g_vars.win = mlx_new_window(g_vars.mlx, d->b.res.x, d->b.res.y, WIN_NAME);
+	if (g_vars.win == NULL)
 		return (NULL);
-	d->img1 = mlx_new_image(v->mlx, d->b.res.x, d->b.res.y);
+	d->img1 = mlx_new_image(g_vars.mlx, d->b.res.x, d->b.res.y);
 	if (d->img1 == NULL)
 		return (NULL);
-	d->img2 = mlx_new_image(v->mlx, d->b.res.x, d->b.res.y);
+	d->img2 = mlx_new_image(g_vars.mlx, d->b.res.x, d->b.res.y);
 	if (d->img2 == NULL)
 		return (NULL);
 	return ("1");
@@ -31,19 +31,18 @@ void			*mlx_start(t_data *d, t_vars *v)
 
 int				main(int argc, char **argv)
 {
-	t_vars		vars;
-
 	if (argc >= 2)
-		vars.data.b.file = argv[1];
+		g_vars.data.b.file = argv[1];
 	else
 		return (errors(ERR_NO_CUB));
-	if (!rd_start(&vars, &vars.data.b))
+	if (!rd_start(&g_vars.data.b))
 		return (0);
-	init_data(&vars);
-	if (mlx_start(&vars.data, &vars) == NULL)
+	init_data();
+	if (mlx_start(&g_vars.data) == NULL)
 		return (errors(ERR_IN_MLX));
-	pxloop(&vars);
-	hooks(&vars);
-	mlx_loop(vars.mlx);
+	ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
+	pxloop(&g_vars.data);
+	hooks();
+	mlx_loop(g_vars.mlx);
 	return (0);
 }

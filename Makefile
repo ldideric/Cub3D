@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/14 20:13:54 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/15 20:07:42 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ LIBFT_SRC		=	ft_memset.c \
 					ft_lstlast_bonus.c \
 					ft_lstmap_bonus.c \
 					ft_lstnew_bonus.c \
-					ft_lstsize_bonus.c
+					ft_lstsize_bonus.c \
+					ft_ismatch.c
 
 PRINTF_SRC		=	ft_printf.c \
 					ft_printf_bonus.c \
@@ -90,7 +91,8 @@ PARS_SRC		=	reader.c \
 
 RAYC_SRC		=	pxloop.c \
 					pxloop_ext.c \
-					move.c
+					move.c \
+					rotate.c
 
 BONUS_SRC		=	minimap_bonus.c \
 					crosshair_bonus.c
