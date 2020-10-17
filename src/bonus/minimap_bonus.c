@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minimap.c                                          :+:    :+:            */
+/*   minimap_bonus.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-<<<<<<< HEAD:src/raycaster/minimap.c
-/*   Updated: 2020/10/09 01:02:29 by ldideric      ########   odam.nl         */
-=======
-/*   Updated: 2020/10/12 14:37:47 by ldideric      ########   odam.nl         */
->>>>>>> c204647f2a43db2569dc377ca4f79bc71065b8ec:src/bonus/minimap.c
+/*   Updated: 2020/10/17 02:55:34 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 static void			draw_rect(t_data *d, t_res cord, int size, int color)
 {
@@ -43,8 +39,6 @@ static t_rgb		color_pick(t_data *d, t_res i)
 		return (color_input(174, 182, 191, 0));
 	else if (d->b.map.ptr[i.y][i.x] == '1')
 		return (color_input(255, 255, 255, 0));
-	else if (d->b.map.ptr[i.y][i.x] == '2')
-		return (color_input(130, 224, 170, 0));
 	else
 		return (color_input(0, 255, 0, 0));
 }

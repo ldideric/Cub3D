@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/02 13:16:24 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 16:46:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 int			rd_sprites(char *s, t_base *b)
 {
@@ -36,17 +36,15 @@ int			rd_res(char *s, t_base *b)
 {
 	while (*s == ' ' || ft_isalpha(*s))
 		s++;
-	if (int_checker(ft_atoi(s), 3840) == 1)
-		b->res.x = ft_atoi(s);
-	else
+	b->res.x = ft_atoi(s);
+	if (b->res.x < 0)
 		return (0);
 	while (ft_isdigit(*s))
 		s++;
 	while (*s == ' ')
 		s++;
-	if (int_checker(ft_atoi(s), 3840) == 1)
-		b->res.y = ft_atoi(s);
-	else
+	b->res.y = ft_atoi(s);
+	if (b->res.y < 0)
 		return (0);
 	return (1);
 }

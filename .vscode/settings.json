@@ -15,6 +15,11 @@
 				"command": "code ./.vscode/settings.json",
 			},
 			{
+				"name": "make",
+				"color": "brown",
+				"command": "make",
+			},
+			{
 				"name": "make re",
 				"color": "black",
 				"command": "make re MLX=1 DEBUG=1",
@@ -25,9 +30,9 @@
 				"command": "./cub3D maps/map.cub",
 			},
 			{
-				"name": "make",
+				"name": "make bonus",
 				"color": "brown",
-				"command": "make",
+				"command": "make bonus",
 			},
 		]
 	},

@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/14 00:15:47 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/17 02:54:51 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ LIBFT_SRC		=	ft_memset.c \
 					ft_lstlast_bonus.c \
 					ft_lstmap_bonus.c \
 					ft_lstnew_bonus.c \
-					ft_lstsize_bonus.c
+					ft_lstsize_bonus.c \
+					ft_ismatch.c
 
 PRINTF_SRC		=	ft_printf.c \
 					ft_printf_bonus.c \
@@ -86,14 +87,15 @@ GNL_SRC			=	get_next_line.c \
 
 PARS_SRC		=	reader.c \
 					reader_extra.c \
-					validate_map.c
+					validate_cub.c
 
 RAYC_SRC		=	pxloop.c \
 					pxloop_ext.c \
-					move.c
+					move.c \
+					rotate.c
 
-BONUS_SRC		=	minimap.c \
-					crosshair.c
+BONUS_SRC		=	minimap_bonus.c \
+					crosshair_bonus.c
 
 EXTRA_SRC		=	error.c \
 					hooks.c \
@@ -122,7 +124,6 @@ C_FILES			=	./$(SRC_PATH)/cub3d.c \
 					$(GNL_SRC_DIR) \
 					$(PARS_SRC_DIR) \
 					$(RAYC_SRC_DIR) \
-					$(BONUS_SRC_DIR) \
 					$(EXTRA_SRC_DIR)
 O_FILES			=	$(C_FILES:.c=.o)
 EXTRAS			=	libmlx.dylib
@@ -130,6 +131,7 @@ EXTRAS			=	libmlx.dylib
 W_FLAGS			=	-Wall -Werror -Wextra
 LIB_FLAGS		=	-framework OpenGL -framework AppKit -Imlx -Iinc
 FLAGS			=	$(W_FLAGS) $(LIB_FLAGS)
+BONUS_FLAGS		=	$(BONUS_SRC_DIR) -D BONUS=1
 
 MMLX			=	make -C ./mlx && cp mlx/libmlx.dylib .
 CMLX			=	@make fclean -C ./mlx
@@ -193,24 +195,23 @@ fclean: clean
 re: fclean all
 
 bonus:
-	@echo "$("
-	@echo "$(P)Compiling MiniLibX Library$(O)"
-	$(MMLX)
-	@echo "$(P)Compiling cub3D$(O)"
-	@gcc $(C_FILES) $(FLAGS) $(EXTRAS) -o $(NAME)
-	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME)"
+	@echo "$(R)Recompiling with BONUS"
+	@gcc $(C_FILES) $(FLAGS) $(BONUS_FLAGS) $(EXTRAS) -o $(NAME)
+	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME) $(BONUS_FLAGS)"
 	@echo "$(G) > Done compiling!$(RES)\n"
 
 norm:
 	@echo "$(R)Norminette:$(RES)"
-	@norminette $(C_FILES) Makefile \
-		| grep -c "Error" || printf ""
+	@norminette $(C_FILES) $(BONUS_SRC_DIR) \
+		./inc/*.h ./src/bonus/*.h Makefile | grep -c "Error" || printf ""
 	@echo "$(R)Norminette+:$(RES)"
-	@python ~/norminette+/run.py $(C_FILES) Makefile \
-		| grep -c "Error" || printf ""
+	@python ~/norminette+/run.py $(C_FILES) $(BONUS_SRC_DIR) \
+		./inc/*.h ./src/bonus/*.h Makefile | grep -c "Error" || printf ""
 
 normall:
 	@echo "$(R)Norminette:$(RES)"
-	@norminette $(C_FILES) Makefile
+	@norminette $(C_FILES) $(BONUS_SRC_DIR) \
+		./inc/*.h ./src/bonus/*.h Makefile
 	@echo "$(R)Norminette+:$(RES)"
-	@python ~/norminette+/run.py $(C_FILES) Makefile
+	@python ~/norminette+/run.py $(C_FILES) $(BONUS_SRC_DIR) \
+		./inc/*.h ./src/bonus/*.h Makefile

@@ -1,9 +1,15 @@
 # cub3D
 
 ### To Do list
-- [ ] first and second argument (argc/argv)
-- [ ] wall collision
-- [ ] north south spawnpoint bug
+- [x] multiple keypress
+- [x] wasd + arrowkeys
+- [ ] fix parsing
+- [x] map validation
+- [ ] work with images
+- [x] fix screentearing with two img
+- [x] adjust screensize automatically
+
+- [x] fix crosshair bonus
 
 ### Before handing in
-- [ ] removing extra.h file
+- [x] removing extra.h file

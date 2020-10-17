@@ -6,25 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/14 00:15:16 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/17 02:55:56 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
-
-void			basic_math(t_base *b, int x)
-{
-	b->m.move_speed = 0.05;
-	b->m.rot_speed = 0.03;
-	b->m.camera_x = 2 * x / (double)b->res.x - 1;
-	b->m.raydir.x = b->map.sp_dir.x + b->m.plane.x * b->m.camera_x;
-	b->m.raydir.y = b->map.sp_dir.y + b->m.plane.y * b->m.camera_x;
-	b->m.map.x = b->map.sp_pos.x;
-	b->m.map.y = b->map.sp_pos.y;
-	b->m.deltadist.x = (b->m.deltadist.x == 0) ? 0 : fabs(1 / b->m.raydir.x);
-	b->m.deltadist.y = (b->m.deltadist.x == 0) ? 0 : fabs(1 / b->m.raydir.y);
-	b->m.hit = 0;
-}
+#include <cub3d.h>
 
 void			calc_step(t_base *b)
 {
@@ -90,23 +76,66 @@ void			calc_line_height(t_base *b)
 		b->m.draw_end = b->res.y - 1;
 }
 
-int				pxloop(t_vars *vars)
+#ifndef BONUS
+
+/*
+** Without bonus
+*/
+
+int				pxloop(t_data *d)
 {
 	int		x;
 
 	x = 0;
-	floor_ceiling_fill(&vars->data);
-	while (x < vars->data.b.res.x)
+	d->addr = mlx_get_data_addr(*d->img_ptr2, &d->bpp,
+		&d->len, &d->endian);
+	if (d->addr == NULL)
+		return (errors(ERR_IN_MLX));
+	floor_ceiling_fill(&g_vars.data);
+	while (x < d->b.res.x)
 	{
-		basic_math(&vars->data.b, x);
-		calc_step(&vars->data.b);
-		dda_hit_checker(&vars->data.b);
-		calc_line_height(&vars->data.b);
-		vertical_line(x, &vars->data, wall_col(&vars->data.b));
+		basic_math(&d->b, x);
+		calc_step(&d->b);
+		dda_hit_checker(&d->b);
+		calc_line_height(&d->b);
+		vertical_line(x, &g_vars.data, 0xFF0000);
 		x++;
 	}
-	// minimap(&vars->data, (t_res){0, 0}, (t_res){0, 0});
-	cross_h(&vars->data, &vars->data.b.bonus);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->data.img, 0, 0);
+	switch_ptr();
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, *d->img_ptr1, 0, 0);
 	return (1);
 }
+
+#else
+
+/*
+** With bonus
+*/
+
+int				pxloop(t_data *d)
+{
+	int		x;
+
+	x = 0;
+	d->addr = mlx_get_data_addr(*d->img_ptr2, &d->bpp,
+		&d->len, &d->endian);
+	if (d->addr == NULL)
+		return (errors(ERR_IN_MLX));
+	floor_ceiling_fill(&g_vars.data);
+	while (x < d->b.res.x)
+	{
+		basic_math(&d->b, x);
+		calc_step(&d->b);
+		dda_hit_checker(&d->b);
+		calc_line_height(&d->b);
+		vertical_line(x, &g_vars.data, 0xFF0000);
+		x++;
+	}
+	minimap(&g_vars.data, (t_res){0, 0}, (t_res){0, 0});
+	cross_h(&g_vars.data, &d->b.bonus);
+	switch_ptr();
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, *d->img_ptr1, 0, 0);
+	return (1);
+}
+
+#endif

@@ -6,34 +6,34 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 16:27:03 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/12 14:01:49 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 19:57:25 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
-int			move_up(t_vars *vars)
+int			move_up(void)
 {
 	t_base	*b;
 	double	movespeed;
 
-	b = &vars->data.b;
+	b = &g_vars.data.b;
 	movespeed = b->m.move_speed;
 	if (b->map.ptr[(int)(b->map.sp_pos.y + (2 * b->map.sp_dir.y * movespeed))]
 		[(int)(b->map.sp_pos.x)] != '1')
 		b->map.sp_pos.y += b->map.sp_dir.y * movespeed;
-	if (b->map.ptr[(int)b->map.sp_pos.y]
+	if (b->map.ptr[(int)(b->map.sp_pos.y)]
 		[(int)(b->map.sp_pos.x + (2 * b->map.sp_dir.x * movespeed))] != '1')
 		b->map.sp_pos.x += b->map.sp_dir.x * movespeed;
 	return (0);
 }
 
-int			move_down(t_vars *vars)
+int			move_down(void)
 {
 	t_base	*b;
 	double	movespeed;
 
-	b = &vars->data.b;
+	b = &g_vars.data.b;
 	movespeed = b->m.move_speed;
 	if (b->map.ptr[(int)(b->map.sp_pos.y - (2 * b->map.sp_dir.y * movespeed))]
 		[(int)(b->map.sp_pos.x)] != '1')
@@ -44,46 +44,34 @@ int			move_down(t_vars *vars)
 	return (0);
 }
 
-int			move_left(t_vars *vars)
+int			move_right(void)
 {
 	t_base	*b;
-	double	olddirx;
-	double	oldplanex;
-	double	rotspeed;
+	double	movespeed;
 
-	b = &vars->data.b;
-	rotspeed = b->m.rot_speed;
-	olddirx = b->map.sp_dir.x;
-	b->map.sp_dir.x = b->map.sp_dir.x * cos(rotspeed)
-	- b->map.sp_dir.y * sin(rotspeed);
-	b->map.sp_dir.y = olddirx * sin(rotspeed)
-	+ b->map.sp_dir.y * cos(rotspeed);
-	oldplanex = b->m.plane.x;
-	b->m.plane.x = b->m.plane.x * cos(rotspeed)
-	- b->m.plane.y * sin(rotspeed);
-	b->m.plane.y = oldplanex * sin(rotspeed)
-	+ b->m.plane.y * cos(rotspeed);
+	b = &g_vars.data.b;
+	movespeed = b->m.move_speed;
+	if (b->map.ptr[(int)(b->map.sp_pos.y + (2 * b->m.plane.y * movespeed))]
+		[(int)(b->map.sp_pos.x)] != '1')
+		b->map.sp_pos.y += b->m.plane.y * movespeed;
+	if (b->map.ptr[(int)(b->map.sp_pos.y)]
+		[(int)(b->map.sp_pos.x + (2 * b->m.plane.x * movespeed))] != '1')
+		b->map.sp_pos.x += b->m.plane.x * movespeed;
 	return (0);
 }
 
-int			move_right(t_vars *vars)
+int			move_left(void)
 {
 	t_base	*b;
-	double	olddirx;
-	double	oldplanex;
-	double	rotspeed;
+	double	movespeed;
 
-	b = &vars->data.b;
-	rotspeed = b->m.rot_speed;
-	olddirx = b->map.sp_dir.x;
-	b->map.sp_dir.x = b->map.sp_dir.x * cos(-rotspeed)
-	- b->map.sp_dir.y * sin(-rotspeed);
-	b->map.sp_dir.y = olddirx * sin(-rotspeed)
-	+ b->map.sp_dir.y * cos(-rotspeed);
-	oldplanex = b->m.plane.x;
-	b->m.plane.x = b->m.plane.x * cos(-rotspeed)
-	- b->m.plane.y * sin(-rotspeed);
-	b->m.plane.y = oldplanex * sin(-rotspeed)
-	+ b->m.plane.y * cos(-rotspeed);
+	b = &g_vars.data.b;
+	movespeed = b->m.move_speed;
+	if (b->map.ptr[(int)(b->map.sp_pos.y - (2 * b->m.plane.y * movespeed))]
+		[(int)(b->map.sp_pos.x)] != '1')
+		b->map.sp_pos.y -= b->m.plane.y * movespeed;
+	if (b->map.ptr[(int)(b->map.sp_pos.y)]
+		[(int)(b->map.sp_pos.x - (2 * b->m.plane.x * movespeed))] != '1')
+		b->map.sp_pos.x -= b->m.plane.x * movespeed;
 	return (0);
 }

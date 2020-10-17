@@ -6,28 +6,37 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 21:20:44 by ldideric      #+#    #+#                 */
+<<<<<<< HEAD
 /*   Updated: 2020/10/09 02:34:26 by ldideric      ########   odam.nl         */
+=======
+/*   Updated: 2020/10/15 19:18:31 by ldideric      ########   odam.nl         */
+>>>>>>> 3e33aaf5d74175949ca40a313c50515d53e97e4a
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
-void			vertical_line(int x, t_data *d, t_rgb col)
+void			basic_math(t_base *b, int x)
+{
+	b->m.move_speed = 0.05;
+	b->m.rot_speed = 0.03;
+	b->m.camera_x = 2 * x / (double)b->res.x - 1;
+	b->m.raydir.x = b->map.sp_dir.x + b->m.plane.x * b->m.camera_x;
+	b->m.raydir.y = b->map.sp_dir.y + b->m.plane.y * b->m.camera_x;
+	b->m.map.x = b->map.sp_pos.x;
+	b->m.map.y = b->map.sp_pos.y;
+	b->m.deltadist.x = fabs(1 / b->m.raydir.x);
+	b->m.deltadist.y = fabs(1 / b->m.raydir.y);
+	b->m.hit = 0;
+}
+
+void			vertical_line(int x, t_data *d, unsigned int col)
 {
 	while (d->b.m.draw_start < d->b.m.draw_end)
 	{
-		my_mlx_pixel_put(d, x, d->b.m.draw_start, col.color);
+		my_mlx_pixel_put(d, x, d->b.m.draw_start, col);
 		d->b.m.draw_start++;
 	}
-}
-
-t_rgb			wall_col(t_base *b)
-{
-	t_rgb color;
-
-	(void)b;
-	color.color = 0xFF0000;
-	return (color);
 }
 
 void			floor_ceiling_fill(t_data *d)

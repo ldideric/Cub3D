@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/13 20:05:34 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 16:59:24 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,38 @@ typedef struct		s_math
 }					t_math;
 
 /*
+** Info about keypresses
+*/
+typedef struct		s_key
+{
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+	int				larr;
+	int				rarr;
+}					t_key;
+
+# ifndef BONUS
+
+/*
+** All basic input from .cub file
+*/
+typedef struct		s_base
+{
+	char			*file;
+	char			*line;
+	t_map			map;
+	t_math			m;
+	t_res			res;
+	t_spr			sprites;
+	t_rgb			floor;
+	t_rgb			ceiling;
+}					t_base;
+
+# else
+
+/*
 ** Variables used for bonus functions
 */
 typedef struct		s_bonus
@@ -110,7 +142,7 @@ typedef struct		s_bonus
 }					t_bonus;
 
 /*
-** All basic input from .cub file
+** All basic input from .cub file + bonus
 */
 typedef struct		s_base
 {
@@ -118,21 +150,26 @@ typedef struct		s_base
 	char			*line;
 	t_map			map;
 	t_math			m;
-	t_bonus			bonus;
 	t_res			res;
 	t_spr			sprites;
 	t_rgb			floor;
 	t_rgb			ceiling;
+	t_bonus			bonus;
 }					t_base;
+
+# endif
 
 /*
 ** Struct used for MLX functions
 */
 typedef struct		s_data
 {
-	void			*img;
-	void			*temp;
+	void			*img1;
+	void			*img2;
+	void			**img_ptr1;
+	void			**img_ptr2;
 	char			*addr;
+	t_key			key;
 	int				bpp;
 	int				len;
 	int				endian;

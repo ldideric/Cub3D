@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/12 15:01:25 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/15 16:46:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 static int		specifier(char *s, t_base *b)
 {
@@ -75,7 +75,7 @@ static int		reader(t_base *b, int fd, int ret)
 		if (ft_isalpha(b->line[0]) == 1)
 		{
 			if (!specifier(b->line, b))
-				return (rd_struct_free(b->line, b));
+				return (parse_err(b->line));
 		}
 		else if (ft_isdigit(b->line[0]) == 1 || b->line[0] == ' ')
 			return (rd_map(b, fd));
@@ -98,9 +98,7 @@ int				rd_start(t_base *b)
 	ret = get_next_line(fd, &b->line);
 	if (ret == -1)
 		return (errors(ERR_IN_GNL));
-	if (!reader(b, fd, ret))
-		return (0);
-	if (!val_map(&b->map))
+	if (!reader(b, fd, ret) || !val_map(&b->map) || !val_res())
 		return (0);
 	return (1);
 }
