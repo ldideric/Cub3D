@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/17 02:55:34 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/17 03:06:37 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,8 @@ void				minimap(t_data *d, t_res i, t_res j)
 		if (d->b.map.sp_pos.x > 5)
 			i.x = d->b.map.sp_pos.x - 5;
 		j.x = 0;
-<<<<<<< HEAD:src/raycaster/minimap.c
-		while (i.x < (int)ft_strlen(d->b.map.ptr[i.y]) &&
-			i.x < d->b.map.sp_pos.x + 5)
-=======
 		while (i.x < (int)ft_strlen(d->b.map.ptr[i.y])
 			&& i.x < d->b.map.sp_pos.x + 5)
->>>>>>> c204647f2a43db2569dc377ca4f79bc71065b8ec:src/bonus/minimap.c
 		{
 			draw_rect(d, j, size, (int)color_pick(d, i).color);
 			i.x++;

@@ -6,11 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/09 02:39:50 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/09 02:45:52 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/17 03:06:32 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <extra.h>
+#include <cub3d.h>
 
 int			load_img(t_vars *vars)
 {

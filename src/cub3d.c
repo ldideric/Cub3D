@@ -6,15 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2020/10/09 02:43:18 by ldideric      ########   odam.nl         */
-=======
-/*   Updated: 2020/10/12 14:27:41 by ldideric      ########   odam.nl         */
->>>>>>> c204647f2a43db2569dc377ca4f79bc71065b8ec
-=======
-/*   Updated: 2020/10/15 19:58:24 by ldideric      ########   odam.nl         */
->>>>>>> 3e33aaf5d74175949ca40a313c50515d53e97e4a
+/*   Updated: 2020/10/17 03:06:20 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
