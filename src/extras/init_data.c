@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 20:45:52 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 22:48:36 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,31 @@ static void		init_key(void)
 	g_vars.data.key.rarr = 0;
 }
 
+static void		init_sprite_img(void)
+{
+	
+}
+
 #ifndef BONUS
 
 void			init_data(void)
 {
-	g_vars.data.b.m.plane = (t_2vec){0, 0};
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'N')
-		? (t_2vec){-0.66, 0} : g_vars.data.b.m.plane;
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'E')
-		? (t_2vec){0, -0.66} : g_vars.data.b.m.plane;
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'S')
-		? (t_2vec){0.66, 0} : g_vars.data.b.m.plane;
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'W')
-		? (t_2vec){0, 0.66} : g_vars.data.b.m.plane;
+	g_m.plane = (t_2vec){0, 0};
+	g_m.plane = (g_vars.data.b.map.sp_char == 'N')
+		? (t_2vec){-0.66, 0} : g_m.plane;
+	g_m.plane = (g_vars.data.b.map.sp_char == 'E')
+		? (t_2vec){0, -0.66} : g_m.plane;
+	g_m.plane = (g_vars.data.b.map.sp_char == 'S')
+		? (t_2vec){0.66, 0} : g_m.plane;
+	g_m.plane = (g_vars.data.b.map.sp_char == 'W')
+		? (t_2vec){0, 0.66} : g_m.plane;
+	g_m.pos.x = g_vars.data.b.map.sp_pos.x;
+	g_m.pos.y = g_vars.data.b.map.sp_pos.y;
+	g_m.res.x = g_vars.data.b.res.x;
+	g_m.res.y = g_vars.data.b.res.y;
 	g_vars.data.img_ptr1 = &g_vars.data.img1;
 	g_vars.data.img_ptr2 = &g_vars.data.img2;
+	init_sprite_img();
 	init_key();
 }
 
@@ -51,15 +61,19 @@ static void		init_bonus(t_bonus *bn, t_res res)
 
 void			init_data(void)
 {
-	g_vars.data.b.m.plane = (t_2vec){0, 0};
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'N')
-		? (t_2vec){-0.66, 0} : g_vars.data.b.m.plane;
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'E')
-		? (t_2vec){0, 0.66} : g_vars.data.b.m.plane;
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'S')
-		? (t_2vec){0.66, 0} : g_vars.data.b.m.plane;
-	g_vars.data.b.m.plane = (g_vars.data.b.map.sp_char == 'W')
-		? (t_2vec){0, -0.66} : g_vars.data.b.m.plane;
+	g_m.plane = (t_2vec){0, 0};
+	g_m.plane = (g_vars.data.b.map.sp_char == 'N')
+		? (t_2vec){-0.66, 0} : g_m.plane;
+	g_m.plane = (g_vars.data.b.map.sp_char == 'E')
+		? (t_2vec){0, -0.66} : g_m.plane;
+	g_m.plane = (g_vars.data.b.map.sp_char == 'S')
+		? (t_2vec){0.66, 0} : g_m.plane;
+	g_m.plane = (g_vars.data.b.map.sp_char == 'W')
+		? (t_2vec){0, 0.66} : g_m.plane;
+	g_m.pos.x = g_vars.data.b.map.sp_pos.x;
+	g_m.pos.y = g_vars.data.b.map.sp_pos.y;
+	g_m.res.x = g_vars.data.b.res.x;
+	g_m.res.y = g_vars.data.b.res.y;
 	g_vars.data.img_ptr1 = &g_vars.data.img1;
 	g_vars.data.img_ptr2 = &g_vars.data.img2;
 	init_key();

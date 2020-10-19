@@ -8,6 +8,7 @@
 - [ ] work with images
 - [x] fix screentearing with two img
 - [x] adjust screensize automatically
+- [ ] mlx sync
 
 - [x] fix crosshair bonus
 

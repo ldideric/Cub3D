@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 16:59:24 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 22:49:00 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,25 @@ typedef struct		s_2vec
 }					t_2vec;
 
 /*
+** Individual sprite data
+*/
+typedef struct		s_sprd
+{
+	char			*path;
+	t_res			res;
+	void			*img;
+}					t_sprd;
+
+/*
 ** Sprites
 */
 typedef struct		s_spr
 {
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	char			*s;
+	t_sprd			no;
+	t_sprd			so;
+	t_sprd			we;
+	t_sprd			ea;
+	t_sprd			s;
 }					t_spr;
 
 /*
@@ -76,16 +86,32 @@ typedef struct		s_map
 }					t_map;
 
 /*
+** Mathematical variables used for textures
+*/
+typedef struct		s_texm
+{
+	int				x;
+	int				y;
+	int				num;
+	double			step;
+	double			pos;
+	double			wall_x;
+}					t_texm;
+
+
+/*
 ** All mathematical variables used in raycasting
 */
 typedef struct		s_math
 {
 	double			move_speed;
 	double			rot_speed;
+	t_res			res;
+	t_2vec			pos;
+	t_res			map;
 	t_2vec			plane;
 	double			camera_x;
 	t_2vec			raydir;
-	t_res			map;
 	t_2vec			sidedist;
 	t_2vec			deltadist;
 	double			perpwalldist;
@@ -95,6 +121,7 @@ typedef struct		s_math
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
+	t_texm			tex;
 }					t_math;
 
 /*
@@ -120,7 +147,6 @@ typedef struct		s_base
 	char			*file;
 	char			*line;
 	t_map			map;
-	t_math			m;
 	t_res			res;
 	t_spr			sprites;
 	t_rgb			floor;

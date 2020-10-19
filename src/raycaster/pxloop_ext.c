@@ -6,50 +6,50 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 21:20:44 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/17 03:06:24 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 20:27:53 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void			basic_math(t_base *b, int x)
+void			basic_math(int x)
 {
-	b->m.move_speed = 0.05;
-	b->m.rot_speed = 0.03;
-	b->m.camera_x = 2 * x / (double)b->res.x - 1;
-	b->m.raydir.x = b->map.sp_dir.x + b->m.plane.x * b->m.camera_x;
-	b->m.raydir.y = b->map.sp_dir.y + b->m.plane.y * b->m.camera_x;
-	b->m.map.x = b->map.sp_pos.x;
-	b->m.map.y = b->map.sp_pos.y;
-	b->m.deltadist.x = fabs(1 / b->m.raydir.x);
-	b->m.deltadist.y = fabs(1 / b->m.raydir.y);
-	b->m.hit = 0;
+	g_m.move_speed = 0.05;
+	g_m.rot_speed = 0.03;
+	g_m.camera_x = 2 * x / (double)g_vars.data.b.res.x - 1;
+	g_m.raydir.x = g_vars.data.b.map.sp_dir.x + g_m.plane.x * g_m.camera_x;
+	g_m.raydir.y = g_vars.data.b.map.sp_dir.y + g_m.plane.y * g_m.camera_x;
+	g_m.map.x = g_m.pos.x;
+	g_m.map.y = g_m.pos.y;
+	g_m.deltadist.x = fabs(1 / g_m.raydir.x);
+	g_m.deltadist.y = fabs(1 / g_m.raydir.y);
+	g_m.hit = 0;
 }
 
-void			vertical_line(int x, t_data *d, unsigned int col)
+void			vertical_line(int x, unsigned int col)
 {
-	while (d->b.m.draw_start < d->b.m.draw_end)
+	while (g_m.draw_start < g_m.draw_end)
 	{
-		my_mlx_pixel_put(d, x, d->b.m.draw_start, col);
-		d->b.m.draw_start++;
+		my_mlx_pixel_put(x, g_m.draw_start, col);
+		g_m.draw_start++;
 	}
 }
 
-void			floor_ceiling_fill(t_data *d)
+void			floor_ceiling_fill(void)
 {
 	int x;
 	int y;
 
 	y = 0;
-	while (y < d->b.res.y)
+	while (y < g_vars.data.b.res.y)
 	{
 		x = 0;
-		while (x < d->b.res.x)
+		while (x < g_vars.data.b.res.x)
 		{
-			if (y < (d->b.res.y / 2))
-				my_mlx_pixel_put(d, x, y, d->b.ceiling.color);
+			if (y < (g_vars.data.b.res.y / 2))
+				my_mlx_pixel_put(x, y, g_vars.data.b.ceiling.color);
 			else
-				my_mlx_pixel_put(d, x, y, d->b.floor.color);
+				my_mlx_pixel_put(x, y, g_vars.data.b.floor.color);
 			x++;
 		}
 		y++;

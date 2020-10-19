@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:21:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 18:33:02 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 16:00:39 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static int			button_press_hooks(int keycode)
 	if (keycode == KEY_ESC || keycode == KEY_Q)
 	{
 		ft_printf("\x1b[38;5;196m[-]\x1b[0m Shutting down...\n");
+		system("leaks cub3D >> leaks.txt");
+		system("tail -n +19 leaks.txt");
+		system("rm leaks.txt");
 		exit(mlx_destroy_window(g_vars.mlx, g_vars.win) * 0);
 	}
 	if (keycode == KEY_W)

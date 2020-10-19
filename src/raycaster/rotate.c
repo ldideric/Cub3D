@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/15 17:32:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 20:00:17 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 20:37:28 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,44 @@
 
 int			rot_left(void)
 {
-	t_base	*b;
+	t_map	*map;
 	double	olddirx;
 	double	oldplanex;
 	double	rotspeed;
 
-	b = &g_vars.data.b;
-	rotspeed = b->m.rot_speed;
-	olddirx = b->map.sp_dir.x;
-	b->map.sp_dir.x = b->map.sp_dir.x * cos(-rotspeed)
-	- b->map.sp_dir.y * sin(-rotspeed);
-	b->map.sp_dir.y = olddirx * sin(-rotspeed)
-	+ b->map.sp_dir.y * cos(-rotspeed);
-	oldplanex = b->m.plane.x;
-	b->m.plane.x = b->m.plane.x * cos(-rotspeed)
-	- b->m.plane.y * sin(-rotspeed);
-	b->m.plane.y = oldplanex * sin(-rotspeed)
-	+ b->m.plane.y * cos(-rotspeed);
+	map = &g_vars.data.b.map;
+	rotspeed = g_m.rot_speed;
+	olddirx = map->sp_dir.x;
+	map->sp_dir.x = map->sp_dir.x * cos(-rotspeed)
+	- map->sp_dir.y * sin(-rotspeed);
+	map->sp_dir.y = olddirx * sin(-rotspeed)
+	+ map->sp_dir.y * cos(-rotspeed);
+	oldplanex = g_m.plane.x;
+	g_m.plane.x = g_m.plane.x * cos(-rotspeed)
+	- g_m.plane.y * sin(-rotspeed);
+	g_m.plane.y = oldplanex * sin(-rotspeed)
+	+ g_m.plane.y * cos(-rotspeed);
 	return (0);
 }
 
 int			rot_right(void)
 {
-	t_base	*b;
+	t_map	*map;
 	double	olddirx;
 	double	oldplanex;
 	double	rotspeed;
 
-	b = &g_vars.data.b;
-	rotspeed = b->m.rot_speed;
-	olddirx = b->map.sp_dir.x;
-	b->map.sp_dir.x = b->map.sp_dir.x * cos(rotspeed)
-	- b->map.sp_dir.y * sin(rotspeed);
-	b->map.sp_dir.y = olddirx * sin(rotspeed)
-	+ b->map.sp_dir.y * cos(rotspeed);
-	oldplanex = b->m.plane.x;
-	b->m.plane.x = b->m.plane.x * cos(rotspeed)
-	- b->m.plane.y * sin(rotspeed);
-	b->m.plane.y = oldplanex * sin(rotspeed)
-	+ b->m.plane.y * cos(rotspeed);
+	map = &g_vars.data.b.map;
+	rotspeed = g_m.rot_speed;
+	olddirx = map->sp_dir.x;
+	map->sp_dir.x = map->sp_dir.x * cos(rotspeed)
+	- map->sp_dir.y * sin(rotspeed);
+	map->sp_dir.y = olddirx * sin(rotspeed)
+	+ map->sp_dir.y * cos(rotspeed);
+	oldplanex = g_m.plane.x;
+	g_m.plane.x = g_m.plane.x * cos(rotspeed)
+	- g_m.plane.y * sin(rotspeed);
+	g_m.plane.y = oldplanex * sin(rotspeed)
+	+ g_m.plane.y * cos(rotspeed);
 	return (0);
 }

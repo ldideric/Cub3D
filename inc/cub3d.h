@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 18:19:41 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 20:27:24 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
 # include <math.h>
 
 /*
-** global variable with all data
+** global variables
 */
 t_vars				g_vars;
+t_math				g_m;
 
 /*
 ** Reader functions
@@ -53,12 +54,12 @@ int					val_res(void);
 
 int					pxloop(t_data *d);
 
-void				basic_math(t_base *b, int x);
-void				calc_step(t_base *b);
-void				dda_hit_checker(t_base *b);
-void				calc_line_height(t_base *b);
-void				vertical_line(int x, t_data *d, unsigned int col);
-void				floor_ceiling_fill(t_data *d);
+void				basic_math(int x);
+void				calc_step(void);
+void				dda_hit_checker(void);
+void				calc_line_height(void);
+void				vertical_line(int x, unsigned int col);
+void				floor_ceiling_fill(void);
 
 int					move_up(void);
 int					move_down(void);
@@ -73,11 +74,12 @@ int					rot_left(void);
 
 void				init_data(void);
 
-void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void				my_mlx_pixel_put(int x, int y, int color);
 char				**ft_realloc_arr(char **ptr);
 int					int_checker(int a, int max);
 t_rgb				color_input(int r, int g, int b, int a);
 void				switch_ptr(void);
+void				free_arr(char **s);
 
 void				hooks(void);
 int					errors(char *error);

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 16:46:14 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 19:48:10 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int			rd_sprites(char *s, t_base *b)
 
 	i = 0;
 	ptr = (void *)0;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"NO") ? &b->sprites.no : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? &b->sprites.ea : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? &b->sprites.so : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? &b->sprites.we : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->sprites.s : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"NO") ? &b->sprites.no.path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? &b->sprites.ea.path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? &b->sprites.so.path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? &b->sprites.we.path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->sprites.s.path : ptr;
 	while (ft_isalpha(s[i]))
 		i++;
 	while (s[i] == ' ')

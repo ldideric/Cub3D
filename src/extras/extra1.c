@@ -6,17 +6,17 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 16:46:14 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/19 20:26:42 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void		my_mlx_pixel_put(int x, int y, int color)
 {
 	char		*dst;
 
-	dst = data->addr + (y * data->len + x * (data->bpp / 8));
+	dst = g_vars.data.addr + (y * g_vars.data.len + x * (g_vars.data.bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -39,8 +39,21 @@ char		**ft_realloc_arr(char **ptr)
 		new[i] = ft_strdup(ptr[i]);
 		i++;
 	}
-	free(ptr);
+	free_arr(ptr);
 	return (new);
+}
+
+void		free_arr(char **s)
+{
+	int i;
+
+	i = 0;
+	while (s[i][0] != '\0')
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
 }
 
 int			int_checker(int a, int max)
