@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/19 21:34:03 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 02:58:33 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ int				pxloop(t_data *d)
 	int		x;
 
 	x = 0;
-	d->addr = mlx_get_data_addr(*d->img_ptr2, &d->bpp,
-		&d->len, &d->endian);
+	d->addr = mlx_get_data_addr(*d->img_ptr2, &d->bpp, &d->len, &d->endian);
 	if (d->addr == NULL)
 		return (errors(ERR_IN_MLX));
 	floor_ceiling_fill();

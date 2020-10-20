@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/19 20:27:24 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 00:46:05 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 /*
 ** global variables
 */
+
 t_vars				g_vars;
 t_math				g_m;
 

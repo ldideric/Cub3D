@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/19 22:49:00 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 00:38:15 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ typedef struct		s_2vec
 typedef struct		s_sprd
 {
 	char			*path;
-	t_res			res;
 	void			*img;
+	int				x;
+	int				y;
 }					t_sprd;
 
 /*

@@ -11,28 +11,42 @@
 		"commands":
 		[
 			{
+				"name": "# ON",
+				"color": "blue",
+				"command": "sed -i \"\" '/sed/!s/\"#600000/\"#eb4545/' .vscode/settings.json",
+			},
+			{
+				"name": "# OFF",
+				"color": "blue",
+				"command": "sed -i \"\" '/sed/!s/\"#eb4545/\"#600000/' .vscode/settings.json",
+			},
+			{
 				"name": "JSON",
 				"command": "code ./.vscode/settings.json",
 			},
 			{
+				"name": "|",
+				"color": "black"
+			},
+			{
 				"name": "make",
-				"color": "brown",
+				"color": "Lightcoral",
 				"command": "make",
 			},
 			{
 				"name": "make re",
-				"color": "black",
+				"color": "Lightpink",
 				"command": "make re MLX=1 DEBUG=1",
 			},
 			{
-				"name": "ExEcUtE cOmMaNd",
-				"color": "purple",
-				"command": "./cub3D maps/map.cub",
+				"name": "make bonus",
+				"color": "Lightpink",
+				"command": "make bonus",
 			},
 			{
-				"name": "make bonus",
-				"color": "brown",
-				"command": "make bonus",
+				"name": "RUN",
+				"color": "Lightyellow",
+				"command": "./cub3D maps/map.cub",
 			},
 		]
 	},
