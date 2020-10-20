@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/17 02:54:51 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/20 22:29:01 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,11 +86,13 @@ GNL_SRC			=	get_next_line.c \
 					get_next_line_utils.c
 
 PARS_SRC		=	reader.c \
+					reader_map.c \
 					reader_extra.c \
 					validate_cub.c
 
 RAYC_SRC		=	pxloop.c \
 					pxloop_ext.c \
+					img_read.c \
 					move.c \
 					rotate.c
 
@@ -99,6 +101,7 @@ BONUS_SRC		=	minimap_bonus.c \
 
 EXTRA_SRC		=	error.c \
 					hooks.c \
+					hooks_move.c \
 					extra1.c \
 					init_data.c
 
@@ -141,6 +144,9 @@ FLAGS	+=	-g
 endif
 ifdef FSAN
 FLAGS	+=	-fsanitize=address
+endif
+ifdef LEAKS
+FLAGS	+=	-D LEAKS=1
 endif
 ifdef MLX
 MMLX	=	@echo "$(O) > Skipping re-compiling the MLX Library.$(RES)" \
@@ -195,8 +201,8 @@ fclean: clean
 re: fclean all
 
 bonus:
-	@echo "$(R)Recompiling with BONUS"
-	@gcc $(C_FILES) $(FLAGS) $(BONUS_FLAGS) $(EXTRAS) -o $(NAME)
+	@echo "$(R)Recompiling with BONUS$(RES)"
+	gcc $(C_FILES) $(BONUS_FLAGS) $(FLAGS) $(EXTRAS) -o $(NAME)
 	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME) $(BONUS_FLAGS)"
 	@echo "$(G) > Done compiling!$(RES)\n"
 

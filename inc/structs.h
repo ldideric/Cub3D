@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 00:38:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 20:09:06 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,18 @@ typedef struct		s_2vec
 }					t_2vec;
 
 /*
-** Individual sprite data
-*/
-typedef struct		s_sprd
-{
-	char			*path;
-	void			*img;
-	int				x;
-	int				y;
-}					t_sprd;
-
-/*
 ** Sprites
 */
 typedef struct		s_spr
 {
-	t_sprd			no;
-	t_sprd			so;
-	t_sprd			we;
-	t_sprd			ea;
-	t_sprd			s;
+	char			*path;
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				len;
+	int				endian;
+	int				x;
+	int				y;
 }					t_spr;
 
 /*
@@ -149,7 +141,7 @@ typedef struct		s_base
 	char			*line;
 	t_map			map;
 	t_res			res;
-	t_spr			sprites;
+	t_spr			sprites[5];
 	t_rgb			floor;
 	t_rgb			ceiling;
 }					t_base;

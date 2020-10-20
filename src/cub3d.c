@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:10 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/19 15:31:19 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 21:09:35 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int				main(int argc, char **argv)
 		return (errors(ERR_NO_CUB));
 	if (!rd_start(&g_vars.data.b))
 		return (0);
-	init_data();
 	if (mlx_start(&g_vars.data) == NULL)
 		return (errors(ERR_IN_MLX));
-	ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
+	init_data();
 	pxloop(&g_vars.data);
+	ft_printf("\x1b[38;5;83m[+]\x1b[0m Ready to play!\n");
 	hooks();
 	mlx_loop(g_vars.mlx);
 	return (0);

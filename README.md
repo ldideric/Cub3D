@@ -12,5 +12,9 @@
 
 - [x] fix crosshair bonus
 
+
 ### Before handing in
 - [x] removing extra.h file
+- [ ] remove leaks system command
+- [ ] norminette
+- [ ] remove unused files

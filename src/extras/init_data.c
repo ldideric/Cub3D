@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 03:16:59 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 22:23:39 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,31 @@ static void		init_key(void)
 	g_vars.data.key.rarr = 0;
 }
 
-static void		init_sprite_img(t_spr *sprites)
+static void		init_sprite_img(t_spr *spr)
 {
-	sprites->no.img = mlx_new_image(g_vars.mlx, g_vars.data.b.res.x, g_vars.data.b.res.y);
-	sprites->no.img = mlx_png_file_to_image(g_vars.mlx, sprites->no.path,
-		&sprites->no.x, &sprites->no.y);
-	sprites->ea.img = mlx_xpm_file_to_image(g_vars.mlx, sprites->ea.path,
-		&sprites->ea.x, &sprites->ea.y);
-	sprites->so.img = mlx_xpm_file_to_image(g_vars.mlx, sprites->so.path,
-		&sprites->so.x, &sprites->so.y);
-	sprites->we.img = mlx_xpm_file_to_image(g_vars.mlx, sprites->we.path,
-		&sprites->we.x, &sprites->we.y);
-	sprites->s.img = mlx_xpm_file_to_image(g_vars.mlx, sprites->s.path,
-		&sprites->s.x, &sprites->s.y);
-	if (sprites->no.img == NULL || sprites->ea.img == NULL ||
-		sprites->so.img == NULL || sprites->we.img == NULL ||
-		sprites->s.img == NULL)
+	// int fd;
+
+	// fd =  open(sprites[0]->path, O_RDONLY);
+	// printf("%d\n", fd);
+	// if (fd != -1)
+	// 	close(fd);
+	// printf("%p\n\n\n\n\n", g_vars.mlx);
+	spr->img = mlx_xpm_file_to_image(g_vars.mlx, spr->path, &spr->x, &spr->y);
+	if (spr->img == NULL)
 		errors(ERR_SPR_IN);
+	spr->addr = mlx_get_data_addr(spr->img, &spr->bpp, &spr->len, &spr->endian);
+}
+
+static void		init_spr_loop(void)
+{
+	int i;
+
+	i = 0;
+	while (i < 1)
+	{
+		init_sprite_img(&g_vars.data.b.sprites[i]);
+		i++;
+	}
 }
 
 #ifndef BONUS
@@ -60,7 +68,7 @@ void			init_data(void)
 	g_m.res.y = g_vars.data.b.res.y;
 	g_vars.data.img_ptr1 = &g_vars.data.img1;
 	g_vars.data.img_ptr2 = &g_vars.data.img2;
-	init_sprite_img(&g_vars.data.b.sprites);
+	init_spr_loop();
 	init_key();
 }
 
@@ -90,7 +98,7 @@ void			init_data(void)
 	g_m.res.y = g_vars.data.b.res.y;
 	g_vars.data.img_ptr1 = &g_vars.data.img1;
 	g_vars.data.img_ptr2 = &g_vars.data.img2;
-	init_sprite_img();
+	init_spr_loop();
 	init_key();
 	init_bonus(&g_vars.data.b.bonus, g_vars.data.b.res);
 }

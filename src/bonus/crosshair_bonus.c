@@ -6,20 +6,20 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:06:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/18 14:26:48 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 22:26:20 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void			cross_pixel_put(t_data *d, t_bonus *bn)
+void			cross_pixel_put(t_bonus *bn)
 {
 	int i;
 
 	i = 0;
 	while (i < bn->cr_pmax)
 	{
-		my_mlx_pixel_put(d, bn->cr_pix[i].x, bn->cr_pix[i].y, bn->cr_col.color);
+		my_mlx_pixel_put(bn->cr_pix[i].x, bn->cr_pix[i].y, bn->cr_col.color);
 		i++;
 	}
 }
@@ -109,5 +109,5 @@ void			cross_h(t_data *d, t_bonus *bn)
 			p.y++;
 		}
 	}
-	cross_pixel_put(d, bn);
+	cross_pixel_put(bn);
 }

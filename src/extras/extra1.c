@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 00:41:19 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 21:57:54 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,45 +20,27 @@ void		my_mlx_pixel_put(int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-char		**ft_realloc_arr(char **ptr)
-{
-	char	**new;
-	int		i;
-
-	i = 0;
-	if (ptr == NULL)
-		return (NULL);
-	while (ptr[i][0] != '\0')
-		i++;
-	new = (char **)malloc(sizeof(char *) * (i + 2));
-	if (new == NULL)
-		return (NULL);
-	i = 0;
-	while (ptr[i][0] != '\0')
-	{
-		new[i] = ft_strdup(ptr[i]);
-		i++;
-	}
-	free_arr(ptr);
-	return (new);
-}
-
-void		free_arr(char **s)
-{
-	int i;
-
-	i = 0;
-	while (s[i][0] != '\0')
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-}
-
 int			int_checker(int a, int max)
 {
 	return (a >= 0 && a <= max);
+}
+
+char		first_char(char *s)
+{
+	while (*s == ' ' && *s != '\0' && *s)
+		s++;
+	return (*s);
+}
+
+int			tab_checker(char *s)
+{
+	while (*s != '\0')
+	{
+		if (*s == '\t')
+			return (1);
+		s++;
+	}
+	return (0);
 }
 
 t_rgb		color_input(int r, int g, int b, int a)

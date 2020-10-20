@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 00:46:05 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 22:18:41 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_math				g_m;
 typedef int			(*t_read)(char *s, t_base *b);
 
 int					rd_start(t_base *b);
+int					rd_map(t_base *b, int fd);
+
 int					rd_sprites(char *s, t_base *b);
 int					rd_res(char *s, t_base *b);
 int					rd_ground_sky(char *s, t_base *b);
@@ -62,6 +64,8 @@ void				calc_line_height(void);
 void				vertical_line(int x, unsigned int col);
 void				floor_ceiling_fill(void);
 
+int					img(t_spr *spr, int x);
+
 int					move_up(void);
 int					move_down(void);
 int					move_right(void);
@@ -76,15 +80,31 @@ int					rot_left(void);
 void				init_data(void);
 
 void				my_mlx_pixel_put(int x, int y, int color);
-char				**ft_realloc_arr(char **ptr);
+
+char				first_char(char *s);
+int					tab_checker(char *s);
+
 int					int_checker(int a, int max);
 t_rgb				color_input(int r, int g, int b, int a);
-void				switch_ptr(void);
-void				free_arr(char **s);
 
-void				hooks(void);
+void				switch_ptr(void);
+
 int					errors(char *error);
 int					parse_err(char *s);
+
+/*
+** Hooks
+*/
+
+void				hooks(void);
+
+int					button_press_hooks(int keycode);
+int					button_release_hooks(int keycode);
+int					destroy_window_hooks(int keycode);
+
+int					move_hooks(int keycode, int o);
+void				move_button_press(int keycode);
+void				move_button_release(int keycode);
 
 # ifdef BONUS
 

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 02:58:33 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/20 21:41:17 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				pxloop(t_data *d)
 		calc_step();
 		dda_hit_checker();
 		calc_line_height();
-		// img(x);
+		// img(&d->b.sprites[0], x);
 		vertical_line(x, 0xFF0000);
 		x++;
 	}
