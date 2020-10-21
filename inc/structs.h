@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 20:09:06 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 12:25:39 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ typedef struct		s_base
 	t_map			map;
 	t_math			m;
 	t_res			res;
-	t_spr			sprites;
+	t_spr			sprites[5];
 	t_rgb			floor;
 	t_rgb			ceiling;
 	t_bonus			bonus;

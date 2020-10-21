@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 22:18:41 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 14:42:25 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void				calc_line_height(void);
 void				vertical_line(int x, unsigned int col);
 void				floor_ceiling_fill(void);
 
+void				which_texture(t_spr (*spr)[5], int x);
 int					img(t_spr *spr, int x);
 
 int					move_up(void);

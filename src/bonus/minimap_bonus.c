@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/19 20:31:37 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 13:10:49 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ static t_rgb		color_pick(t_data *d, t_res i)
 	if ((g_m.pos.x > i.x && g_m.pos.x < i.x + 1) &&
 		(g_m.pos.y > i.y && g_m.pos.y < i.y + 1))
 		return (color_input(255, 0, 0, 0));
-	else if (d->b.map.ptr[i.y][i.x] == '0')
-		return (color_input(174, 182, 191, 0));
 	else if (d->b.map.ptr[i.y][i.x] == '1')
 		return (color_input(255, 255, 255, 0));
+	else if (d->b.map.ptr[i.y][i.x] == '0' ||
+	ft_isalpha(d->b.map.ptr[i.y][i.x]))
+		return (color_input(174, 182, 191, 0));
 	else
 		return (color_input(0, 255, 0, 0));
 }

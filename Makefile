@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/20 22:29:01 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/21 12:26:23 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -201,8 +201,8 @@ fclean: clean
 re: fclean all
 
 bonus:
-	@echo "$(R)Recompiling with BONUS$(RES)"
-	gcc $(C_FILES) $(BONUS_FLAGS) $(FLAGS) $(EXTRAS) -o $(NAME)
+	@echo "$(R)Recompiling with BONUS$(O)"
+	@gcc $(C_FILES) $(BONUS_FLAGS) $(FLAGS) $(EXTRAS) -o $(NAME)
 	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME) $(BONUS_FLAGS)"
 	@echo "$(G) > Done compiling!$(RES)\n"
 

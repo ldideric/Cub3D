@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 22:23:39 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 13:48:51 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ static void		init_key(void)
 
 static void		init_sprite_img(t_spr *spr)
 {
-	// int fd;
-
-	// fd =  open(sprites[0]->path, O_RDONLY);
-	// printf("%d\n", fd);
-	// if (fd != -1)
-	// 	close(fd);
-	// printf("%p\n\n\n\n\n", g_vars.mlx);
 	spr->img = mlx_xpm_file_to_image(g_vars.mlx, spr->path, &spr->x, &spr->y);
 	if (spr->img == NULL)
 		errors(ERR_SPR_IN);
@@ -42,7 +35,7 @@ static void		init_spr_loop(void)
 	int i;
 
 	i = 0;
-	while (i < 1)
+	while (i < 5)
 	{
 		init_sprite_img(&g_vars.data.b.sprites[i]);
 		i++;
