@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 12:25:39 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 20:23:47 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct		s_texm
 {
 	int				x;
 	int				y;
-	int				num;
 	double			step;
 	double			pos;
 	double			wall_x;

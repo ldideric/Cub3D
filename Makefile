@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/21 12:26:23 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/21 22:38:47 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,6 +144,9 @@ FLAGS	+=	-g
 endif
 ifdef FSAN
 FLAGS	+=	-fsanitize=address
+endif
+ifdef SPEED
+FLAGS	+=	-Ofast
 endif
 ifdef LEAKS
 FLAGS	+=	-D LEAKS=1

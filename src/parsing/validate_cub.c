@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/02 13:12:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 20:13:13 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 22:11:22 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	val_spawn(t_map *map, int x, int y)
 		return (errors(ERR_SPAWN_));
 	map->sp_pos = (t_2vec){x + 0.5, y + 0.5};
 	map->sp_char = map->ptr[y][x];
-	map->sp_dir = (map->sp_char == 'N') ? (t_2vec){0, 1} : map->sp_dir;
-	map->sp_dir = (map->sp_char == 'E') ? (t_2vec){1, 0} : map->sp_dir;
-	map->sp_dir = (map->sp_char == 'S') ? (t_2vec){0, -1} : map->sp_dir;
-	map->sp_dir = (map->sp_char == 'W') ? (t_2vec){-1, 0} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'N') ? (t_2vec){0, -1} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'E') ? (t_2vec){-1, 0} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'S') ? (t_2vec){0, 1} : map->sp_dir;
+	map->sp_dir = (map->sp_char == 'W') ? (t_2vec){1, 0} : map->sp_dir;
 	return (1);
 }
 

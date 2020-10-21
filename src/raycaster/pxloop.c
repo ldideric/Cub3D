@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 15:01:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 22:35:01 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ int				pxloop(t_data *d)
 		calc_step();
 		dda_hit_checker();
 		calc_line_height();
-		which_texture(&d->b.sprites, x);
-		// vertical_line(x, 0xFF0000);
+		which_texture(x);
 		x++;
 	}
 	switch_ptr();
@@ -128,7 +127,7 @@ int				pxloop(t_data *d)
 		calc_step();
 		dda_hit_checker();
 		calc_line_height();
-		vertical_line(x, 0xFF0000);
+		which_texture(x);
 		x++;
 	}
 	minimap(&g_vars.data, (t_res){0, 0}, (t_res){0, 0});

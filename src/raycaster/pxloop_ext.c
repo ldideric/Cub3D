@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 21:20:44 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/19 20:27:53 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 22:35:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void			basic_math(int x)
 {
-	g_m.move_speed = 0.05;
-	g_m.rot_speed = 0.03;
+	g_m.move_speed = 0.1;
+	g_m.rot_speed = 0.05;
 	g_m.camera_x = 2 * x / (double)g_vars.data.b.res.x - 1;
 	g_m.raydir.x = g_vars.data.b.map.sp_dir.x + g_m.plane.x * g_m.camera_x;
 	g_m.raydir.y = g_vars.data.b.map.sp_dir.y + g_m.plane.y * g_m.camera_x;
@@ -24,15 +24,6 @@ void			basic_math(int x)
 	g_m.deltadist.x = fabs(1 / g_m.raydir.x);
 	g_m.deltadist.y = fabs(1 / g_m.raydir.y);
 	g_m.hit = 0;
-}
-
-void			vertical_line(int x, unsigned int col)
-{
-	while (g_m.draw_start < g_m.draw_end)
-	{
-		my_mlx_pixel_put(x, g_m.draw_start, col);
-		g_m.draw_start++;
-	}
 }
 
 void			floor_ceiling_fill(void)

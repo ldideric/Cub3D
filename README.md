@@ -5,7 +5,7 @@
 - [x] wasd + arrowkeys
 - [ ] fix parsing
 - [x] map validation
-- [ ] work with images
+- [x] work with images
 - [x] fix screentearing with two img
 - [x] adjust screensize automatically
 - [ ] mlx sync
@@ -15,6 +15,6 @@
 
 ### Before handing in
 - [x] removing extra.h file
-- [ ] remove leaks system command
+- [x] remove leaks system command
 - [ ] norminette
 - [ ] remove unused files

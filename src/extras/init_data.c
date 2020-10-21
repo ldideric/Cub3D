@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 13:48:51 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/21 22:36:20 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void			init_data(void)
 {
 	g_m.plane = (t_2vec){0, 0};
 	g_m.plane = (g_vars.data.b.map.sp_char == 'N')
-		? (t_2vec){-0.66, 0} : g_m.plane;
+		? (t_2vec){0.66, 0} : g_m.plane;
 	g_m.plane = (g_vars.data.b.map.sp_char == 'E')
 		? (t_2vec){0, -0.66} : g_m.plane;
 	g_m.plane = (g_vars.data.b.map.sp_char == 'S')
-		? (t_2vec){0.66, 0} : g_m.plane;
+		? (t_2vec){-0.66, 0} : g_m.plane;
 	g_m.plane = (g_vars.data.b.map.sp_char == 'W')
 		? (t_2vec){0, 0.66} : g_m.plane;
 	g_m.pos.x = g_vars.data.b.map.sp_pos.x;
@@ -78,11 +78,11 @@ void			init_data(void)
 {
 	g_m.plane = (t_2vec){0, 0};
 	g_m.plane = (g_vars.data.b.map.sp_char == 'N')
-		? (t_2vec){-0.66, 0} : g_m.plane;
+		? (t_2vec){0.66, 0} : g_m.plane;
 	g_m.plane = (g_vars.data.b.map.sp_char == 'E')
 		? (t_2vec){0, -0.66} : g_m.plane;
 	g_m.plane = (g_vars.data.b.map.sp_char == 'S')
-		? (t_2vec){0.66, 0} : g_m.plane;
+		? (t_2vec){-0.66, 0} : g_m.plane;
 	g_m.plane = (g_vars.data.b.map.sp_char == 'W')
 		? (t_2vec){0, 0.66} : g_m.plane;
 	g_m.pos.x = g_vars.data.b.map.sp_pos.x;
