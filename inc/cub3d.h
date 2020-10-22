@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 22:34:24 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/22 20:02:32 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ int					tab_checker(char *s);
 int					int_checker(int a, int max);
 t_rgb				color_input(int r, int g, int b, int a);
 
-void				switch_ptr(void);
-
 int					errors(char *error);
 int					parse_err(char *s);
 
@@ -99,7 +97,7 @@ int					parse_err(char *s);
 ** Hooks
 */
 
-void				hooks(void);
+int					hooks(void);
 
 int					button_press_hooks(int keycode);
 int					button_release_hooks(int keycode);

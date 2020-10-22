@@ -1,9 +1,9 @@
   R   1700 1000
 
-NO ./images/mossy.xpm
-SO  ./images/wood.xpm
- WE  ./images/eagle.xpm
-EA ./images/bluestone.xpm
+NO ./images/jajasies.png
+SO  ./images/wood.png     
+ WE  ./images/eagle.xpm   
+EA ./images/cheeze.png  
 
 S ./images/choongus.xpm
 

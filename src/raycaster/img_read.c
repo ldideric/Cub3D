@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/09 02:39:50 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 22:35:41 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/22 15:54:22 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void			tex_loop(t_spr *spr, int x)
 void			which_texture(int x)
 {
 	if (g_m.side == 0 && g_m.raydir.x >= 0)
-		tex_loop(&g_vars.data.b.sprites[1], x);
+		tex_loop(&g_vars.data.b.spr[1], x);
 	else if (g_m.side == 0 && g_m.raydir.x < 0)
-		tex_loop(&g_vars.data.b.sprites[3], x);
+		tex_loop(&g_vars.data.b.spr[3], x);
 	else if (g_m.side == 1 && g_m.raydir.y >= 0)
-		tex_loop(&g_vars.data.b.sprites[2], x);
+		tex_loop(&g_vars.data.b.spr[2], x);
 	else
-		tex_loop(&g_vars.data.b.sprites[0], x);
+		tex_loop(&g_vars.data.b.spr[0], x);
 }

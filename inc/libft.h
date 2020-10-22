@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 13:47:21 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/15 20:08:27 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/22 21:43:44 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ void				ft_putchar(char c);
 void				ft_putstr(char *s);
 double				ft_atof(const char *str);
 int					ft_ismatch(char c, char *s);
+
+char				*ft_strstr(const char *haystack, const char *needle);
 
 #endif

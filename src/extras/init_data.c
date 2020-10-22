@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 22:36:20 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/22 22:42:02 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ static void		init_key(void)
 	g_vars.data.key.rarr = 0;
 }
 
-static void		init_sprite_img(t_spr *spr)
+static void		init_sprite_img(t_spr *sp)
 {
-	spr->img = mlx_xpm_file_to_image(g_vars.mlx, spr->path, &spr->x, &spr->y);
-	if (spr->img == NULL)
+	sp->path = ft_strtrim(sp->path, " \n\t");
+	if (ft_strncmp(sp->path + (ft_strlen(sp->path) - 4), ".xpm", 4) == 0)
+		sp->img = mlx_xpm_file_to_image(g_vars.mlx, sp->path, &sp->x, &sp->y);
+	else if (ft_strncmp(sp->path + (ft_strlen(sp->path) - 4), ".png", 4) == 0)
+		sp->img = mlx_png_file_to_image(g_vars.mlx, sp->path, &sp->x, &sp->y);
+	if (sp->img == NULL)
 		errors(ERR_SPR_IN);
-	spr->addr = mlx_get_data_addr(spr->img, &spr->bpp, &spr->len, &spr->endian);
+	sp->addr = mlx_get_data_addr(sp->img, &sp->bpp, &sp->len, &sp->endian);
 }
 
 static void		init_spr_loop(void)
@@ -37,7 +41,7 @@ static void		init_spr_loop(void)
 	i = 0;
 	while (i < 5)
 	{
-		init_sprite_img(&g_vars.data.b.sprites[i]);
+		init_sprite_img(&g_vars.data.b.spr[i]);
 		i++;
 	}
 }

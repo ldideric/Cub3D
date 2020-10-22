@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:21:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 22:22:44 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/22 15:53:15 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,3 @@ int			destroy_window_hooks(int keycode)
 }
 
 #endif
-
-void		hooks(void)
-{
-	mlx_hook(g_vars.win, 2, (1L << 0), button_press_hooks, &g_vars);
-	mlx_hook(g_vars.win, 3, (1L << 1), button_release_hooks, &g_vars);
-	mlx_hook(g_vars.win, 17, 0L, destroy_window_hooks, &g_vars);
-	return ;
-}

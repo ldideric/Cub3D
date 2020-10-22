@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:28:12 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 21:55:35 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/22 16:20:32 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 /*
 ** DEFINES
 */
+
+# define MLX_SYNC_IMAGE_WRITABLE		1
+# define MLX_SYNC_WIN_FLUSH_CMD			2
+# define MLX_SYNC_WIN_CMD_COMPLETED		3
 
 # define WIN_NAME	"Gameboy Advanced"
 # define TRUE		1
