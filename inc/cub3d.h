@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/22 20:02:32 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/24 21:51:42 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,12 @@ void				vertical_line(int x, unsigned int col);
 void				floor_ceiling_fill(void);
 
 void				which_texture(int x);
-void				tex_loop(t_spr *spr, int x);
-void				tex_pix_calc(t_spr *spr);
-t_rgb				get_color(t_spr *spr, int x, int y);
+void				tex_loop(t_tex *tex, int x);
+void				tex_pix_calc(t_tex *tex);
+t_rgb				get_color(t_tex *tex, int x, int y);
+
+void				init_spr(t_spr *spr);
+void				spr_loop(t_spr *spr, t_tex *tex);
 
 int					move_up(void);
 int					move_down(void);
@@ -86,6 +89,8 @@ void				my_mlx_pixel_put(int x, int y, int color);
 
 char				first_char(char *s);
 int					tab_checker(char *s);
+t_res				*ft_add_res(t_res *old, t_res p);
+t_2vec				*ft_add_2vec(t_2vec *old, t_2vec p);
 
 int					int_checker(int a, int max);
 t_rgb				color_input(int r, int g, int b, int a);

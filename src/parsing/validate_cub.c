@@ -6,13 +6,13 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/02 13:12:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 22:11:22 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/24 22:03:08 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int	val_spawn(t_map *map, int x, int y)
+static int		val_spawn(t_map *map, int x, int y)
 {
 	if (ft_isalpha(map->sp_char))
 		return (errors(ERR_TWO_SP));
@@ -27,7 +27,27 @@ static int	val_spawn(t_map *map, int x, int y)
 	return (1);
 }
 
-static int	val_wall(char **map, int x, int y)
+static void		sprite_data(t_spr *spr, t_2vec p, char c)
+{
+	(void)c;
+	if (spr->max == 0)
+	{
+		spr->pos = malloc(sizeof(t_2vec) * 2);
+		spr->pos[spr->max] = (t_2vec){p.x + 0.5, p.y + 0.5};
+		spr->pos[spr->max + 1] = (t_2vec){-1, -1};
+		/* spr->sp[spr->max] = c - '0';*/
+		/* spr->sp[spr->max + 1] = -1;*/
+	}
+	else
+	{
+		spr->pos = ft_add_2vec(spr->pos, (t_2vec){p.x + 0.5, p.y + 0.5});
+		/* spr->sp[spr->max] = c - '0';*/
+		/* spr->sp[spr->max + 1] = -1;*/
+	}
+	spr->max++;
+}
+
+static int		val_wall(char **map, int x, int y)
 {
 	static int	test[16] =
 	{-1, -1, 0, -1, 1, -1, -1, 0, 1, 0, -1, 1, 0, 1, 1, 1};
@@ -47,16 +67,19 @@ static int	val_wall(char **map, int x, int y)
 			i = i + 2;
 		}
 	}
+	else if (map[y][x] >= '2' && map[y][x] <= '9')
+		sprite_data(&g_vars.data.b.spr, (t_2vec){x, y}, map[y][x]);
 	return (1);
 }
 
-int			val_map(t_map *map)
+int				val_map(t_map *map)
 {
 	t_res	p;
 
 	p.y = 0;
 	map->sp_char = '0';
 	map->sp_dir = (t_2vec){0, 0};
+	g_vars.data.b.spr.max = 0;
 	while (p.y < map->height)
 	{
 		p.x = 0;
@@ -75,7 +98,7 @@ int			val_map(t_map *map)
 	return (1);
 }
 
-int			val_res(void)
+int				val_res(void)
 {
 	t_res	real;
 

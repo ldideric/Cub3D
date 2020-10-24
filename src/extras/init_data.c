@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/22 22:42:02 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/24 20:52:54 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,25 @@ static void		init_key(void)
 	g_vars.data.key.rarr = 0;
 }
 
-static void		init_sprite_img(t_spr *sp)
-{
-	sp->path = ft_strtrim(sp->path, " \n\t");
-	if (ft_strncmp(sp->path + (ft_strlen(sp->path) - 4), ".xpm", 4) == 0)
-		sp->img = mlx_xpm_file_to_image(g_vars.mlx, sp->path, &sp->x, &sp->y);
-	else if (ft_strncmp(sp->path + (ft_strlen(sp->path) - 4), ".png", 4) == 0)
-		sp->img = mlx_png_file_to_image(g_vars.mlx, sp->path, &sp->x, &sp->y);
-	if (sp->img == NULL)
-		errors(ERR_SPR_IN);
-	sp->addr = mlx_get_data_addr(sp->img, &sp->bpp, &sp->len, &sp->endian);
-}
-
 static void		init_spr_loop(void)
 {
-	int i;
+	t_tex	*sp;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	while (i < 5)
 	{
-		init_sprite_img(&g_vars.data.b.spr[i]);
+		sp = &g_vars.data.b.tex[i];
+		tmp = ft_strtrim(sp->path, " \n\t");
+		if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".xpm", 4) == 0)
+			sp->img = mlx_xpm_file_to_image(g_vars.mlx, tmp, &sp->x, &sp->y);
+		else if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".png", 4) == 0)
+			sp->img = mlx_png_file_to_image(g_vars.mlx, tmp, &sp->x, &sp->y);
+		if (sp->img == NULL)
+			errors(ERR_SPR_IN);
+		sp->addr = mlx_get_data_addr(sp->img, &sp->bpp, &sp->len, &sp->endian);
+		free(tmp);
 		i++;
 	}
 }
@@ -63,8 +62,6 @@ void			init_data(void)
 	g_m.pos.y = g_vars.data.b.map.sp_pos.y;
 	g_m.res.x = g_vars.data.b.res.x;
 	g_m.res.y = g_vars.data.b.res.y;
-	g_vars.data.img_ptr1 = &g_vars.data.img1;
-	g_vars.data.img_ptr2 = &g_vars.data.img2;
 	init_spr_loop();
 	init_key();
 }
@@ -93,8 +90,6 @@ void			init_data(void)
 	g_m.pos.y = g_vars.data.b.map.sp_pos.y;
 	g_m.res.x = g_vars.data.b.res.x;
 	g_m.res.y = g_vars.data.b.res.y;
-	g_vars.data.img_ptr1 = &g_vars.data.img1;
-	g_vars.data.img_ptr2 = &g_vars.data.img2;
 	init_spr_loop();
 	init_key();
 	init_bonus(&g_vars.data.b.bonus, g_vars.data.b.res);

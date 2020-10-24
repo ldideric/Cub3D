@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/22 18:28:27 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/24 22:24:26 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ int				pxloop(t_data *d)
 	int		x;
 
 	x = 0;
-	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img1);
+	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img);
 	floor_ceiling_fill();
+	init_spr(&d->b.spr);
 	while (x < d->b.res.x)
 	{
 		basic_math(x);
@@ -98,7 +99,8 @@ int				pxloop(t_data *d)
 		which_texture(x);
 		x++;
 	}
-	mlx_put_image_to_window(g_vars.mlx, g_vars.win, *d->img_ptr1, 0, 0);
+	spr_loop(&d->b.spr, &d->b.tex[4]);
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, d->img, 0, 0);
 	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, g_vars.win);
 	return (1);
 }
@@ -114,7 +116,7 @@ int				pxloop(t_data *d)
 	int		x;
 
 	x = 0;
-	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img1);
+	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img);
 	floor_ceiling_fill();
 	while (x < d->b.res.x)
 	{
@@ -127,7 +129,7 @@ int				pxloop(t_data *d)
 	}
 	minimap(&g_vars.data, (t_res){0, 0}, (t_res){0, 0});
 	cross_h(&g_vars.data, &d->b.bonus);
-	mlx_put_image_to_window(g_vars.mlx, g_vars.win, *d->img_ptr1, 0, 0);
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, d->img, 0, 0);
 	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, g_vars.win);
 	return (1);
 }

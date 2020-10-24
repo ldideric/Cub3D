@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:06:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 22:26:20 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/24 17:24:08 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,8 @@ void			cross_pixel_put(t_bonus *bn)
 	}
 }
 
-t_res			*ft_add_res(t_res *old, t_res p)
-{
-	t_res	*new;
-	int		i;
-
-	i = 0;
-	while (old[i].x != -1)
-		i++;
-	new = malloc(sizeof(t_res) * (i + 2));
-	i = 0;
-	while (old[i].x != -1)
-	{
-		new[i].x = old[i].x;
-		new[i].y = old[i].y;
-		i++;
-	}
-	new[i] = p;
-	new[i + 1] = (t_res){-1, -1};
-	free(old);
-	return (new);
-}
-
 void			fill_cross_arr(t_bonus *bn, t_res p)
 {
-	int		i;
-
-	i = 0;
 	if (bn->cr_pmax == 0)
 	{
 		bn->cr_pix = malloc(sizeof(t_res) * 2);
