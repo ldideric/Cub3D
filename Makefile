@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/24 22:07:28 by ldideric      ########   odam.nl          #
+#    Updated: 2020/10/26 21:02:40 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,7 @@ C_FILES			=	./$(SRC_PATH)/cub3d.c \
 O_FILES			=	$(C_FILES:.c=.o)
 EXTRAS			=	libmlx.dylib
 
-W_FLAGS			=	-Wall -Werror -Wextra -std=c89
+W_FLAGS			=	-Wall -Werror -Wextra #-std=c89
 LIB_FLAGS		=	-framework OpenGL -framework AppKit -Imlx -Iinc
 FLAGS			=	$(W_FLAGS) $(LIB_FLAGS)
 BONUS_FLAGS		=	$(BONUS_SRC_DIR) -D BONUS=1

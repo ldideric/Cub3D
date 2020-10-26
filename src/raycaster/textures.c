@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/09 02:39:50 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/24 21:52:32 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/26 17:29:37 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void			tex_pix_calc(t_tex *tex)
 				* g_m.t.step;
 }
 
+#ifndef BONUS
+
 void			tex_loop(t_tex *tex, int x)
 {
 	t_rgb	color;
@@ -55,7 +57,39 @@ void			tex_loop(t_tex *tex, int x)
 		my_mlx_pixel_put(x, y, color.color);
 		y++;
 	}
+	g_m.s.zbuffer[x] = g_m.perpwalldist;
 }
+
+#else
+
+/*
+** With distance related shadow effect
+*/
+
+void			tex_loop(t_tex *tex, int x)
+{
+	t_rgb	color;
+	int		y;
+
+	tex_pix_calc(tex);
+	y = g_m.draw_start;
+	while (y < g_m.draw_end)
+	{
+		g_m.t.y = (int)g_m.t.pos & (tex->y - 1);
+		g_m.t.pos += g_m.t.step;
+		color = get_color(tex, g_m.t.x, g_m.t.y);
+		if (color.packed.a > 0)
+			color.packed.a = 0;
+		color.packed.r = color.packed.r / (g_m.perpwalldist / 30.0 + 1.0);
+		color.packed.g = color.packed.g / (g_m.perpwalldist / 30.0 + 1.0);
+		color.packed.b = color.packed.b / (g_m.perpwalldist / 30.0 + 1.0);
+		my_mlx_pixel_put(x, y, color.color);
+		y++;
+	}
+	g_m.s.zbuffer[x] = g_m.perpwalldist;
+}
+
+#endif
 
 void			which_texture(int x)
 {

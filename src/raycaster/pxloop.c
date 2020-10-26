@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/24 22:24:26 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/26 17:17:27 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,35 @@ int				pxloop(t_data *d)
 	x = 0;
 	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img);
 	floor_ceiling_fill();
+	while (x < d->b.res.x)
+	{
+		basic_math(x);
+		calc_step();
+		dda_hit_checker();
+		calc_line_height();
+		which_texture(x);
+		x++;
+	}
+	init_spr(&d->b.spr);
+	spr_loop(&d->b.spr, &d->b.tex[4]);
+	mlx_put_image_to_window(g_vars.mlx, g_vars.win, d->img, 0, 0);
+	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, g_vars.win);
+	return (1);
+}
+
+#else
+
+/*
+** With minimap and crosshair added
+*/
+
+int				pxloop(t_data *d)
+{
+	int		x;
+
+	x = 0;
+	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img);
+	floor_ceiling_fill();
 	init_spr(&d->b.spr);
 	while (x < d->b.res.x)
 	{
@@ -100,33 +129,6 @@ int				pxloop(t_data *d)
 		x++;
 	}
 	spr_loop(&d->b.spr, &d->b.tex[4]);
-	mlx_put_image_to_window(g_vars.mlx, g_vars.win, d->img, 0, 0);
-	mlx_sync(MLX_SYNC_WIN_FLUSH_CMD, g_vars.win);
-	return (1);
-}
-
-#else
-
-/*
-** With bonus
-*/
-
-int				pxloop(t_data *d)
-{
-	int		x;
-
-	x = 0;
-	mlx_sync(MLX_SYNC_IMAGE_WRITABLE, g_vars.data.img);
-	floor_ceiling_fill();
-	while (x < d->b.res.x)
-	{
-		basic_math(x);
-		calc_step();
-		dda_hit_checker();
-		calc_line_height();
-		which_texture(x);
-		x++;
-	}
 	minimap(&g_vars.data, (t_res){0, 0}, (t_res){0, 0});
 	cross_h(&g_vars.data, &d->b.bonus);
 	mlx_put_image_to_window(g_vars.mlx, g_vars.win, d->img, 0, 0);
