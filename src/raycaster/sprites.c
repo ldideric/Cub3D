@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 17:41:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/26 20:22:17 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 00:13:05 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void		spr_width_calc(void)
 		g_m.s.draw_end.x = g_m.res.x - 1;
 }
 
-void		basic_spr_math(t_2vec *dir, t_spr *spr, int i)
+void		basic_spr_math(t_2vec *dir, t_spr *spr_data, int i)
 {
-	g_m.s.spr.x = spr->pos[i].x - g_m.pos.x;
-	g_m.s.spr.y = spr->pos[i].y - g_m.pos.y;
+	g_m.s.spr.x = spr_data->pos[spr_data->sp[i] - 2].x - g_m.pos.x;
+	g_m.s.spr.y = spr_data->pos[spr_data->sp[i] - 2].y - g_m.pos.y;
 	g_m.s.inv_det = 1.0 / (g_m.plane.x * dir->y
 		- dir->x * g_m.plane.y);
 	g_m.s.transform.x = g_m.s.inv_det * (dir->y * g_m.s.spr.x
@@ -93,26 +93,27 @@ void		basic_spr_math(t_2vec *dir, t_spr *spr, int i)
 		g_m.s.draw_end.y = g_m.res.y - 1;
 }
 
-void		spr_loop(t_spr *spr, t_tex *tex)
+void		spr_loop(t_spr *spr_data, t_base *b)
 {
 	int		stripe;
 	int		i;
 
 	i = 0;
+	init_spr(spr_data);
 	while (i < g_m.s.num_spr)
 	{
-		basic_spr_math(&g_vars.data.b.map.sp_dir, spr, i);
+		basic_spr_math(&g_vars.data.b.map.sp_dir, spr_data, i);
 		spr_width_calc();
 		stripe = g_m.s.draw_start.x;
 		while (stripe < g_m.s.draw_end.x)
 		{
 			g_m.s.tex.x = (int)(256 * (stripe -
 				(-g_m.s.spr_w / 2 + g_m.s.spr_screenx))
-				* tex->x / g_m.s.spr_w) / 256;
+				* b->spr_img[b->spr_data.sp[i] - 2].x / g_m.s.spr_w) / 256;
 			if (g_m.s.transform.y > 0 && stripe > 0 &&
 				stripe < g_m.res.x &&
 				g_m.s.transform.y < g_m.s.zbuffer[stripe])
-				spr_vert_line(tex, stripe);
+				spr_vert_line(&b->spr_img[b->spr_data.sp[i] - 2], stripe);
 			stripe++;
 		}
 		i++;

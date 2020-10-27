@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:28:12 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/22 16:20:32 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 21:33:47 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@
 */
 
 # define ERR_NO_CUB	"\x1b[31mERROR\x1b[0m:\nNo .cub file given!"
+# define ERR_S_FLAG	"\x1b[31mERROR\x1b[0m:\nWrong second argument given!"
 # define ERR_IN_CUB	"\x1b[31mERROR\x1b[0m:\nWrong .cub file input!\n"
 # define ERR_IN_TAB	"\x1b[31mERROR\x1b[0m:\nTabulation in .cub file!\n"
 # define ERR_MALLOC	"\x1b[31mERROR\x1b[0m:\nMemory allocating failed."
 # define ERR_IN_MLX	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with MLX!"
 # define ERR_IN_GNL	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with GNL!"
+# define ERR_OPEN_F	"\x1b[31mERROR\x1b[0m:\nOpen failed!"
 
 # define ERR_TWO_SP	"\x1b[31mERROR\x1b[0m:\nTwo or more spawn points in map!"
 # define ERR_SPAWN_ "\x1b[31mERROR\x1b[0m:\nWrong spawnpoint character!"

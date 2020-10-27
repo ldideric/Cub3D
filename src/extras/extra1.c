@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/24 17:47:02 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 23:14:11 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,27 @@ t_2vec			*ft_add_2vec(t_2vec *old, t_2vec p)
 	}
 	new[i] = p;
 	new[i + 1] = (t_2vec){-1, -1};
+	free(old);
+	return (new);
+}
+
+int				*ft_add_int(int *old, int p)
+{
+	int		*new;
+	int		i;
+
+	i = 0;
+	while (old[i] != -1)
+		i++;
+	new = malloc(sizeof(int) * (i + 2));
+	i = 0;
+	while (old[i] != -1)
+	{
+		new[i] = old[i];
+		i++;
+	}
+	new[i] = p;
+	new[i + 1] = -1;
 	free(old);
 	return (new);
 }

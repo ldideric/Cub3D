@@ -6,24 +6,47 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/24 17:30:32 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 23:52:09 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int			rd_sprites(char *s, t_base *b)
+int			rd_spr(char *s, t_base *b)
 {
 	char	**ptr;
 	int		i;
 
 	i = 0;
 	ptr = (void *)0;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"NO") ? &b->tex[0].path : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? &b->tex[1].path : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? &b->tex[2].path : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? &b->tex[3].path : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->tex[4].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->spr_img[0].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S1") ? &b->spr_img[1].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S2") ? &b->spr_img[2].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S3") ? &b->spr_img[3].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S4") ? &b->spr_img[4].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S5") ? &b->spr_img[5].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S6") ? &b->spr_img[6].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S7") ? &b->spr_img[7].path : ptr;
+	while (ft_isalpha(s[i]))
+		i++;
+	while (s[i] == ' ')
+		i++;
+	*ptr = ft_substr(s, i, 255);
+	return (*ptr != NULL);
+}
+
+int			rd_tex(char *s, t_base *b)
+{
+	char	**ptr;
+	int		i;
+
+	i = 0;
+	ptr = (void *)0;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"NO") ? &b->tex_img[0].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? &b->tex_img[1].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? &b->tex_img[2].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? &b->tex_img[3].path : ptr;
+	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->tex_img[4].path : ptr;
 	while (ft_isalpha(s[i]))
 		i++;
 	while (s[i] == ' ')
@@ -73,7 +96,7 @@ int			rd_rgb(char *s, t_rgb *rgb)
 	return (1);
 }
 
-int			rd_ground_sky(char *s, t_base *b)
+int			rd_f_c(char *s, t_base *b)
 {
 	if (*s == 'F')
 	{

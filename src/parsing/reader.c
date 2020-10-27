@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 21:58:40 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 17:14:26 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 static int		specifier(char *s, t_base *b)
 {
-	static const t_read	spec[3] = {
-		[0] = &rd_sprites,
+	static const t_read	spec[4] = {
+		[0] = &rd_tex,
 		[1] = &rd_res,
-		[2] = &rd_ground_sky,
+		[2] = &rd_f_c,
+		[3] = &rd_spr,
 	};
 
 	return (((*(u_int16_t *)s == *(u_int16_t *)"NO") && spec[0](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"EA") && spec[0](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"SO") && spec[0](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"WE") && spec[0](s, b)) ||
-			((*(u_int16_t *)s == *(u_int16_t *)"S ") && spec[0](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"R ") && spec[1](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"F ") && spec[2](s, b)) ||
-			((*(u_int16_t *)s == *(u_int16_t *)"C ") && spec[2](s, b)));
+			((*(u_int16_t *)s == *(u_int16_t *)"C ") && spec[2](s, b)) ||
+			((*s == *"S") && spec[0](s, b)));
 }
 
 static int		reader(t_base *b, int fd, int ret)

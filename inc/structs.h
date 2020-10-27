@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/26 16:02:29 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 23:37:36 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,19 @@ typedef struct		s_key
 	int				rarr;
 }					t_key;
 
+/*
+** Data used to save to bmp
+*/
+typedef struct		s_save
+{
+	int				save;
+	unsigned char	*bmp;
+	char			pad[3];
+	int				pad_s;
+	int				size;
+	int				fd;
+}					t_save;
+
 # ifndef BONUS
 
 /*
@@ -167,10 +180,12 @@ typedef struct		s_base
 {
 	char			*file;
 	char			*line;
+	t_save			save;
 	t_map			map;
 	t_res			res;
-	t_tex			tex[5];
-	t_spr			spr;
+	t_tex			tex_img[4];
+	t_tex			spr_img[8];
+	t_spr			spr_data;
 	t_rgb			floor;
 	t_rgb			ceiling;
 }					t_base;
@@ -196,11 +211,12 @@ typedef struct		s_base
 {
 	char			*file;
 	char			*line;
+	t_save			save;
 	t_map			map;
-	t_math			m;
 	t_res			res;
-	t_tex			tex[5];
-	t_spr			spr;
+	t_tex			tex[4];
+	t_tex			spr[8];
+	t_spr			spr_img;
 	t_rgb			floor;
 	t_rgb			ceiling;
 	t_bonus			bonus;

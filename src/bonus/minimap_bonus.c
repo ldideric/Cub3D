@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:39:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/21 13:10:49 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 21:55:28 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,10 @@ void				minimap(t_data *d, t_res i, t_res j)
 		i.y++;
 		j.y = j.y + size;
 	}
+}
+
+void				bonus_call(t_data *d)
+{
+	minimap(d, (t_res){0, 0}, (t_res){0, 0});
+	cross_h(d, &d->b.bonus);
 }

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/24 21:51:42 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 00:25:15 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ typedef int			(*t_read)(char *s, t_base *b);
 int					rd_start(t_base *b);
 int					rd_map(t_base *b, int fd);
 
-int					rd_sprites(char *s, t_base *b);
+int					rd_tex(char *s, t_base *b);
+int					rd_spr(char *s, t_base *b);
 int					rd_res(char *s, t_base *b);
-int					rd_ground_sky(char *s, t_base *b);
+int					rd_f_c(char *s, t_base *b);
 int					rd_rgb(char *s, t_rgb *rgb);
 
 int					val_map(t_map *map);
@@ -69,8 +70,8 @@ void				tex_loop(t_tex *tex, int x);
 void				tex_pix_calc(t_tex *tex);
 t_rgb				get_color(t_tex *tex, int x, int y);
 
-void				init_spr(t_spr *spr);
-void				spr_loop(t_spr *spr, t_tex *tex);
+void				init_spr(t_spr *spr_data);
+void				spr_loop(t_spr *spr_img, t_base *b);
 
 int					move_up(void);
 int					move_down(void);
@@ -84,11 +85,17 @@ int					rot_left(void);
 */
 
 void				init_data(void);
+void				init_spr_img_loop(void);
+void				init_tex_img_loop(void);
+void				init_key(void);
 
 void				my_mlx_pixel_put(int x, int y, int color);
 
+void				bmp(t_data *data, t_save *s);
+
 char				first_char(char *s);
 int					tab_checker(char *s);
+int					*ft_add_int(int *old, int p);
 t_res				*ft_add_res(t_res *old, t_res p);
 t_2vec				*ft_add_2vec(t_2vec *old, t_2vec p);
 
@@ -102,7 +109,7 @@ int					parse_err(char *s);
 ** Hooks
 */
 
-int					hooks(void);
+int					loops(void);
 
 int					button_press_hooks(int keycode);
 int					button_release_hooks(int keycode);
@@ -118,6 +125,7 @@ void				move_button_release(int keycode);
 ** Bonus functions
 */
 
+void				bonus_call(t_data *d);
 void				minimap(t_data *d, t_res i, t_res j);
 void				cross_h(t_data *d, t_bonus *bn);
 

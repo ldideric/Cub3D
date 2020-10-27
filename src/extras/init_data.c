@@ -6,47 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/26 21:29:41 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 00:24:43 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-static void		init_key(void)
-{
-	g_vars.data.key.w = 0;
-	g_vars.data.key.a = 0;
-	g_vars.data.key.s = 0;
-	g_vars.data.key.d = 0;
-	g_vars.data.key.larr = 0;
-	g_vars.data.key.rarr = 0;
-}
-
-static void		init_spr_loop(void)
-{
-	t_tex	*sp;
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	g_m.s.zbuffer = (int *)malloc(sizeof(int) * (g_m.res.x + 1));
-	while (i < 5)
-	{
-		sp = &g_vars.data.b.tex[i];
-		tmp = ft_strtrim(sp->path, " \n\t");
-		if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".xpm", 4) == 0)
-			sp->img = mlx_xpm_file_to_image(g_vars.mlx, tmp, &sp->x, &sp->y);
-		else if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".png", 4) == 0)
-			sp->img = mlx_png_file_to_image(g_vars.mlx, tmp, &sp->x, &sp->y);
-		if (sp->img == NULL)
-			errors(ERR_SPR_IN);
-		sp->addr = mlx_get_data_addr(sp->img, &sp->bpp, &sp->len, &sp->endian);
-		// sp->x = sp->len / 4;
-		// IF BBP & LEN WRONG ERORR
-		free(tmp);
-		i++;
-	}
-}
 
 #ifndef BONUS
 
@@ -67,7 +31,8 @@ void			init_data(void)
 	g_m.dir.y = g_vars.data.b.map.sp_dir.y;
 	g_m.res.x = g_vars.data.b.res.x;
 	g_m.res.y = g_vars.data.b.res.y;
-	init_spr_loop();
+	init_spr_img_loop();
+	init_tex_img_loop();
 	init_key();
 }
 
@@ -97,7 +62,8 @@ void			init_data(void)
 	g_m.dir.y = g_vars.data.b.map.sp_dir.y;
 	g_m.res.x = g_vars.data.b.res.x;
 	g_m.res.y = g_vars.data.b.res.y;
-	init_spr_loop();
+	init_spr_img_loop();
+	init_tex_img_loop();
 	init_key();
 	init_bonus(&g_vars.data.b.bonus, g_vars.data.b.res);
 }

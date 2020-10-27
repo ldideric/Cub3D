@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/20 22:03:40 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/22 16:07:19 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 17:56:33 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,5 @@ int			move_hooks(int keycode, int o)
 		rot_left();
 	if (g_vars.data.key.rarr == 1)
 		rot_right();
-	pxloop(&g_vars.data);
-	return (1);
-}
-
-int			hooks(void)
-{
-	mlx_hook(g_vars.win, 2, (1L << 0), button_press_hooks, &g_vars);
-	mlx_hook(g_vars.win, 3, (1L << 1), button_release_hooks, &g_vars);
-	mlx_hook(g_vars.win, 17, 0L, destroy_window_hooks, &g_vars);
 	return (1);
 }

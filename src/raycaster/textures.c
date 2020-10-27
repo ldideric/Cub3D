@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/09 02:39:50 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/26 17:29:37 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/27 23:47:15 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			tex_loop(t_tex *tex, int x)
 	y = g_m.draw_start;
 	while (y < g_m.draw_end)
 	{
-		g_m.t.y = (int)g_m.t.pos & (tex->y - 1);
+		g_m.t.y = (int)g_m.t.pos;
 		g_m.t.pos += g_m.t.step;
 		color = get_color(tex, g_m.t.x, g_m.t.y);
 		if (color.packed.a > 0)
@@ -93,12 +93,16 @@ void			tex_loop(t_tex *tex, int x)
 
 void			which_texture(int x)
 {
+	basic_math(x);
+	calc_step();
+	dda_hit_checker();
+	calc_line_height();
 	if (g_m.side == 0 && g_m.raydir.x >= 0)
-		tex_loop(&g_vars.data.b.tex[1], x);
+		tex_loop(&g_vars.data.b.tex_img[1], x);
 	else if (g_m.side == 0 && g_m.raydir.x < 0)
-		tex_loop(&g_vars.data.b.tex[3], x);
+		tex_loop(&g_vars.data.b.tex_img[3], x);
 	else if (g_m.side == 1 && g_m.raydir.y >= 0)
-		tex_loop(&g_vars.data.b.tex[2], x);
+		tex_loop(&g_vars.data.b.tex_img[2], x);
 	else
-		tex_loop(&g_vars.data.b.tex[0], x);
+		tex_loop(&g_vars.data.b.tex_img[0], x);
 }
