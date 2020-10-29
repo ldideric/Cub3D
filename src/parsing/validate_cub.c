@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/02 13:12:20 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 23:51:16 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 15:27:04 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static void		sprite_data(t_spr *spr_data, t_2vec p, char c)
 		spr_data->pos[spr_data->max] = (t_2vec){p.x + 0.5, p.y + 0.5};
 		spr_data->pos[spr_data->max + 1] = (t_2vec){-1, -1};
 		spr_data->sp = malloc(sizeof(int) * 2);
-		spr_data->sp[spr_data->max] = c - '0';
+		spr_data->sp[spr_data->max] = c - '2';
 		spr_data->sp[spr_data->max + 1] = -1;
 	}
 	else
 	{
 		spr_data->pos = ft_add_2vec(spr_data->pos,
 			(t_2vec){p.x + 0.5, p.y + 0.5});
-		spr_data->sp = ft_add_int(spr_data->sp, c - '0');
+		spr_data->sp = ft_add_int(spr_data->sp, c - '2');
 	}
 	spr_data->max++;
 }

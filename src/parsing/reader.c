@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 17:14:26 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 15:08:15 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int		specifier(char *s, t_base *b)
 			((*(u_int16_t *)s == *(u_int16_t *)"R ") && spec[1](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"F ") && spec[2](s, b)) ||
 			((*(u_int16_t *)s == *(u_int16_t *)"C ") && spec[2](s, b)) ||
-			((*s == *"S") && spec[0](s, b)));
+			((*s == *"S") && spec[3](s, b)));
 }
 
 static int		reader(t_base *b, int fd, int ret)
@@ -68,7 +68,9 @@ int				rd_start(t_base *b)
 	ret = get_next_line(fd, &b->line);
 	if (ret == -1)
 		return (errors(ERR_IN_GNL));
+	t_tex_bzero(b);
 	if (!reader(b, fd, ret) || !val_map(&b->map) || !val_res())
 		return (0);
+	close(fd);
 	return (1);
 }

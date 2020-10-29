@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 23:52:09 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 15:29:48 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ int			rd_spr(char *s, t_base *b)
 	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S5") ? &b->spr_img[5].path : ptr;
 	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S6") ? &b->spr_img[6].path : ptr;
 	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S7") ? &b->spr_img[7].path : ptr;
-	while (ft_isalpha(s[i]))
+	while (s[i] != ' ')
 		i++;
-	while (s[i] == ' ')
-		i++;
-	*ptr = ft_substr(s, i, 255);
+	*ptr = ft_strtrim(s + i, " \n\t");
 	return (*ptr != NULL);
 }
 
@@ -46,12 +44,9 @@ int			rd_tex(char *s, t_base *b)
 	ptr = (*(u_int16_t *)s == *(u_int16_t *)"EA") ? &b->tex_img[1].path : ptr;
 	ptr = (*(u_int16_t *)s == *(u_int16_t *)"SO") ? &b->tex_img[2].path : ptr;
 	ptr = (*(u_int16_t *)s == *(u_int16_t *)"WE") ? &b->tex_img[3].path : ptr;
-	ptr = (*(u_int16_t *)s == *(u_int16_t *)"S ") ? &b->tex_img[4].path : ptr;
-	while (ft_isalpha(s[i]))
+	while (s[i] != ' ')
 		i++;
-	while (s[i] == ' ')
-		i++;
-	*ptr = ft_substr(s, i, 255);
+	*ptr = ft_strtrim(s + i, " \n\t");
 	return (*ptr != NULL);
 }
 

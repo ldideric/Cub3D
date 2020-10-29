@@ -10,8 +10,11 @@
 - [x] adjust screensize automatically
 - [x] mlx sync
 - [x] BMP save
+- [ ] wall tex mirrored
+- [ ] diagonal view of sprite creates bug
 
 - [x] fix crosshair bonus
+- [x] fix multiple sprites bonus
 
 
 ### Before handing in

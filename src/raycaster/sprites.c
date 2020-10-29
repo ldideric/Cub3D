@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 17:41:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/28 00:13:05 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/29 03:47:32 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #ifndef BONUS
 
-void		spr_vert_line(t_tex *tex, int stripe)
+void		spr_vert_line(t_tex *tex, int stripe, int i)
 {
 	t_rgb	color;
 	int		y;
@@ -26,7 +26,7 @@ void		spr_vert_line(t_tex *tex, int stripe)
 		d = y * 256 - g_m.res.y * 128 + g_m.s.spr_h * 128;
 		g_m.s.tex.y = ((d * tex->y) / g_m.s.spr_h) / 256;
 		color = get_color(tex, g_m.s.tex.x, g_m.s.tex.y);
-		if ((color.color ^ color_input(0, 0, 0, 255).color) != 0)
+		if (color.color != g_vars.data.b.spr_data.trans[i]) // CHECK THIS
 			my_mlx_pixel_put(stripe, y, color.color);
 		y++;
 	}
@@ -38,7 +38,7 @@ void		spr_vert_line(t_tex *tex, int stripe)
 ** With distance related shadow effect
 */
 
-void		spr_vert_line(t_tex *tex, int stripe)
+void		spr_vert_line(t_tex *tex, int stripe, int i)
 {
 	t_rgb	color;
 	int		y;
@@ -53,7 +53,7 @@ void		spr_vert_line(t_tex *tex, int stripe)
 		color.packed.r = color.packed.r / (g_m.s.transform.y / 30.0 + 1.0);
 		color.packed.g = color.packed.g / (g_m.s.transform.y / 30.0 + 1.0);
 		color.packed.b = color.packed.b / (g_m.s.transform.y / 30.0 + 1.0);
-		if ((color.color ^ color_input(0, 0, 0, 255).color) != 0)
+		if (color.color != g_vars.data.b.spr_data.trans[i])
 			my_mlx_pixel_put(stripe, y, color.color);
 		y++;
 	}
@@ -74,8 +74,8 @@ void		spr_width_calc(void)
 
 void		basic_spr_math(t_2vec *dir, t_spr *spr_data, int i)
 {
-	g_m.s.spr.x = spr_data->pos[spr_data->sp[i] - 2].x - g_m.pos.x;
-	g_m.s.spr.y = spr_data->pos[spr_data->sp[i] - 2].y - g_m.pos.y;
+	g_m.s.spr.x = spr_data->pos[i].x - g_m.pos.x;
+	g_m.s.spr.y = spr_data->pos[i].y - g_m.pos.y;
 	g_m.s.inv_det = 1.0 / (g_m.plane.x * dir->y
 		- dir->x * g_m.plane.y);
 	g_m.s.transform.x = g_m.s.inv_det * (dir->y * g_m.s.spr.x
@@ -93,13 +93,13 @@ void		basic_spr_math(t_2vec *dir, t_spr *spr_data, int i)
 		g_m.s.draw_end.y = g_m.res.y - 1;
 }
 
-void		spr_loop(t_spr *spr_data, t_base *b)
+void		spr_loop(t_spr *spr_data, t_base *b)sq
 {
 	int		stripe;
 	int		i;
 
 	i = 0;
-	init_spr(spr_data);
+	spr_init(spr_data);
 	while (i < g_m.s.num_spr)
 	{
 		basic_spr_math(&g_vars.data.b.map.sp_dir, spr_data, i);
@@ -109,11 +109,11 @@ void		spr_loop(t_spr *spr_data, t_base *b)
 		{
 			g_m.s.tex.x = (int)(256 * (stripe -
 				(-g_m.s.spr_w / 2 + g_m.s.spr_screenx))
-				* b->spr_img[b->spr_data.sp[i] - 2].x / g_m.s.spr_w) / 256;
+				* b->spr_img[b->spr_data.sp[i]].x / g_m.s.spr_w) / 256;
 			if (g_m.s.transform.y > 0 && stripe > 0 &&
 				stripe < g_m.res.x &&
 				g_m.s.transform.y < g_m.s.zbuffer[stripe])
-				spr_vert_line(&b->spr_img[b->spr_data.sp[i] - 2], stripe);
+				spr_vert_line(&b->spr_img[b->spr_data.sp[i]], stripe, i);
 			stripe++;
 		}
 		i++;

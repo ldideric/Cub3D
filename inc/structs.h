@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 23:37:36 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/29 03:14:33 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_spr
 	t_2vec			*pos;
 	int				*sp;
 	int				max;
+	unsigned int	*trans;
 }					t_spr;
 
 /*

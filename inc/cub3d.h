@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/28 00:25:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/29 03:31:17 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,11 @@ void				tex_loop(t_tex *tex, int x);
 void				tex_pix_calc(t_tex *tex);
 t_rgb				get_color(t_tex *tex, int x, int y);
 
-void				init_spr(t_spr *spr_data);
+void				spr_init(t_spr *spr_data);
 void				spr_loop(t_spr *spr_img, t_base *b);
+void				basic_spr_math(t_2vec *dir, t_spr *spr_data, int i);
+void				spr_width_calc(void);
+void				spr_vert_line(t_tex *tex, int stripe, int i);
 
 int					move_up(void);
 int					move_down(void);
@@ -85,8 +88,8 @@ int					rot_left(void);
 */
 
 void				init_data(void);
-void				init_spr_img_loop(void);
-void				init_tex_img_loop(void);
+void				init_spr_img_loop(t_tex *s, char *tmp);
+void				init_tex_img_loop(t_tex *tex, char *tmp);
 void				init_key(void);
 
 void				my_mlx_pixel_put(int x, int y, int color);
@@ -95,6 +98,8 @@ void				bmp(t_data *data, t_save *s);
 
 char				first_char(char *s);
 int					tab_checker(char *s);
+void				t_tex_bzero(t_base *b);
+
 int					*ft_add_int(int *old, int p);
 t_res				*ft_add_res(t_res *old, t_res p);
 t_2vec				*ft_add_2vec(t_2vec *old, t_2vec p);

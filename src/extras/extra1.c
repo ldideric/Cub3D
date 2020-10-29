@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 15:23:37 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 23:14:11 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/28 15:00:24 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,18 @@ int				*ft_add_int(int *old, int p)
 	new[i + 1] = -1;
 	free(old);
 	return (new);
+}
+
+void			t_tex_bzero(t_base *b)
+{
+	int		i;
+
+	i = 0;
+	while (i < 9)
+	{
+		b->spr_img[i].path = NULL;
+		if (i < 5)
+			b->tex_img[i].path = NULL;
+		i++;
+	}
 }
