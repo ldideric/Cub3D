@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/30 16:11:09 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/31 21:21:42 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,11 +184,14 @@ typedef struct		s_base
 	t_save			save;
 	t_map			map;
 	t_res			res;
+	int				is_res;
 	t_tex			tex_img[4];
 	t_tex			spr_img[8];
 	t_spr			spr_data;
 	t_rgb			floor;
 	t_rgb			ceiling;
+	int				is_floor;
+	int				is_ceiling;
 }					t_base;
 
 # else
@@ -215,11 +218,14 @@ typedef struct		s_base
 	t_save			save;
 	t_map			map;
 	t_res			res;
+	int				is_res;
 	t_tex			tex[4];
 	t_tex			spr[8];
 	t_spr			spr_img;
 	t_rgb			floor;
 	t_rgb			ceiling;
+	int				is_floor;
+	int				is_ceiling;
 	t_bonus			bonus;
 }					t_base;
 

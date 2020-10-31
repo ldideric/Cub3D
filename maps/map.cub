@@ -1,4 +1,4 @@
-  R  1920 1080
+  R  1920  1080
 
 NO ./images/choongus.xpm
 EA ./images/stone.xpm
@@ -10,7 +10,7 @@ S1 ./images/pillar.xpm
 S2 ./images/barrel.xpm
 S3 ./images/test_smok.xpm
 
-      F     56,56,56
+      F  56,80,56
 C     88,0,88
 
 111111111111111111111111

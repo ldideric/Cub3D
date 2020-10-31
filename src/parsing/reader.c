@@ -6,11 +6,30 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/28 15:08:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/31 21:31:35 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+static int		parse_map_ready(t_base *b)
+{
+	if (!b->is_res)
+		return (0);
+	if (!b->tex_img[0].path)
+		return (0);
+	if (!b->tex_img[1].path)
+		return (0);
+	if (!b->tex_img[2].path)
+		return (0);
+	if (!b->tex_img[3].path)
+		return (0);
+	if (!b->spr_img[0].path)
+		return (0);
+	if (b->is_floor == 0 || b->is_ceiling == 0)
+		return (0);
+	return (1);
+}
 
 static int		specifier(char *s, t_base *b)
 {
@@ -47,7 +66,7 @@ static int		reader(t_base *b, int fd, int ret)
 			if (!specifier(b->line + i, b))
 				return (parse_err(b->line + i));
 		}
-		else if (ft_isdigit(b->line[i]) == 1 || b->line[i] == ' ')
+		else if (parse_map_ready(b) && ft_isdigit(first_char(b->line)))
 			return (rd_map(b, fd));
 		free(b->line);
 		ret = get_next_line(fd, &b->line);
@@ -64,6 +83,9 @@ int				rd_start(t_base *b)
 	int		ret;
 
 	ret = 0;
+	b->is_res = 0;
+	b->is_floor = 0;
+	b->is_ceiling = 0;
 	fd = open(b->file, O_RDONLY);
 	ret = get_next_line(fd, &b->line);
 	if (ret == -1)
@@ -72,5 +94,7 @@ int				rd_start(t_base *b)
 	if (!reader(b, fd, ret) || !val_map(&b->map) || !val_res())
 		return (0);
 	close(fd);
+	if (b->map.ptr == NULL)
+		return (errors(ERR_IN_CUB));
 	return (1);
 }

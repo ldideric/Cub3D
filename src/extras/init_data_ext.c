@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/29 13:15:42 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/31 17:10:23 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void		init_spr_img_loop(t_tex *s, char *tmp)
 			tmp = ft_strdup(s->path);
 			if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".xpm", 4) == 0)
 				s->img = mlx_xpm_file_to_image(g_vars.mlx, tmp, &s->x, &s->y);
-			/*else if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".png", 4) == 0)
-				s->img = mlx_png_file_to_image(g_vars.mlx, tmp, &s->x, &s->y);*/
 			if (s->img == NULL)
 				errors(ERR_SPR_IN);
 			s->addr = mlx_get_data_addr(s->img, &s->bpp, &s->len, &s->endian);
@@ -69,9 +67,6 @@ void		init_tex_img_loop(t_tex *tex, char *tmp)
 		tmp = ft_strdup(tex->path);
 		if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".xpm", 4) == 0)
 			tex->img = mlx_xpm_file_to_image(g_vars.mlx, tmp, &tex->x, &tex->y);
-		/*else if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".png", 4) == 0)
-			tex->img = mlx_png_file_to_image(g_vars.mlx,
-				tmp, &tex->x, &tex->y);*/
 		if (tex->img == NULL)
 			errors(ERR_SPR_IN);
 		tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,

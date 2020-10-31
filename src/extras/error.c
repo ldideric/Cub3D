@@ -6,11 +6,33 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/25 17:47:59 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/20 00:55:50 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/31 21:34:57 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+#define YEET 2
+
+#if YEET == 1
+
+int		parse_err(char *s)
+{
+	(void)s;
+	ft_printf("Error\n");
+	exit(0);
+	return (0);
+}
+
+int		errors(char *error)
+{
+	(void)error;
+	ft_printf("Error\n");
+	exit(0);
+	return (0);
+}
+
+#else
 
 int		parse_err(char *s)
 {
@@ -36,3 +58,5 @@ int		errors(char *error)
 	exit(0);
 	return (0);
 }
+
+#endif
