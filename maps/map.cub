@@ -6,7 +6,7 @@ SO  ./images/purple stone.xpm
  WE  ./images/metal.xpm   
 
 S ./images/test_tulip.xpm
-S1 ./images/choongus.xpm
+S1 ./images/pillar.xpm
 S2 ./images/barrel.xpm
 S3 ./images/test_smok.xpm
 
@@ -15,7 +15,7 @@ C     88,0,88
 
 111111111111111111111111
 100000004400000000000001
-100020000000000002200001
+100000000000000002200001
 100003000000005000000001
 100000111110000101010001
 100000100010000200000001

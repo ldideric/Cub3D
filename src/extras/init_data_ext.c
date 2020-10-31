@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/29 03:33:18 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/29 13:15:42 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		init_spr_trans(t_tex *s, t_base *b)
 {
+	t_rgb	tmp;
 	int		i;
 
 	i = 0;
@@ -22,7 +23,11 @@ void		init_spr_trans(t_tex *s, t_base *b)
 	{
 		s = &g_vars.data.b.spr_img[i];
 		if (s->path != NULL)
-			b->spr_data.trans[i] = get_color(s, 1, 1).color;
+		{
+			tmp = get_color(s, 1, 1);
+			tmp.packed.a = 0;
+			b->spr_data.trans[i] = tmp.color;
+		}
 		i++;
 	}
 }

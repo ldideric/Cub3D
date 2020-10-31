@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 17:41:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/29 03:47:32 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/10/29 13:17:07 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void		spr_vert_line(t_tex *tex, int stripe, int i)
 		d = y * 256 - g_m.res.y * 128 + g_m.s.spr_h * 128;
 		g_m.s.tex.y = ((d * tex->y) / g_m.s.spr_h) / 256;
 		color = get_color(tex, g_m.s.tex.x, g_m.s.tex.y);
-		if (color.color != g_vars.data.b.spr_data.trans[i]) // CHECK THIS
+		color.packed.a = 0;
+		if (color.color != g_vars.data.b.spr_data.trans[i]) /* CHECK THIS*/
 			my_mlx_pixel_put(stripe, y, color.color);
 		y++;
 	}
@@ -93,7 +94,7 @@ void		basic_spr_math(t_2vec *dir, t_spr *spr_data, int i)
 		g_m.s.draw_end.y = g_m.res.y - 1;
 }
 
-void		spr_loop(t_spr *spr_data, t_base *b)sq
+void		spr_loop(t_spr *spr_data, t_base *b)
 {
 	int		stripe;
 	int		i;
@@ -110,7 +111,7 @@ void		spr_loop(t_spr *spr_data, t_base *b)sq
 			g_m.s.tex.x = (int)(256 * (stripe -
 				(-g_m.s.spr_w / 2 + g_m.s.spr_screenx))
 				* b->spr_img[b->spr_data.sp[i]].x / g_m.s.spr_w) / 256;
-			if (g_m.s.transform.y > 0 && stripe > 0 &&
+			if (g_m.s.transform.y > 0.0 && stripe > 0 &&
 				stripe < g_m.res.x &&
 				g_m.s.transform.y < g_m.s.zbuffer[stripe])
 				spr_vert_line(&b->spr_img[b->spr_data.sp[i]], stripe, i);
