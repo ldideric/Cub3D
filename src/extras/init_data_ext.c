@@ -6,31 +6,11 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:11:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/31 17:10:23 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:28:52 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-void		init_spr_trans(t_tex *s, t_base *b)
-{
-	t_rgb	tmp;
-	int		i;
-
-	i = 0;
-	b->spr_data.trans = malloc(sizeof(unsigned int) * 8);
-	while (i < 8)
-	{
-		s = &g_vars.data.b.spr_img[i];
-		if (s->path != NULL)
-		{
-			tmp = get_color(s, 1, 1);
-			tmp.packed.a = 0;
-			b->spr_data.trans[i] = tmp.color;
-		}
-		i++;
-	}
-}
 
 void		init_spr_img_loop(t_tex *s, char *tmp)
 {
@@ -52,8 +32,7 @@ void		init_spr_img_loop(t_tex *s, char *tmp)
 		}
 		i++;
 	}
-	init_spr_trans(s, &g_vars.data.b);
-	g_m.s.zbuffer = (int *)malloc(sizeof(int) * (g_m.res.x + 1));
+	g_m.s.zbuffer = (double *)malloc(sizeof(double) * (g_m.res.x + 1));
 }
 
 void		init_tex_img_loop(t_tex *tex, char *tmp)
@@ -68,7 +47,7 @@ void		init_tex_img_loop(t_tex *tex, char *tmp)
 		if (ft_strncmp(tmp + (ft_strlen(tmp) - 4), ".xpm", 4) == 0)
 			tex->img = mlx_xpm_file_to_image(g_vars.mlx, tmp, &tex->x, &tex->y);
 		if (tex->img == NULL)
-			errors(ERR_SPR_IN);
+			errors(ERR_TEX_IN);
 		tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
 			&tex->len, &tex->endian);
 		free(tmp);

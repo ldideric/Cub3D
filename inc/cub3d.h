@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 10:28:36 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/29 03:31:17 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:28:02 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void				spr_init(t_spr *spr_data);
 void				spr_loop(t_spr *spr_img, t_base *b);
 void				basic_spr_math(t_2vec *dir, t_spr *spr_data, int i);
 void				spr_width_calc(void);
-void				spr_vert_line(t_tex *tex, int stripe, int i);
+void				spr_vert_line(t_tex *tex, int stripe);
 
 int					move_up(void);
 int					move_down(void);

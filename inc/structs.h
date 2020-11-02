@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:29:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/31 21:21:42 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:40:56 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct		s_sprm
 	t_res			draw_start;
 	t_res			draw_end;
 	t_res			tex;
-	int				*zbuffer;
+	double			*zbuffer;
 }					t_sprm;
 
 /*
@@ -219,9 +219,9 @@ typedef struct		s_base
 	t_map			map;
 	t_res			res;
 	int				is_res;
-	t_tex			tex[4];
-	t_tex			spr[8];
-	t_spr			spr_img;
+	t_tex			tex_img[4];
+	t_tex			spr_img[8];
+	t_spr			spr_data;
 	t_rgb			floor;
 	t_rgb			ceiling;
 	int				is_floor;

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 17:41:42 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/29 13:17:07 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:43:13 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #ifndef BONUS
 
-void		spr_vert_line(t_tex *tex, int stripe, int i)
+void		spr_vert_line(t_tex *tex, int stripe)
 {
 	t_rgb	color;
 	int		y;
@@ -27,7 +27,7 @@ void		spr_vert_line(t_tex *tex, int stripe, int i)
 		g_m.s.tex.y = ((d * tex->y) / g_m.s.spr_h) / 256;
 		color = get_color(tex, g_m.s.tex.x, g_m.s.tex.y);
 		color.packed.a = 0;
-		if (color.color != g_vars.data.b.spr_data.trans[i]) /* CHECK THIS*/
+		if ((color.color & 0x00FFFFFF) != 0)
 			my_mlx_pixel_put(stripe, y, color.color);
 		y++;
 	}
@@ -39,7 +39,7 @@ void		spr_vert_line(t_tex *tex, int stripe, int i)
 ** With distance related shadow effect
 */
 
-void		spr_vert_line(t_tex *tex, int stripe, int i)
+void		spr_vert_line(t_tex *tex, int stripe)
 {
 	t_rgb	color;
 	int		y;
@@ -54,7 +54,8 @@ void		spr_vert_line(t_tex *tex, int stripe, int i)
 		color.packed.r = color.packed.r / (g_m.s.transform.y / 30.0 + 1.0);
 		color.packed.g = color.packed.g / (g_m.s.transform.y / 30.0 + 1.0);
 		color.packed.b = color.packed.b / (g_m.s.transform.y / 30.0 + 1.0);
-		if (color.color != g_vars.data.b.spr_data.trans[i])
+		color.packed.a = 0;
+		if ((color.color & 0x00FFFFFF) != 0)
 			my_mlx_pixel_put(stripe, y, color.color);
 		y++;
 	}
@@ -114,7 +115,7 @@ void		spr_loop(t_spr *spr_data, t_base *b)
 			if (g_m.s.transform.y > 0.0 && stripe > 0 &&
 				stripe < g_m.res.x &&
 				g_m.s.transform.y < g_m.s.zbuffer[stripe])
-				spr_vert_line(&b->spr_img[b->spr_data.sp[i]], stripe, i);
+				spr_vert_line(&b->spr_img[b->spr_data.sp[i]], stripe);
 			stripe++;
 		}
 		i++;

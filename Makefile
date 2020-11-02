@@ -6,7 +6,7 @@
 #    By: ldideric <ldideric@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/06 14:04:07 by ldideric      #+#    #+#                  #
-#    Updated: 2020/10/27 22:36:28 by ldideric      ########   odam.nl          #
+#    Updated: 2020/11/02 21:04:47 by ldideric      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ LIBFT_SRC		=	ft_memset.c \
 					ft_lstnew_bonus.c \
 					ft_lstsize_bonus.c \
 					ft_ismatch.c \
-					ft_strstr.c
+					ft_strstr.c \
+					ft_skipchar.c
 
 PRINTF_SRC		=	ft_printf.c \
 					ft_printf_bonus.c \
@@ -89,6 +90,7 @@ GNL_SRC			=	get_next_line.c \
 PARS_SRC		=	reader.c \
 					reader_map.c \
 					reader_extra.c \
+					reader_res_f_c.c \
 					validate_cub.c
 
 RAYC_SRC		=	pxloop.c \
@@ -106,6 +108,7 @@ EXTRA_SRC		=	error.c \
 					hooks.c \
 					hooks_move.c \
 					extra1.c \
+					extra2.c \
 					bmp.c \
 					init_data.c \
 					init_data_ext.c
@@ -152,6 +155,9 @@ FLAGS	+=	-fsanitize=address
 endif
 ifdef SPEED
 FLAGS	+=	-Ofast
+endif
+ifdef ERROR
+FLAGS	+=	-D ELABORATE_ERR=1
 endif
 ifdef LEAKS
 FLAGS	+=	-D LEAKS=1
@@ -217,15 +223,15 @@ bonus:
 norm:
 	@echo "$(R)Norminette:$(RES)"
 	@norminette $(C_FILES) $(BONUS_SRC_DIR) \
-		./inc/*.h ./src/bonus/*.h Makefile | grep -c "Error" || printf ""
+		./inc/*.h Makefile | grep -c "Error" || printf ""
 	@echo "$(R)Norminette+:$(RES)"
 	@python ~/norminette+/run.py $(C_FILES) $(BONUS_SRC_DIR) \
-		./inc/*.h ./src/bonus/*.h Makefile | grep -c "Error" || printf ""
+		./inc/*.h Makefile | grep -c "Error" || printf ""
 
 normall:
 	@echo "$(R)Norminette:$(RES)"
 	@norminette $(C_FILES) $(BONUS_SRC_DIR) \
-		./inc/*.h ./src/bonus/*.h Makefile
+		./inc/*.h Makefile
 	@echo "$(R)Norminette+:$(RES)"
 	@python ~/norminette+/run.py $(C_FILES) $(BONUS_SRC_DIR) \
-		./inc/*.h ./src/bonus/*.h Makefile
+		./inc/*.h Makefile

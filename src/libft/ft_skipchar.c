@@ -1,40 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_skipchar.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/28 14:01:17 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/11/02 17:04:31 by ldideric      ########   odam.nl         */
+/*   Created: 2020/11/02 17:29:16 by ldideric      #+#    #+#                 */
+/*   Updated: 2020/11/02 20:58:50 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-int		ft_atoi(const char *str)
+static int		str_len_skipchar(char *s, char c)
 {
-	int				i;
-	unsigned long	num;
-	int				min;
+	int len;
+	int i;
 
 	i = 0;
-	num = 0;
-	min = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	len = 0;
+	while (s[i] != '\0')
 	{
-		if (str[i] == '-')
-			min = -min;
+		if (s[i] == c)
+			len++;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	return (ft_strlen(s) - len + 1);
+}
+
+char			*ft_skipchar(char *s, char c)
+{
+	char	*new;
+	int		j;
+	int		i;
+
+	i = 0;
+	j = 0;
+	new = malloc(sizeof(char) * str_len_skipchar(s, c));
+	if (new == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
 	{
-		num = num * 10 + str[i] - 48;
+		if (s[i] != c)
+		{
+			new[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	if (num >= 9223372036854775807 && min == 1)
-		return (-1);
-	return (num * min);
+	new[j] = '\0';
+	return (new);
 }

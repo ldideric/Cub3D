@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 22:05:31 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/29 03:34:46 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:59:06 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ static void		sort_spr_all(t_spr *spr_data, double **dist, t_res i)
 	itmp = spr_data->sp[i.x];
 	spr_data->sp[i.x] = spr_data->sp[i.y];
 	spr_data->sp[i.y] = itmp;
-	itmp = spr_data->trans[i.x];
-	spr_data->trans[i.x] = spr_data->trans[i.y];
-	spr_data->trans[i.y] = itmp;
 }
 
 static void		sort_sprites(t_spr *spr_data, double *dist, int max, t_res i)

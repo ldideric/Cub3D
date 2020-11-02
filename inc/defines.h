@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/12 14:28:12 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 21:33:47 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 18:43:22 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@
 # define ERR_IN_GNL	"\x1b[31mERROR\x1b[0m:\nSomething went wrong with GNL!"
 # define ERR_OPEN_F	"\x1b[31mERROR\x1b[0m:\nOpen failed!"
 
-# define ERR_TWO_SP	"\x1b[31mERROR\x1b[0m:\nTwo or more spawn points in map!"
+# define ERR_TWO_SP	"\x1b[31mERROR\x1b[0m:\nWrong num of spawn points in map!"
 # define ERR_SPAWN_ "\x1b[31mERROR\x1b[0m:\nWrong spawnpoint character!"
 # define ERR_MAP_PR	"\x1b[31mERROR\x1b[0m:\nWalls in map not correct!"
 # define ERR_SPR_IN	"\x1b[31mERROR\x1b[0m:\nSprite input not correct!"
+# define ERR_TEX_IN	"\x1b[31mERROR\x1b[0m:\nTexture input not correct!"
 
 # define ERR_PARSER	"Something went wrong with parsing the"
 # define ERR_SPRITE	"\x1b[31mERROR\x1b[0m:\n%s %s sprite!"

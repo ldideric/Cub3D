@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/07/02 18:57:52 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/31 21:31:35 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:36:12 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ static int		reader(t_base *b, int fd, int ret)
 		free(b->line);
 		ret = get_next_line(fd, &b->line);
 		if (ret == -1)
-			return (errors(ERR_IN_GNL));
+			return (errors(ERR_IN_CUB));
 	}
 	free(b->line);
+	if (b->map.ptr == NULL)
+		return (errors(ERR_IN_CUB));
 	return (1);
 }
 
@@ -89,12 +91,10 @@ int				rd_start(t_base *b)
 	fd = open(b->file, O_RDONLY);
 	ret = get_next_line(fd, &b->line);
 	if (ret == -1)
-		return (errors(ERR_IN_GNL));
+		return (errors(ERR_IN_CUB));
 	t_tex_bzero(b);
 	if (!reader(b, fd, ret) || !val_map(&b->map) || !val_res())
 		return (0);
 	close(fd);
-	if (b->map.ptr == NULL)
-		return (errors(ERR_IN_CUB));
 	return (1);
 }

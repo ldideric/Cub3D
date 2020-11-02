@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/24 18:37:06 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/31 21:45:33 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:51:26 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ int			rd_spr(char *s, t_base *b)
 	i++;
 	if (s[i] != '\0')
 	{
-		if (!(s[i] == ' ' && s[i + i] != '\0') && !(s[i] >= '1' && s[i] <= '7' && s[i + 1] == ' '))
+		if (!(s[i] == ' ' && s[i + i] != '\0') &&
+			!(s[i] >= '1' && s[i] <= '7' && s[i + 1] == ' '))
 			return (0);
 	}
 	else
 		return (0);
 	i++;
+	if (*ptr != NULL)
+		return (0);
 	*ptr = ft_strtrim(s + i, " \n\t");
 	return (*ptr != NULL);
 }
@@ -67,90 +70,8 @@ int			rd_tex(char *s, t_base *b)
 	ptr = rd_ptr_ret(s, b, FALSE);
 	i++;
 	i++;
+	if (*ptr != NULL)
+		return (0);
 	*ptr = ft_strtrim(s + i, " \n\t");
 	return (*ptr != NULL);
-}
-
-int			rd_res(char *s, t_base *b)
-{
-	while (*s == ' ' || ft_isalpha(*s))
-		s++;
-	b->res.x = ft_atoi(s);
-	if (b->res.x < 0)
-		return (0);
-	while (ft_isdigit(*s))
-		s++;
-	while (*s == ' ')
-		s++;
-	b->res.y = ft_atoi(s);
-	if (b->res.y < 0)
-		return (0);
-	b->is_res = 1;
-	return (1);
-}
-
-int			rd_rgb(char *s, t_rgb *rgb)
-{
-	if (!ft_isdigit(*s) || (ft_atoi(s) < 0 || ft_atoi(s) > 255))
-		return (0);
-	rgb->packed.r = (unsigned char)ft_atoi(s);
-	while (*s != ',')
-	{
-		if (*s == '\0')
-			return (0);
-		s++;
-	}
-	s++;
-	if (!ft_isdigit(*s) || (ft_atoi(s) < 0 || ft_atoi(s) > 255))
-		return (0);
-	rgb->packed.g = (unsigned char)ft_atoi(s);
-	while (*s != ',')
-	{
-		if (*s == '\0')
-			return (0);
-		s++;
-	}
-	s++;
-	if (!ft_isdigit(*s) || (ft_atoi(s) < 0 || ft_atoi(s) > 255))
-		return (0);
-	rgb->packed.b = (unsigned char)ft_atoi(s);
-	rgb->packed.a = 0;
-	return (1);
-}
-
-int			rd_f_c(char *s, t_base *b)
-{
-	if (*s == 'F')
-	{
-		s++;
-		while (*s == ' ')
-		{
-			if (*s == '\0')
-				return (0);
-			s++;
-		}
-		if (rd_rgb(s, &b->floor) == 1)
-		{
-			b->is_floor = 1;
-			return (1);
-		}
-		return (0);
-	}
-	else if (*s == 'C')
-	{
-		s++;
-		while (*s == ' ')
-		{
-			if (*s == '\0')
-				return (0);
-			s++;
-		}
-		if (rd_rgb(s, &b->ceiling) == 1)
-		{
-			b->is_ceiling = 1;
-			return (1);
-		}
-		return (0);
-	}
-	return (0);
 }

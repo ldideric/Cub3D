@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/09 02:39:50 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 23:47:15 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:44:54 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			tex_loop(t_tex *tex, int x)
 	y = g_m.draw_start;
 	while (y < g_m.draw_end)
 	{
-		g_m.t.y = (int)g_m.t.pos & (tex->y - 1);
+		g_m.t.y = (int)g_m.t.pos;
 		g_m.t.pos += g_m.t.step;
 		color = get_color(tex, g_m.t.x, g_m.t.y);
 		if (color.packed.a > 0)

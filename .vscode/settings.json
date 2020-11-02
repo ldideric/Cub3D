@@ -49,9 +49,9 @@
 				"command": "./cub3D maps/map.cub",
 			},
 			{
-				"name": "RUN test",
+				"name": "RUN bonus",
 				"color": "Lightyellow",
-				"command": "./cub3D maps/test.cub",
+				"command": "./cub3D maps/bonus.cub",
 			},
 		]
 	},

@@ -6,7 +6,7 @@
 /*   By: ldideric <ldideric@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/01 21:30:30 by ldideric      #+#    #+#                 */
-/*   Updated: 2020/10/27 23:47:52 by ldideric      ########   odam.nl         */
+/*   Updated: 2020/11/02 20:42:14 by ldideric      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int				pxloop(t_data *d)
 		which_texture(x);
 		x++;
 	}
-	spr_loop(&d->b.spr_img, &d->b.tex[4]);
+	spr_loop(&d->b.spr_data, &d->b);
 	bonus_call(d);
 	if (d->b.save.save == 1)
 		bmp(d, &d->b.save);
