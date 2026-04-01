@@ -1,2 +1,4 @@
 .DS_Store
 cub3D.dSYM/*
+build/
+cub3D

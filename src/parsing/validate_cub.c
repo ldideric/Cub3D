@@ -108,6 +108,8 @@ int				val_res(void)
 	if (g_vars.data.b.save.save == 1)
 		return (1);
 	mlx_get_screen_size(g_vars.mlx, &real.x, &real.y);
+	if (real.x <= 0 || real.y <= 0)
+		return (1);
 	if (g_vars.data.b.res.x > real.x || g_vars.data.b.res.y > real.y)
 		ft_printf("\x1b[38;5;208m[!]\x1b[0m Adjusted screen size\n");
 	if (g_vars.data.b.res.x > real.x)

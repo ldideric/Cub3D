@@ -1,19 +1,18 @@
 {
     "configurations": [
         {
-            "name": "Mac",
+            "name": "Linux",
             "includePath": [
 				"${workspaceFolder}/inc",
-				"${workspaceFolder}/mlx"
+				"${workspaceFolder}/src",
+				"${workspaceFolder}/MLX42/include",
+				"${workspaceFolder}/MLX42/include/MLX42"
             ],
             "defines": [],
-            "macFrameworkPath": [
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
-            ],
-            "compilerPath": "/usr/bin/clang",
-            "cStandard": "c89",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

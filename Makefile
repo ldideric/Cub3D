@@ -111,7 +111,8 @@ EXTRA_SRC		=	error.c \
 					extra2.c \
 					bmp.c \
 					init_data.c \
-					init_data_ext.c
+					init_data_ext.c \
+					mlx42_compat.c
 
 LIBFT_SRC_DIR	=	$(LIBFT_SRC:%=$(LIBFT_PATH)%)
 PRINTF_SRC_DIR	=	$(PRINTF_SRC:%=$(PRINTF_PATH)%)
@@ -137,15 +138,22 @@ C_FILES			=	./$(SRC_PATH)/cub3d.c \
 					$(RAYC_SRC_DIR) \
 					$(EXTRA_SRC_DIR)
 O_FILES			=	$(C_FILES:.c=.o)
-EXTRAS			=	libmlx.dylib
+EXTRAS			=	$(MLX42_LIB) $(GLFW_LIB)
 
-W_FLAGS			=	-Wall -Werror -Wextra -std=c89
-LIB_FLAGS		=	-framework OpenGL -framework AppKit -Imlx -Iinc
+W_FLAGS			=	-Wall -Werror -Wextra -Wno-type-limits -Wno-sign-compare -fcommon -std=c11
+LIB_FLAGS		=	-Iinc -IMLX42/include
+LDLIBS			=	-ldl -lGL -pthread -lm -lX11 -lXrandr -lXi -lXinerama -lXcursor
 FLAGS			=	$(W_FLAGS) $(LIB_FLAGS)
 BONUS_FLAGS		=	$(BONUS_SRC_DIR) -D BONUS=1
 
-MMLX			=	make -C ./mlx && cp mlx/libmlx.dylib .
-CMLX			=	@make fclean -C ./mlx
+MLX42_PATH		=	./MLX42
+MLX42_BUILD		=	$(MLX42_PATH)/build
+MLX42_LIB		=	$(MLX42_BUILD)/libmlx42.a
+GLFW_STATIC		=	$(MLX42_BUILD)/_deps/glfw-build/src/libglfw3.a
+GLFW_LIB		=	$(shell test -f $(GLFW_STATIC) && echo $(GLFW_STATIC) || echo "-lglfw")
+MMLX			=	cmake -S $(MLX42_PATH) -B $(MLX42_BUILD) -Wno-dev > /dev/null \
+					&& cmake --build $(MLX42_BUILD) -j4 > /dev/null
+CMLX			=	@rm -rf $(MLX42_BUILD)
 
 ifdef DEBUG
 FLAGS	+=	-g
@@ -164,31 +172,31 @@ FLAGS	+=	-D LEAKS=1
 endif
 ifdef MLX
 MMLX	=	@echo "$(O) > Skipping re-compiling the MLX Library.$(RES)" \
-			&& cp mlx/libmlx.dylib .
-CMLX	=	@make clean -C ./mlx
+			&& true
+CMLX	=	@true
 endif
 
 #COLOR CODES
 #red
-R	= \x1b[38;5;196m
+R	= $(shell printf '\033[38;5;196m')
 #orange
-O	= \x1b[38;5;208m
+O	= $(shell printf '\033[38;5;208m')
 #yellow
-Y	= \x1b[38;5;3m
+Y	= $(shell printf '\033[38;5;3m')
 #green
-G	= \x1b[38;5;83m
+G	= $(shell printf '\033[38;5;83m')
 #blue
-B	= \x1b[38;5;21m
+B	= $(shell printf '\033[38;5;21m')
 #purple
-P	= \x1b[38;5;129m
+P	= $(shell printf '\033[38;5;129m')
 #light pink
-PI	= \x1b[38;5;219m
+PI	= $(shell printf '\033[38;5;219m')
 #grey
-GR	= \x1b[38;5;244m
+GR	= $(shell printf '\033[38;5;244m')
 #reset to white
-RES	= \x1b[0m
+RES	= $(shell printf '\033[0m')
 
-SUM		= \x1b[38;5;$(X)m
+SUM		= $(shell printf '\033[38;5;$(X)m')
 X		= 1
 
 all: $(NAME)
@@ -197,18 +205,18 @@ $(NAME):
 	@echo "$(P)Compiling MiniLibX Library$(O)"
 	$(MMLX)
 	@echo "$(P)Compiling cub3D$(O)"
-	@gcc $(C_FILES) $(FLAGS) $(EXTRAS) -o $(NAME)
-	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME)"
+	@gcc $(C_FILES) $(FLAGS) $(EXTRAS) $(LDLIBS) -o $(NAME)
+	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) $(LDLIBS) -o $(NAME)"
 	@echo "$(G) > Done compiling!$(RES)\n"
 
 clean:
 	@echo "$(P)Cleaning files.$(GR)"
-	@make clean -C ./mlx
+	$(CMLX)
 	@echo "rm -rf $\(FILES).o"
 	@rm -rf $(O_FILES)
 
 fclean: clean
-	rm -rf $(NAME) libmlx.dylib screenshot.bmp
+	rm -rf $(NAME) screenshot.bmp
 	$(CMLX)
 	@echo "$(G) > Done Cleaning!$(RES)\n"
 
@@ -216,8 +224,9 @@ re: fclean all
 
 bonus:
 	@echo "$(R)Recompiling with BONUS$(O)"
-	@gcc $(C_FILES) $(BONUS_FLAGS) $(FLAGS) $(EXTRAS) -o $(NAME)
-	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) -o $(NAME) $(BONUS_FLAGS)"
+	$(MMLX)
+	@gcc $(C_FILES) $(BONUS_FLAGS) $(FLAGS) $(EXTRAS) $(LDLIBS) -o $(NAME)
+	@echo "gcc $\(FILES).c $(FLAGS) $(EXTRAS) $(LDLIBS) -o $(NAME) $(BONUS_FLAGS)"
 	@echo "$(G) > Done compiling!$(RES)\n"
 
 norm:

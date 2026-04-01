@@ -42,7 +42,7 @@ static void		init_bonus(t_bonus *bn, t_res res)
 {
 	bn->cr_length = (res.x > res.y) ? res.y / 75 : res.x / 75;
 	bn->cr_width = bn->cr_length / 5;
-	bn->cr_col = color_input(0, 255, 255, 0);
+	bn->cr_col = color_input(0, 255, 255, 255);
 }
 
 void			init_data(void)

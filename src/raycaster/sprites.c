@@ -26,9 +26,11 @@ void		spr_vert_line(t_tex *tex, int stripe)
 		d = y * 256 - g_m.res.y * 128 + g_m.s.spr_h * 128;
 		g_m.s.tex.y = ((d * tex->y) / g_m.s.spr_h) / 256;
 		color = get_color(tex, g_m.s.tex.x, g_m.s.tex.y);
-		color.packed.a = 0;
 		if ((color.color & 0x00FFFFFF) != 0)
+		{
+			color.packed.a = 255;
 			my_mlx_pixel_put(stripe, y, color.color);
+		}
 		y++;
 	}
 }
@@ -54,9 +56,11 @@ void		spr_vert_line(t_tex *tex, int stripe)
 		color.packed.r = color.packed.r / (g_m.s.transform.y / 30.0 + 1.0);
 		color.packed.g = color.packed.g / (g_m.s.transform.y / 30.0 + 1.0);
 		color.packed.b = color.packed.b / (g_m.s.transform.y / 30.0 + 1.0);
-		color.packed.a = 0;
 		if ((color.color & 0x00FFFFFF) != 0)
+		{
+			color.packed.a = 255;
 			my_mlx_pixel_put(stripe, y, color.color);
+		}
 		y++;
 	}
 }

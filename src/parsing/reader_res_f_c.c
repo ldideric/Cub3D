@@ -73,7 +73,7 @@ static int	rd_rgb_ext(char *s, t_rgb *rgb)
 		s++;
 	if (*s != '\0')
 		return (0);
-	rgb->packed.a = 0;
+	rgb->packed.a = 255;
 	return (1);
 }
 

@@ -25,14 +25,14 @@
 # define TRUE		1
 # define FALSE		0
 
-# define KEY_W		13
-# define KEY_A		0
-# define KEY_S		1
-# define KEY_D		2
-# define KEY_Q		12
-# define KEY_ESC	53
-# define KEY_LFT	123
-# define KEY_RGT	124
+# define KEY_W		87
+# define KEY_A		65
+# define KEY_S		83
+# define KEY_D		68
+# define KEY_Q		81
+# define KEY_ESC	256
+# define KEY_LFT	263
+# define KEY_RGT	262
 
 /*
 ** ERROR MESSAGES

@@ -82,7 +82,7 @@ void			t_tex_bzero(t_base *b)
 	int		i;
 
 	i = 0;
-	while (i < 9)
+	while (i < 8)
 	{
 		b->spr_img[i].path = NULL;
 		if (i < 5)

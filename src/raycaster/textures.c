@@ -52,8 +52,7 @@ void			tex_loop(t_tex *tex, int x)
 		g_m.t.y = (int)g_m.t.pos;
 		g_m.t.pos += g_m.t.step;
 		color = get_color(tex, g_m.t.x, g_m.t.y);
-		if (color.packed.a > 0)
-			color.packed.a = 0;
+		color.packed.a = 255;
 		my_mlx_pixel_put(x, y, color.color);
 		y++;
 	}
@@ -78,8 +77,7 @@ void			tex_loop(t_tex *tex, int x)
 		g_m.t.y = (int)g_m.t.pos;
 		g_m.t.pos += g_m.t.step;
 		color = get_color(tex, g_m.t.x, g_m.t.y);
-		if (color.packed.a > 0)
-			color.packed.a = 0;
+		color.packed.a = 255;
 		color.packed.r = color.packed.r / (g_m.perpwalldist / 30.0 + 1.0);
 		color.packed.g = color.packed.g / (g_m.perpwalldist / 30.0 + 1.0);
 		color.packed.b = color.packed.b / (g_m.perpwalldist / 30.0 + 1.0);

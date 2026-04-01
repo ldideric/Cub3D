@@ -18,9 +18,9 @@
 */
 typedef struct		s_col
 {
-	unsigned char	b;
-	unsigned char	g;
 	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 	unsigned char	a;
 }					t_col;
 
