@@ -1,10 +1,20 @@
 # cub3D
 
+clone using:
+```
+git clone git@github.com:ldideric/Cub3D.git
+git submodule update --init
+```
+
 run using:
-```make && make re MLX=1 SPEED=1 ERROR=1```
+```
+make && make re MLX=1 SPEED=1 ERROR=1
+```
 
 bonus:
-```make re MLX=1 BONUS=1```
+```
+make re MLX=1 BONUS=1
+```
 
 ### To Do list
 - [x] multiple keypress
